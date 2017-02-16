@@ -17,9 +17,29 @@
      FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MainWindow" Height="350" Width="525">
 
-    <Grid>
-        <md:Card Padding="32" Margin="16">
-            
-        </md:Card>
-    </Grid>
+    <DockPanel>
+        <ToolBarTray>
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}"
+                     DockPanel.Dock="Top">
+                <Button ToolTip="Follow me on Twitter">
+                    <md:PackIcon Kind="ClockIn" />
+                </Button>
+                <Button ToolTip="Save">
+                    <md:PackIcon Kind="ContentSave" />
+                </Button>
+                <Separator />
+                <Button Command="Cut" ToolTip="Cut" ToolBar.OverflowMode="AsNeeded">
+                    <md:PackIcon Kind="ContentCut" />
+                </Button>
+                <Button Command="Copy" ToolTip="Copy that stuff" ToolBar.OverflowMode="AsNeeded">
+                    <md:PackIcon Kind="ContentCopy" />
+                </Button>
+                <Separator />
+                <Button Command="Paste" ToolTip="Paste some stuff" ToolBar.OverflowMode="AsNeeded">
+                    <md:PackIcon Kind="ContentPaste" />
+                </Button>
+                <Separator/>
+            </ToolBar>
+        </ToolBarTray>
+    </DockPanel>
 </Window>

@@ -62,7 +62,6 @@ C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\P
 C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\ProjectERP.csprojResolveAssemblyReference.cache
 C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\MainWindow.g.cs
 C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\App.g.cs
 C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Project_Content.g.cs
@@ -76,3 +75,6 @@ C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\P
 C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\ProjectERP.csproj.GenerateResource.Cache
 C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Project.exe
 C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Project.pdb
+C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\ProjectERP.csprojResolveAssemblyReference.cache
+C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Views\UiControls\Table.g.cs
+C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Views\UiControls\Table.baml
