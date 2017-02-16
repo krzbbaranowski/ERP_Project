@@ -1,10 +1,10 @@
 /*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:WpfApplication1"
+      <vm:ViewModelLocator xmlns:vm="clr-namespace:ProjectERP"
                            x:Key="Locator" />
   </Application.Resources>
-
+  
   In the View:
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 
@@ -51,7 +51,7 @@ namespace ProjectERP.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-
+        
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

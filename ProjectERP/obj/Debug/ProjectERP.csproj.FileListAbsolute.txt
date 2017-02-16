@@ -1,80 +1,45 @@
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\Project.exe.config
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\Project.exe
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\Project.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\EntityFramework.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\GalaSoft.MvvmLight.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\GalaSoft.MvvmLight.Extras.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\GalaSoft.MvvmLight.Platform.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\MaterialDesignColors.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\MaterialDesignThemes.Wpf.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\EntityFramework.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\GalaSoft.MvvmLight.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\GalaSoft.MvvmLight.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\GalaSoft.MvvmLight.Extras.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\GalaSoft.MvvmLight.Platform.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\MaterialDesignColors.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\MaterialDesignThemes.Wpf.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\MainWindow.g.cs
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\App.g.cs
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\Project_MarkupCompile.cache
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\Project_MarkupCompile.lref
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\App.baml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\MainWindow.baml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\Project.g.resources
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\ProjectERP.Properties.Resources.resources
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\ProjectERP.csproj.GenerateResource.Cache
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\Project.exe
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\WpfApplication1\WpfApplication1\obj\Debug\Project.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Model\Database\ERPDatabase.mdf
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Model\Database\ERPDatabase_log.ldf
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Project.exe.config
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Project.exe
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Project.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\EntityFramework.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\GalaSoft.MvvmLight.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Extras.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Platform.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\MaterialDesignColors.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\MaterialDesignThemes.Wpf.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\EntityFramework.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\GalaSoft.MvvmLight.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\GalaSoft.MvvmLight.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Extras.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Platform.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\MaterialDesignColors.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\MaterialDesignThemes.Wpf.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\MainWindow.g.cs
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\App.g.cs
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Project_Content.g.cs
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Project_MarkupCompile.cache
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Project_MarkupCompile.lref
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\App.baml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\MainWindow.baml
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Project.g.resources
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\ProjectERP.Properties.Resources.resources
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\ProjectERP.csproj.GenerateResource.Cache
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Project.exe
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Project.pdb
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\ProjectERP.csprojResolveAssemblyReference.cache
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Views\UiControls\Table.g.cs
-C:\Users\Krzysztof Baranowski\Documents\Visual Studio 2015\Projects\ERPProject\ProjectERP\obj\Debug\Views\UiControls\Table.baml
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\ProjectERP.csprojResolveAssemblyReference.cache
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\App.baml
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\MainWindow.g.cs
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\Views\UiControls\Table.g.cs
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\App.g.cs
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\Project_Content.g.cs
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\Project_MarkupCompile.cache
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\Project_MarkupCompile.lref
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\Model\Database\ERPDatabase.mdf
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\Model\Database\ERPDatabase_log.ldf
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\Project.exe.config
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\Project.exe
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\Project.pdb
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\EntityFramework.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\GalaSoft.MvvmLight.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\MahApps.Metro.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\MaterialDesignColors.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\MaterialDesignThemes.MahApps.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\System.Windows.Interactivity.dll
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\EntityFramework.xml
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\GalaSoft.MvvmLight.pdb
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\GalaSoft.MvvmLight.xml
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\MahApps.Metro.pdb
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\MahApps.Metro.xml
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\MaterialDesignColors.pdb
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\GitsRepo\ERP_Project\ProjectERP\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\MainWindow.baml
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\Views\UiControls\Table.baml
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\Project.g.resources
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\ProjectERP.Properties.Resources.resources
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\ProjectERP.csproj.GenerateResource.Cache
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\Project.exe
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\Project.pdb
+D:\GitsRepo\ERP_Project\ProjectERP\obj\Debug\GeneratedInternalTypeHelper.g.cs

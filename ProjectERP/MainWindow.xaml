@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApplication1"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="ProjectERP.MainWindow"
+        x:Class="ProjectERP.MainWindow"
+    
         mc:Ignorable="d"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,10 +14,11 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="350" Width="525">
-
+        Title="MainWindow" Height="350" Width="525"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
     <DockPanel>
         <ToolBarTray>
+            
             <ToolBar Style="{DynamicResource MaterialDesignToolBar}"
                      DockPanel.Dock="Top">
                 <Button ToolTip="Follow me on Twitter">

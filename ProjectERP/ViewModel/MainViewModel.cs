@@ -1,6 +1,4 @@
 using GalaSoft.MvvmLight;
-using MaterialDesignThemes.Wpf;
-using System.Linq;
 
 namespace ProjectERP.ViewModel
 {
@@ -23,7 +21,14 @@ namespace ProjectERP.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            
+            ////if (IsInDesignMode)
+            ////{
+            ////    // Code runs in Blend --> create design time data.
+            ////}
+            ////else
+            ////{
+            ////    // Code runs "for real"
+            ////}
         }
     }
 }
