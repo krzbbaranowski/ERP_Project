@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ERP_Database" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ERP_DatabaseContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Counterparty" EntityType="ERP_Database.Counterparty" />
+    <EntitySet Name="Address" EntityType="ERP_Database.Address" />
+    <EntitySet Name="Province" EntityType="ERP_Database.Province" />
+    <AssociationSet Name="ProvinceAddress" Association="ERP_Database.ProvinceAddress">
+      <End Role="Province" EntitySet="Province" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="AddressCounterparty" Association="ERP_Database.AddressCounterparty">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Counterparty" EntitySet="Counterparty" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Counterparty">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" Nullable="false" />
+    <Property Name="Name1" Type="String" Nullable="false" />
+    <Property Name="Name2" Type="String" Nullable="false" />
+    <Property Name="Name3" Type="String" Nullable="false" />
+    <Property Name="NIP" Type="String" Nullable="false" />
+    <Property Name="REGON" Type="String" Nullable="false" />
+    <Property Name="PESEL" Type="String" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="ERP_Database.AddressCounterparty" FromRole="Counterparty" ToRole="Address" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Street" Type="String" Nullable="false" />
+    <Property Name="House" Type="Int32" Nullable="false" />
+    <Property Name="Flat" Type="Int32" Nullable="false" />
+    <Property Name="PostalCode" Type="String" Nullable="false" />
+    <Property Name="City" Type="String" Nullable="false" />
+    <Property Name="Telephone" Type="String" Nullable="false" />
+    <Property Name="Telephone2" Type="String" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" />
+    <Property Name="Fax" Type="String" Nullable="false" />
+    <Property Name="Url" Type="String" Nullable="false" />
+    <NavigationProperty Name="Province" Relationship="ERP_Database.ProvinceAddress" FromRole="Address" ToRole="Province" />
+    <NavigationProperty Name="Counterparty" Relationship="ERP_Database.AddressCounterparty" FromRole="Address" ToRole="Counterparty" />
+  </EntityType>
+  <EntityType Name="Province">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="ERP_Database.ProvinceAddress" FromRole="Province" ToRole="Address" />
+  </EntityType>
+  <Association Name="ProvinceAddress">
+    <End Type="ERP_Database.Province" Role="Province" Multiplicity="1" />
+    <End Type="ERP_Database.Address" Role="Address" Multiplicity="*" />
+  </Association>
+  <Association Name="AddressCounterparty">
+    <End Type="ERP_Database.Address" Role="Address" Multiplicity="0..1" />
+    <End Type="ERP_Database.Counterparty" Role="Counterparty" Multiplicity="1" />
+  </Association>
+</Schema>

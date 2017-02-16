@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+ 
+  <!--View Model Class-->
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Mvvmlight ViewModel Class</Title>
+      <Shortcut>lightvm</Shortcut>
+      <Description>View Model for WPF &amp; Silverlight MVVM </Description>
+      <Author>Felix Fang</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>class</ID>
+          <ToolTip>View Model Class Name</ToolTip>
+          <Default>MyViewModel</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+    public class $class$ : ViewModelBase
+    {
+        public $class$()
+        {
+            if (IsInDesignMode)
+            {
+            }
+            else
+            {
+            }
+        }
+
+        //Use lightprop + tab to create a new property of vm here:
+        
+        //Use lightcmd + tab to create a new command of vm here:
+    }
+    ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+
+  <!--View Model Property-->
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Mvvmlight Property</Title>
+      <Shortcut>lightprop</Shortcut>
+      <Description>Property of View Model for WPF &amp; Silverlight MVVM </Description>
+      <Author>Felix Fang</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>string</Default>
+        </Literal>
+        <Literal>
+          <ID>property</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>MyProperty</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+        private $type$ _$property$;
+        public $type$ $property$
+        {
+            get { return _$property$; }
+            set 
+            { 
+               _$property$ = value;
+               RaisePropertyChanged<$type$>(() => this.$property$);
+            }
+        }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+
+
+  <!--View Model Command -->
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Mvvmlight ViewModel Command</Title>
+      <Shortcut>lightcmd</Shortcut>
+      <Description>Command Model of View Model for WPF &amp; Silverlight MVVM </Description>
+      <Author>Felix Fang</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>commandName</ID>
+          <ToolTip>View Model Command Name</ToolTip>
+          <Default>SomeCommand</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" >
+        <![CDATA[
+        private RelayCommand _$commandName$;
+        public RelayCommand $commandName$
+        {
+            get 
+            {
+              if (_$commandName$ == null) 
+              {
+                  _$commandName$ = new RelayCommand(() => {
+                     // add implement in here:
+                  });
+              }
+              return _$commandName$;
+            }
+        }
+      ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+
+</CodeSnippets>
