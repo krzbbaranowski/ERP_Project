@@ -14,6 +14,7 @@
 
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using ProjectERP.ViewModel.UiControls;
 
 namespace ProjectERP.ViewModel
 {
@@ -42,8 +43,8 @@ namespace ProjectERP.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
-       
             SimpleIoc.Default.Register<CounterpartyModelView>();
+            SimpleIoc.Default.Register<MainTabControlModelView>();
         }
 
         public MainViewModel Main
@@ -52,6 +53,11 @@ namespace ProjectERP.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
+        }
+
+        public MainTabControlModelView MainTabControl
+        {
+            get { return ServiceLocator.Current.GetInstance<MainTabControlModelView>(); }
         }
 
         public CounterpartyModelView Counterparty

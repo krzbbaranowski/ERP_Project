@@ -1,4 +1,10 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Practices.ServiceLocation;
+using ProjectERP.Model.DataObjects;
+using ProjectERP.Views;
 
 namespace ProjectERP.ViewModel
 {
@@ -16,9 +22,34 @@ namespace ProjectERP.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private RelayCommand _addCounterpartyCommand;
+
         /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
+        /// Gets the MyCommand.
         /// </summary>
+        public RelayCommand AddCounterpartyCommand
+        {
+            get
+            {
+                return _addCounterpartyCommand
+                    ?? (_addCounterpartyCommand = new RelayCommand(
+                    () =>
+                    {
+                        CounterpartyModelView view = ServiceLocator.Current.GetInstance<CounterpartyModelView>();
+                        MainTabItem tabItem = new MainTabItem
+                        {
+                            Header = "Kontrahenci",
+                            Content = new CounterpartyView()
+
+                        };
+
+                        Messenger.Default.Send<MainTabItem>(tabItem);
+                        int a = 0;
+                    }));
+            }
+        }
+
+
         public MainViewModel()
         {
             ////if (IsInDesignMode)

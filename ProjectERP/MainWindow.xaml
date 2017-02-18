@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="ProjectERP.MainWindow"
-    xmlns:cc="clr-namespace:ProjectERP.Views"
+    xmlns:cc="clr-namespace:ProjectERP.Views.UiControls"
         mc:Ignorable="d"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -16,33 +16,24 @@
      FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MainWindow" Height="350" Width="525"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
-    <DockPanel>
-        <ToolBarTray>
-            
-            <ToolBar Style="{DynamicResource MaterialDesignToolBar}"
-                     DockPanel.Dock="Top">
-                <Button ToolTip="Follow me on Twitter">
-                    <md:PackIcon Kind="ClockIn" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <ToolBarTray Grid.Row="0" >
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                <Button ToolTip="Kontrahenci" Command="{Binding AddCounterpartyCommand}">
+                    <md:PackIcon Kind="Account" />
                 </Button>
-                <Button ToolTip="Save">
-                    <md:PackIcon Kind="ContentSave" />
-                </Button>
-                <Separator />
-                <Button Command="Cut" ToolTip="Cut" ToolBar.OverflowMode="AsNeeded">
-                    <md:PackIcon Kind="ContentCut" />
-                </Button>
-                <Button Command="Copy" ToolTip="Copy that stuff" ToolBar.OverflowMode="AsNeeded">
-                    <md:PackIcon Kind="ContentCopy" />
-                </Button>
-                <Separator />
-                <Button Command="Paste" ToolTip="Paste some stuff" ToolBar.OverflowMode="AsNeeded">
-                    <md:PackIcon Kind="ContentPaste" />
-                </Button>
+               
                 <Separator/>
             </ToolBar>
         </ToolBarTray>
-        <StackPanel DockPanel.Dock="Right">
-            <cc:CounterpartyView ></cc:CounterpartyView>
-        </StackPanel>
-    </DockPanel>
+        
+        <TabControl Grid.Row="1">
+           <cc:MainTabControl></cc:MainTabControl>
+        </TabControl>
+    </Grid>
 </Window>

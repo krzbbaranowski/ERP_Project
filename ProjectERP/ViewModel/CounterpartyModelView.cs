@@ -21,8 +21,6 @@ namespace ProjectERP.ViewModel
                 select cp);
 
             Counterparties = new ObservableCollection<Counterparty>(list);
-
-
         }
     }
 }

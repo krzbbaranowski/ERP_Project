@@ -136,11 +136,18 @@
     <Compile Include="Model\Database\Province.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\DataObjects\MainTabItem.cs" />
+    <Compile Include="Model\Messages\ViewMessage.cs" />
     <Compile Include="ViewModel\CounterpartyModelView.cs" />
+    <Compile Include="ViewModel\Interfaces\TabbedPanel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\UiControls\MainTabControlModelView.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\CounterpartyView.xaml.cs">
       <DependentUpon>CounterpartyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UiControls\MainTabControl.xaml.cs">
+      <DependentUpon>MainTabControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -155,6 +162,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\CounterpartyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UiControls\MainTabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,9 +223,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\UiControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\Database\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
