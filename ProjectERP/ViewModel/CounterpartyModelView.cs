@@ -1,28 +1,26 @@
 ﻿#region
 
-using System;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
-using ProjectERP.Model.Database;
 using System.Linq;
+using ProjectERP.Model.Database;
+
 #endregion
 
 namespace ProjectERP.ViewModel
 {
     public class CounterpartyModelView : ViewModelBase
     {
-        public ObservableCollection<Counterparty> Counterparties { get; } =
-            new ObservableCollection<Counterparty>();
+        public ObservableCollection<Counterparty> Counterparties { get; }
 
         public CounterpartyModelView()
         {
-            var db = new ERP_DatabaseContainer();
+            var db = new ERPDatabaseEntities();
 
+            var list = (from cp in db.Counterparty
+                select cp);
 
-            //var list = (from cp in db.Counterparty
-            //    select cp);
-
-            Console.WriteLine("FF");
+            Counterparties = new ObservableCollection<Counterparty>(list);
 
 
         }

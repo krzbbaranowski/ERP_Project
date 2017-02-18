@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
-        <DataGrid DockPanel.Dock="Bottom" ItemsSource="{Binding Counterparties}"  ColumnWidth="*" AutoGenerateColumns="True">
+        <DataGrid DockPanel.Dock="Bottom" ItemsSource="{Binding Counterparties}"  ColumnWidth="*" AutoGenerateColumns="True" Margin="0,0,-277,0">
 
         </DataGrid>
     </DockPanel>
