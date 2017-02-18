@@ -126,10 +126,11 @@
     <Compile Include="Model\Database\Province.cs">
       <DependentUpon>ERP_Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\CounterpartyModelView.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\UiControls\Table.xaml.cs">
-      <DependentUpon>Table.xaml</DependentUpon>
+    <Compile Include="Views\CounterpartyView.xaml.cs">
+      <DependentUpon>CounterpartyView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -143,7 +144,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\UiControls\Table.xaml">
+    <Page Include="Views\CounterpartyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,10 +190,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Database\ERPDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Model\Database\ERPDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>ERPDatabase.mdf</DependentUpon>
     </Content>
     <Content Include="Model\Database\ERP_Database.Context.tt">
@@ -219,6 +220,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\UiControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

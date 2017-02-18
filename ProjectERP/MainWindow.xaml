@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="ProjectERP.MainWindow"
-    
+    xmlns:cc="clr-namespace:ProjectERP.Views"
         mc:Ignorable="d"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -41,5 +41,8 @@
                 <Separator/>
             </ToolBar>
         </ToolBarTray>
+        <StackPanel DockPanel.Dock="Right">
+            <cc:CounterpartyView ></cc:CounterpartyView>
+        </StackPanel>
     </DockPanel>
 </Window>

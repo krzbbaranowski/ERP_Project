@@ -42,6 +42,8 @@ namespace ProjectERP.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+       
+            SimpleIoc.Default.Register<CounterpartyModelView>();
         }
 
         public MainViewModel Main
@@ -51,7 +53,16 @@ namespace ProjectERP.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+        public CounterpartyModelView Counterparty
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CounterpartyModelView>();
+            }
+        }
+
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

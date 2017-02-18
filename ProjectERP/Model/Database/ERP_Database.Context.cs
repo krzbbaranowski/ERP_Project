@@ -22,7 +22,7 @@ namespace ProjectERP.Model.Database
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+           
         }
     
         public virtual DbSet<Counterparty> Counterparty { get; set; }
