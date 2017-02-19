@@ -29,9 +29,7 @@ namespace ProjectERP.ViewModel
 
         public ObservableCollection<Counterparty> Counterparties { get; }
 
-        /// <summary>
-        ///     Gets the MyCommand.
-        /// </summary>
+
         public RelayCommand<UserControl> CloseCommand
         {
             get

@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
 
 namespace ProjectERP.ViewModel.UiControls
 {
+    /// <summary>
+    ///     Kontrolka z zakładkami. Zawiera inne widoki.
+    /// </summary>
     public class MainTabControlModelView : ViewModelBase
     {
-        public ObservableCollection<MainTabItem> Tabs { get; set; }
-
         public MainTabControlModelView()
         {
             Tabs = new ObservableCollection<MainTabItem>();
@@ -22,11 +21,14 @@ namespace ProjectERP.ViewModel.UiControls
             Messenger.Default.Register<RemoveMainTabItemMessage>(this, RemoveTab);
         }
 
+        public ObservableCollection<MainTabItem> Tabs { get; set; }
+
+
         private void RemoveTab(RemoveMainTabItemMessage obj)
         {
-            Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() =>
+            Dispatcher.CurrentDispatcher.BeginInvoke((Action) (() =>
             {
-                MainTabItem itemToRemove = (MainTabItem)(from item in Tabs
+                var itemToRemove = (from item in Tabs
                     where item.Content.Equals(obj.Content)
                     select item).FirstOrDefault();
 
@@ -36,15 +38,7 @@ namespace ProjectERP.ViewModel.UiControls
 
         private void AddTab(MainTabItem obj)
         {
-          Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() =>
-          {
-              Tabs.Add(obj);
-          }));
-               
+            Tabs.Add(obj);
         }
-
-       
-
-        
     }
 }

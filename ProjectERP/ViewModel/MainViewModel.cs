@@ -5,28 +5,16 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 using ProjectERP.Model.DataObjects;
 using ProjectERP.Views;
+using System;
+using System.Windows.Threading;
 
 namespace ProjectERP.ViewModel
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// You can also use Blend to data bind with the tool's support.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
+   
     public class MainViewModel : ViewModelBase
     {
         private RelayCommand _addCounterpartyCommand;
 
-        /// <summary>
-        /// Gets the MyCommand.
-        /// </summary>
         public RelayCommand AddCounterpartyCommand
         {
             get
@@ -35,16 +23,19 @@ namespace ProjectERP.ViewModel
                     ?? (_addCounterpartyCommand = new RelayCommand(
                     () =>
                     {
-                        CounterpartyModelView view = ServiceLocator.Current.GetInstance<CounterpartyModelView>();
-                        MainTabItem tabItem = new MainTabItem
+                        Dispatcher.CurrentDispatcher.BeginInvoke((Action) (() =>
                         {
-                            Header = "Kontrahenci",
-                            Content = new CounterpartyView()
+                            CounterpartyModelView view = ServiceLocator.Current.GetInstance<CounterpartyModelView>();
+                            MainTabItem tabItem = new MainTabItem
+                            {
+                                Header = "Kontrahenci",
+                                Content = new CounterpartyView()
 
-                        };
+                            };
 
-                        Messenger.Default.Send<MainTabItem>(tabItem);
-                        int a = 0;
+                            Messenger.Default.Send<MainTabItem>(tabItem);
+                        }));
+
                     }));
             }
         }

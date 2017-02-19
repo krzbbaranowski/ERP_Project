@@ -7,31 +7,28 @@
     xmlns:cc="clr-namespace:ProjectERP.Views.UiControls"
     mc:Ignorable="d"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
-    xmlns:dockablz="http://dragablz.net/winfx/xaml/dockablz"
-
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}"
     Title="MainWindow" Height="350" Width="525"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <md:ColorZone Mode="Accent" Padding="8" Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
 
-        <ToolBarTray Grid.Row="0">
-            <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
-                <Button ToolTip="Kontrahenci" Command="{Binding AddCounterpartyCommand}">
-                    <md:PackIcon Kind="Account" />
-                </Button>
-
-                <Separator />
-            </ToolBar>
-        </ToolBarTray>
-       
+                <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                    <Button ToolTip="Kontrahenci" Command="{Binding AddCounterpartyCommand}">
+                        <md:PackIcon Kind="Account" />
+                    </Button>
+                    <Separator />
+                </ToolBar>
+            </StackPanel>
+        </md:ColorZone>
         <cc:MainTabControl Grid.Row="1" />
-
     </Grid>
 </Window>

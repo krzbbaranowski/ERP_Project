@@ -36,6 +36,7 @@
         </materialDesign:ColorZone>
       
         <DataGrid Grid.Row="1" ItemsSource="{Binding Counterparties}" AutoGenerateColumns="True" />
+        
         <materialDesign:ColorZone Grid.Row="2" Mode="PrimaryLight">
             <StackPanel Orientation="Horizontal" >
                 <Button Margin="2">
