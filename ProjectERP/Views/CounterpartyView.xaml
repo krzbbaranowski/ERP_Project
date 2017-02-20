@@ -17,37 +17,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <materialDesign:ColorZone Mode="Accent" Padding="2" Grid.Row="0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                        Command="{Binding CloseCommand}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
-                        Margin="0 0 8 0" Height="30" Width="30" HorizontalAlignment="Right"
-                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
-                    <materialDesign:PackIcon Kind="WindowClose" Background="Transparent" Height="15" Width="15" />
-                </Button>
-            </StackPanel>
-        </materialDesign:ColorZone>
-      
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Counterparties}" AutoGenerateColumns="True" />
-        
-        <materialDesign:ColorZone Grid.Row="2" Mode="PrimaryLight">
-            <StackPanel Orientation="Horizontal" >
-                <Button Margin="2">
-                    <materialDesign:PackIcon Kind="Plus"  />
-                </Button>
-                <Button Margin="2">
-                    <materialDesign:PackIcon Kind="Delete" />
-                </Button>
-            </StackPanel>
-        </materialDesign:ColorZone>
 
-    </Grid>
+
+    <DataGrid Grid.Row="1" ItemsSource="{Binding Counterparties}" AutoGenerateColumns="True" />
+
+
 
 </UserControl>

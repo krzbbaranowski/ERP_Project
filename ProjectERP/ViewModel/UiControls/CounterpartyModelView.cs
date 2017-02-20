@@ -15,7 +15,8 @@ namespace ProjectERP.ViewModel
 {
     public class CounterpartyModelView : ViewModelBase
     {
-        private RelayCommand<UserControl> _closeCommand;
+      
+
 
         public CounterpartyModelView()
         {
@@ -29,21 +30,5 @@ namespace ProjectERP.ViewModel
 
         public ObservableCollection<Counterparty> Counterparties { get; }
 
-
-        public RelayCommand<UserControl> CloseCommand
-        {
-            get
-            {
-                return _closeCommand
-                       ?? (_closeCommand = new RelayCommand<UserControl>(
-                           userControl =>
-                           {
-                               Messenger.Default.Send(new RemoveMainTabItemMessage
-                               {
-                                   Content = userControl
-                               });
-                           }));
-            }
-        }
     }
 }
