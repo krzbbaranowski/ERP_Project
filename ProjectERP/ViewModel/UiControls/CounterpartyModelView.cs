@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Model.Database;
 using ProjectERP.Model.Messages;
+using ProjectERP.Services;
 
 #endregion
 
@@ -19,7 +20,7 @@ namespace ProjectERP.ViewModel
 
         public CounterpartyModelView()
         {
-            var db = new ERPDatabaseEntities();
+            var db = ConnectionHelper.CreateConnection();
 
             var list = from cp in db.Counterparty
                 select cp;

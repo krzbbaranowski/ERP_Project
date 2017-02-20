@@ -6,5 +6,6 @@ namespace ProjectERP.Model.DataObjects
     {
         public string Header { get; set; }
         public UserControl Content { get; set; }
+
     }
 }
