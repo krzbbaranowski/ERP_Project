@@ -142,6 +142,7 @@
     <Compile Include="Model\DataObjects\MainTabItem.cs" />
     <Compile Include="Model\Messages\RemoveMainTabItemMessage.cs" />
     <Compile Include="Model\Messages\ViewMessage.cs" />
+    <Compile Include="Services\ConnectionHelper.cs" />
     <Compile Include="ViewModel\UiControls\CounterpartyModelView.cs" />
     <Compile Include="ViewModel\Interfaces\TabbedPanel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

@@ -15,8 +15,8 @@ namespace ProjectERP.Model.Database
     
     public partial class ERPDatabaseEntities : DbContext
     {
-        public ERPDatabaseEntities()
-            : base("name=ERPDatabaseEntities")
+        public ERPDatabaseEntities(string connectionString)
+            : base(connectionString)
         {
         }
     
