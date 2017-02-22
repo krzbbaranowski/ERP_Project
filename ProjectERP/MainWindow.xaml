@@ -9,7 +9,7 @@
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}"
-    Title="MainWindow" Height="350" Width="525"
+    Title="MainWindow" Height="450" Width="925"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
     <Grid>

@@ -18,6 +18,8 @@ namespace ProjectERP.ViewModel.UiControls
     {
         private RelayCommand<MainTabItem> _closeCommand;
 
+        public MainTabItem SelectedItem { get; set; }
+
         public MainTabControlModelView()
         {
             Tabs = new ObservableCollection<MainTabItem>();
@@ -25,10 +27,11 @@ namespace ProjectERP.ViewModel.UiControls
         }
 
         public ObservableCollection<MainTabItem> Tabs { get; set; }
-
+    
         public RelayCommand<MainTabItem> CloseCommand => _closeCommand
                                                          ?? (_closeCommand = new RelayCommand<MainTabItem>(
                                                              RemoveTab));
+
 
         private void RemoveTab(MainTabItem obj)
         {
@@ -42,9 +45,26 @@ namespace ProjectERP.ViewModel.UiControls
             }));
         }
 
+        private RelayCommand<UserControl> _addSubtabCommand;
+
+        public RelayCommand<UserControl> AddSubtabCommand
+        {
+            get
+            {
+                return _addSubtabCommand
+                    ?? (_addSubtabCommand = new RelayCommand<UserControl>(
+                    (newSubtab) =>
+                    {
+
+                    }));
+            }
+        }
+
         private void AddTab(MainTabItem obj)
         {
             Tabs.Add(obj);
         }
+
+     
     }
 }

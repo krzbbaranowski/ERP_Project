@@ -33,7 +33,7 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Button Style="{StaticResource MaterialDesignCloseItemCommandButtonStyle}"
                                         Command="{Binding DataContext.CloseCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                       CommandParameter="{Binding}"
+                                        CommandParameter="{Binding}"
                                         Margin="0 0 8 0" Height="30" Width="30" HorizontalAlignment="Right"
                                         ToolTip="MaterialDesignFloatingActionMiniLightButton">
                                     <materialDesign:PackIcon Kind="WindowClose" Background="Transparent" Height="15"
@@ -43,7 +43,7 @@
                         </materialDesign:ColorZone>
 
                         <ContentControl Grid.Row="1" Content="{Binding Content}" />
-
+                        
                         <materialDesign:ColorZone Grid.Row="2" Mode="PrimaryLight">
                             <StackPanel Orientation="Horizontal">
                                 <Button Margin="2">

@@ -1,5 +1,5 @@
-﻿using System.Windows.Controls;
-using GalaSoft.MvvmLight.Command;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace ProjectERP.Model.DataObjects
 {
@@ -7,6 +7,6 @@ namespace ProjectERP.Model.DataObjects
     {
         public string Header { get; set; }
         public UserControl Content { get; set; }
-
+        public List<UserControl> ContentSubtabs { get; set; }
     }
 }

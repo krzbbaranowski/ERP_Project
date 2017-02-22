@@ -7,6 +7,8 @@ using ProjectERP.Model.DataObjects;
 using ProjectERP.Views;
 using System;
 using System.Windows.Threading;
+using ProjectERP.ViewModel.Counterparties;
+using ProjectERP.ViewModel.UiControls;
 
 namespace ProjectERP.ViewModel
 {
@@ -25,11 +27,11 @@ namespace ProjectERP.ViewModel
                     {
                         Dispatcher.CurrentDispatcher.BeginInvoke((Action) (() =>
                         {
-                            CounterpartyModelView view = ServiceLocator.Current.GetInstance<CounterpartyModelView>();
+                            CounterpartyTableModelView view = ServiceLocator.Current.GetInstance<CounterpartyTableModelView>();
                             MainTabItem tabItem = new MainTabItem
                             {
                                 Header = "Kontrahenci",
-                                Content = new CounterpartyView()
+                                Content = new CounterpartyTableView()
 
                             };
 

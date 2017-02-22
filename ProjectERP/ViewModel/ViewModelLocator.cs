@@ -14,6 +14,7 @@
 
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using ProjectERP.ViewModel.Counterparties;
 using ProjectERP.ViewModel.UiControls;
 
 namespace ProjectERP.ViewModel
@@ -43,8 +44,9 @@ namespace ProjectERP.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<CounterpartyModelView>();
+            SimpleIoc.Default.Register<CounterpartyTableModelView>();
             SimpleIoc.Default.Register<MainTabControlModelView>();
+            SimpleIoc.Default.Register<CounterpartyViewModel>();
         }
 
         public MainViewModel Main
@@ -60,13 +62,20 @@ namespace ProjectERP.ViewModel
             get { return ServiceLocator.Current.GetInstance<MainTabControlModelView>(); }
         }
 
-        public CounterpartyModelView Counterparty
+        public CounterpartyTableModelView CounterpartyTable
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<CounterpartyModelView>();
+                return ServiceLocator.Current.GetInstance<CounterpartyTableModelView>();
             }
         }
+
+        public CounterpartyViewModel Counterparty
+        {
+            get { return ServiceLocator.Current.GetInstance<CounterpartyViewModel>(); }
+        }
+
+        
 
 
         public static void Cleanup()
