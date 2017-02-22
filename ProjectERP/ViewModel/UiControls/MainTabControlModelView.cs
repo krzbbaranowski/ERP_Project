@@ -16,7 +16,7 @@ namespace ProjectERP.ViewModel.UiControls
     /// </summary>
     public class MainTabControlModelView : ViewModelBase
     {
-        private RelayCommand<string> _closeCommand;
+        private RelayCommand<MainTabItem> _closeCommand;
 
         public MainTabControlModelView()
         {
@@ -26,26 +26,16 @@ namespace ProjectERP.ViewModel.UiControls
 
         public ObservableCollection<MainTabItem> Tabs { get; set; }
 
-        public RelayCommand<string> CloseCommand
-        {
-            get
-            {
-                return _closeCommand
-                       ?? (_closeCommand = new RelayCommand<string>(
-                           (s) =>
-                           {
-                              
-                           }));
-            }
-        }
+        public RelayCommand<MainTabItem> CloseCommand => _closeCommand
+                                                         ?? (_closeCommand = new RelayCommand<MainTabItem>(
+                                                             RemoveTab));
 
-
-        private void RemoveTab(UserControl obj)
+        private void RemoveTab(MainTabItem obj)
         {
             Dispatcher.CurrentDispatcher.BeginInvoke((Action) (() =>
             {
                 var itemToRemove = (from item in Tabs
-                    where item.Content.Equals(obj)
+                    where item.Equals(obj)
                     select item).FirstOrDefault();
 
                 Tabs?.Remove(itemToRemove);
