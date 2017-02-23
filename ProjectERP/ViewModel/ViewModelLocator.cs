@@ -14,8 +14,12 @@
 
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using ProjectERP.Model.Database;
 using ProjectERP.ViewModel.Counterparties;
 using ProjectERP.ViewModel.UiControls;
+using System;
+using ProjectERP.Views;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ProjectERP.ViewModel
 {
@@ -49,6 +53,9 @@ namespace ProjectERP.ViewModel
             SimpleIoc.Default.Register<CounterpartyViewModel>();
         }
 
+        [SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
         public MainViewModel Main
         {
             get
@@ -70,12 +77,19 @@ namespace ProjectERP.ViewModel
             }
         }
 
-        public CounterpartyViewModel Counterparty
+        public static void CreateCounterpartyView(Counterparty counterparty)
         {
-            get { return ServiceLocator.Current.GetInstance<CounterpartyViewModel>(); }
-        }
+            var uniqueKey = Guid.NewGuid().ToString();
+            var counterpartyViewModel = SimpleIoc.Default.GetInstance<CounterpartyViewModel>(uniqueKey);
+            counterpartyViewModel.Init(counterparty);
 
-        
+            var counterpartyView = new CounterpartyView()
+            {
+                DataContext = counterpartyViewModel
+            };
+           
+      
+        }
 
 
         public static void Cleanup()

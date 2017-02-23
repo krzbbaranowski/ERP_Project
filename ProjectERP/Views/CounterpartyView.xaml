@@ -8,8 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             Background="{DynamicResource MaterialDesignPaper}"
-             DataContext="{Binding Counterparty, Source={StaticResource Locator}}">
+             Background="{DynamicResource MaterialDesignPaper}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -27,11 +26,11 @@
             <ColumnDefinition />
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <TextBlock VerticalAlignment="Center">Kod</TextBlock>
+        <TextBlock VerticalAlignment="Center" Text="{Binding CounterpartyName}"/>
         <TextBox Grid.Row="0" Grid.Column="1" x:Name="CodeTextBox"  md:HintAssist.Hint="Kod" HorizontalAlignment="Center"/>
 
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Nazwa</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="NameTextBox" Text="{Binding CounterpartyName}" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1"  x:Name="NameTextBox" Text="{Binding CounterpartyName}" HorizontalAlignment="Center"/>
 
     </Grid>
 </UserControl>

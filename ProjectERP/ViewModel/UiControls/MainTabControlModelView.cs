@@ -5,9 +5,11 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using ProjectERP.Enums;
+using ProjectERP.Model.Database;
 using ProjectERP.Model.DataObjects;
-using ProjectERP.Model.Messages;
 
 namespace ProjectERP.ViewModel.UiControls
 {
@@ -16,9 +18,8 @@ namespace ProjectERP.ViewModel.UiControls
     /// </summary>
     public class MainTabControlModelView : ViewModelBase
     {
+        private RelayCommand<UserControl> _addSubtabCommand;
         private RelayCommand<MainTabItem> _closeCommand;
-
-        public MainTabItem SelectedItem { get; set; }
 
         public MainTabControlModelView()
         {
@@ -26,11 +27,23 @@ namespace ProjectERP.ViewModel.UiControls
             Messenger.Default.Register<MainTabItem>(this, AddTab);
         }
 
+        public MainTabItem SelectedItem { get; set; }
+
         public ObservableCollection<MainTabItem> Tabs { get; set; }
-    
+
         public RelayCommand<MainTabItem> CloseCommand => _closeCommand
                                                          ?? (_closeCommand = new RelayCommand<MainTabItem>(
                                                              RemoveTab));
+
+        public RelayCommand<UserControl> AddSubtabCommand
+        {
+            get
+            {
+                return _addSubtabCommand
+                       ?? (_addSubtabCommand = new RelayCommand<UserControl>(
+                           newSubtab => { }));
+            }
+        }
 
 
         private void RemoveTab(MainTabItem obj)
@@ -45,26 +58,29 @@ namespace ProjectERP.ViewModel.UiControls
             }));
         }
 
-        private RelayCommand<UserControl> _addSubtabCommand;
-
-        public RelayCommand<UserControl> AddSubtabCommand
+        private void AddTab(MainTabItem tab)
         {
-            get
+            if (!IsExistsTab(tab) || (tab.TabType == TabType.Subtab))
             {
-                return _addSubtabCommand
-                    ?? (_addSubtabCommand = new RelayCommand<UserControl>(
-                    (newSubtab) =>
-                    {
-
-                    }));
+                Tabs.Add(tab);
+                Counterparty counterparty = tab.Extra as Counterparty;
+                if (counterparty != null)
+                {
+                    ViewModelLocator.CreateCounterpartyView(counterparty);
+                }
+                
+               
             }
+              
         }
 
-        private void AddTab(MainTabItem obj)
+        private bool IsExistsTab(MainTabItem tab)
         {
-            Tabs.Add(obj);
-        }
+            var isContains = (from t in Tabs
+                where t.Header.Equals(tab.Header)
+                select t).Any();
 
-     
+            return isContains;
+        }
     }
 }

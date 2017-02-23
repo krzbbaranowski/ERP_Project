@@ -5,8 +5,11 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using ProjectERP.Enums;
 using ProjectERP.Model.Database;
+using ProjectERP.Model.DataObjects;
 using ProjectERP.Services;
+using ProjectERP.Views;
 
 #endregion
 
@@ -16,35 +19,39 @@ namespace ProjectERP.ViewModel.Counterparties
     {
         private readonly ERPDatabaseEntities _erpDatabase = ConnectionHelper.CreateConnection();
 
+        private RelayCommand<Counterparty> _myCommand;
+
         public CounterpartyTableModelView()
         {
             var list = _erpDatabase.Counterparty.ToList();
-            Counterparties = new ObservableCollection<Model.Database.Counterparty>(list);
+            Counterparties = new ObservableCollection<Counterparty>(list);
         }
 
-        public ObservableCollection<Model.Database.Counterparty> Counterparties { get; }
-
-        private RelayCommand<Counterparty> _myCommand;
+        public ObservableCollection<Counterparty> Counterparties { get; }
 
         /// <summary>
-        /// Gets the MyCommand.
+        ///     Gets the MyCommand.
         /// </summary>
         public RelayCommand<Counterparty> SelectedRowCommand
         {
             get
             {
                 return _myCommand
-                    ?? (_myCommand = new RelayCommand<Counterparty>(
-                    p =>
-                    {
-                        Counterparty cp = new Counterparty
-                        {
-                            Name1 = p.Name1
-                        };
-                        Messenger.Default.Send(cp);
-                    }));
+                       ?? (_myCommand = new RelayCommand<Counterparty>(
+                           counterparty =>
+                           {
+                               var tabItem = new MainTabItem
+                               {
+                                   Header = "Karta kontrahenci",
+                                   Content = new CounterpartyView(),
+                                   TabType = TabType.Subtab,
+                                   Extra = counterparty
+                               };
+                               Messenger.Default.Send(tabItem);
+                               //   Messenger.Default.Send(new NotificationMessage<Counterparty>(counterparty, "ShowCounterparty"));
+                              
+                           }));
             }
         }
-       
     }
 }

@@ -2,8 +2,11 @@
 using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using ProjectERP.Enums;
 using ProjectERP.Model.Database;
+using ProjectERP.Model.DataObjects;
 using ProjectERP.Services;
+using ProjectERP.Views;
 
 namespace ProjectERP.ViewModel.Counterparties
 {
@@ -18,8 +21,7 @@ namespace ProjectERP.ViewModel.Counterparties
         {
             var list = _erpDatabase.Counterparty.ToList();
             Counterparties = new ObservableCollection<Counterparty>(list);
-
-            Messenger.Default.Register<Counterparty>(this, ProcessItem);
+            
         }
 
         public ObservableCollection<Counterparty> Counterparties { get; private set; }
@@ -27,13 +29,18 @@ namespace ProjectERP.ViewModel.Counterparties
         public string CounterpartyName
         {
             get { return _counterpartyName; }
-            set { Set(CounterPartyStr, ref _counterpartyName, value); }
+            set
+            {
+                Set(CounterPartyStr, ref _counterpartyName, value);
+            }
         }
 
-        private void ProcessItem(Counterparty counterparty)
+        public void Init(Counterparty counterparty)
         {
             _counterparty = counterparty;
             CounterpartyName = _counterparty.Name1;
+            CounterpartyName = "ss";
+
         }
     }
 }

@@ -115,6 +115,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\TabTypeEnum.cs" />
     <Compile Include="Model\Database\Address.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -150,7 +151,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\UiControls\MainTabControlModelView.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\CounterpartyTableView.xaml.cs">
+    <Compile Include="Views\UiControls\CounterpartyTableView.xaml.cs">
       <DependentUpon>CounterpartyTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CounterpartyView.xaml.cs">
@@ -171,7 +172,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\CounterpartyTableView.xaml">
+    <Page Include="Views\UiControls\CounterpartyTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

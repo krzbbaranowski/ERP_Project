@@ -7,6 +7,7 @@ using ProjectERP.Model.DataObjects;
 using ProjectERP.Views;
 using System;
 using System.Windows.Threading;
+using ProjectERP.Enums;
 using ProjectERP.ViewModel.Counterparties;
 using ProjectERP.ViewModel.UiControls;
 
@@ -31,7 +32,8 @@ namespace ProjectERP.ViewModel
                             MainTabItem tabItem = new MainTabItem
                             {
                                 Header = "Kontrahenci",
-                                Content = new CounterpartyTableView()
+                                Content = new CounterpartyTableView(),
+                                TabType = TabType.Maintab
 
                             };
 
