@@ -39,7 +39,6 @@ namespace ProjectERP.ViewModel.Counterparties
         {
             _counterparty = counterparty;
             CounterpartyName = _counterparty.Name1;
-            CounterpartyName = "ss";
 
         }
     }

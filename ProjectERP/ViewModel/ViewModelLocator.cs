@@ -77,7 +77,7 @@ namespace ProjectERP.ViewModel
             }
         }
 
-        public static void CreateCounterpartyView(Counterparty counterparty)
+        public static CounterpartyView CreateCounterpartyView(Counterparty counterparty)
         {
             var uniqueKey = Guid.NewGuid().ToString();
             var counterpartyViewModel = SimpleIoc.Default.GetInstance<CounterpartyViewModel>(uniqueKey);
@@ -87,8 +87,8 @@ namespace ProjectERP.ViewModel
             {
                 DataContext = counterpartyViewModel
             };
-           
-      
+
+            return counterpartyView;
         }
 
 

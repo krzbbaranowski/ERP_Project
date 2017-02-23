@@ -43,13 +43,11 @@ namespace ProjectERP.ViewModel.Counterparties
                                var tabItem = new MainTabItem
                                {
                                    Header = "Karta kontrahenci",
-                                   Content = new CounterpartyView(),
                                    TabType = TabType.Subtab,
                                    Extra = counterparty
                                };
                                Messenger.Default.Send(tabItem);
-                               //   Messenger.Default.Send(new NotificationMessage<Counterparty>(counterparty, "ShowCounterparty"));
-                              
+
                            }));
             }
         }

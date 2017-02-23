@@ -60,18 +60,26 @@ namespace ProjectERP.ViewModel.UiControls
 
         private void AddTab(MainTabItem tab)
         {
-            if (!IsExistsTab(tab) || (tab.TabType == TabType.Subtab))
+            if (!IsExistsTab(tab) && (tab.TabType == TabType.Maintab))
             {
+
                 Tabs.Add(tab);
+            }
+
+            if (tab.TabType == TabType.Subtab)
+            {
+
                 Counterparty counterparty = tab.Extra as Counterparty;
                 if (counterparty != null)
                 {
                     ViewModelLocator.CreateCounterpartyView(counterparty);
+                    tab.Content = ViewModelLocator.CreateCounterpartyView(counterparty);
+                    Tabs.Add(tab);
                 }
-                
-               
+
+
             }
-              
+
         }
 
         private bool IsExistsTab(MainTabItem tab)
