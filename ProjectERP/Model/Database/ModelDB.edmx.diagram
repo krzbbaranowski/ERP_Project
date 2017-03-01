@@ -7,9 +7,9 @@
       <Diagram DiagramId="dee7df0cd550456b95f897a59642fecb" Name="Diagram1" ZoomLevel="97" >
         <EntityTypeShape EntityType="ERPDatabaseModel.Counterparty" Width="1.5" PointX="0.75" PointY="1.625" />
         <EntityTypeShape EntityType="ERPDatabaseModel.Province" Width="1.5" PointX="0.75" PointY="6.125" />
-        <EntityTypeShape EntityType="ERPDatabaseModel.Address" Width="1.5" PointX="3" PointY="1" />
-        <AssociationConnector Association="ERPDatabaseModel.FK_AddressCounterparty" />
+        <EntityTypeShape EntityType="ERPDatabaseModel.Address" Width="1.5" PointX="6.375" PointY="1.25" />
         <AssociationConnector Association="ERPDatabaseModel.FK_ProvinceAddress" />
+        <AssociationConnector Association="ERPDatabaseModel.CounterpartyAddress" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

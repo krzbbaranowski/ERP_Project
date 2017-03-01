@@ -20,18 +20,12 @@ using ProjectERP.ViewModel.UiControls;
 using System;
 using ProjectERP.Views;
 using System.Diagnostics.CodeAnalysis;
+using CounterpartyView = ProjectERP.Views.Details.CounterpartyView;
 
 namespace ProjectERP.ViewModel
 {
-    /// <summary>
-    /// This class contains static references to all the view models in the
-    /// application and provides an entry point for the bindings.
-    /// </summary>
     public class ViewModelLocator
     {
-        /// <summary>
-        /// Initializes a new instance of the ViewModelLocator class.
-        /// </summary>
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);

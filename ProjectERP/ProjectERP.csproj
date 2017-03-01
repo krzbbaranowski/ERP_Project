@@ -147,17 +147,16 @@
     <Compile Include="ViewModel\Counterparties\CounterpartyViewModel.cs" />
     <Compile Include="ViewModel\UiControls\TableContentModelView.cs" />
     <Compile Include="ViewModel\Counterparties\CounterpartyTableModelView.cs" />
-    <Compile Include="ViewModel\Interfaces\TabbedPanel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\UiControls\MainTabControlModelView.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\UiControls\CounterpartyTableView.xaml.cs">
+    <Compile Include="Views\CounterpartyTableView.xaml.cs">
       <DependentUpon>CounterpartyTableView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CounterpartyView.xaml.cs">
+    <Compile Include="Views\Details\CounterpartyView.xaml.cs">
       <DependentUpon>CounterpartyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UiControls\MainTabControl.xaml.cs">
+    <Compile Include="Views\MainTabControl.xaml.cs">
       <DependentUpon>MainTabControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -172,15 +171,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\UiControls\CounterpartyTableView.xaml">
+    <Page Include="Styles\Jade.Details.GroupBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CounterpartyView.xaml">
+    <Page Include="Views\CounterpartyTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UiControls\MainTabControl.xaml">
+    <Page Include="Views\Details\CounterpartyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainTabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,7 +241,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\Interfaces\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Database\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

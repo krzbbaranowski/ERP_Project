@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ProjectERP.Styles">
+    <Style x:Key="JadeDetailsGroupboxContent" TargetType="{x:Type FrameworkElement}">
+        <Setter Property="Margin" Value="4" />
+    </Style>
+    <Style x:Key="JadeDetailsGroupBox" TargetType="{x:Type GroupBox}"
+           BasedOn="{StaticResource MaterialDesignGroupBox}">
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource JadeDetailsGroupboxContent}" />
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource JadeDetailsGroupboxContent}" />
+    <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource JadeDetailsGroupBox}" />
+</ResourceDictionary>

@@ -1,6 +1,0 @@
-[submodule "HTML-Renderer"]
-	path = HTML-Renderer
-	url = https://github.com/ArthurHub/HTML-Renderer.git
-[submodule "MaterialDesignInXamlToolkit"]
-	path = MaterialDesignInXamlToolkit
-	url = https://github.com/ButchersBoy/MaterialDesignInXamlToolkit.git

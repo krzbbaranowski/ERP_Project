@@ -16,8 +16,6 @@ namespace ProjectERP.Services
         public static string DataSource = @"DESKTOP-B44EI83";
         public static string InitialCatalog = "JadeDatabase";
 
-
-        //Data Source=DESKTOP-B44EI83;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
         public static string CreateConnectionString(string metaData, string dataSource, string initialCatalog)
         {
             const string appName = "EntityFramework";

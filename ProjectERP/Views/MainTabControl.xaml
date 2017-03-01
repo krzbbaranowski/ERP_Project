@@ -42,7 +42,7 @@
                             </StackPanel>
                         </materialDesign:ColorZone>
 
-                        <ContentControl Grid.Row="1" Content="{Binding Content}" />
+                        <ContentControl Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding Content}" />
                         
                         <materialDesign:ColorZone Grid.Row="2" Mode="PrimaryLight">
                             <StackPanel Orientation="Horizontal">

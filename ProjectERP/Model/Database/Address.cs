@@ -14,6 +14,12 @@ namespace ProjectERP.Model.Database
     
     public partial class Address
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Address()
+        {
+            this.Counterparty = new HashSet<Counterparty>();
+        }
+    
         public int Id { get; set; }
         public string Street { get; set; }
         public int House { get; set; }
@@ -28,7 +34,8 @@ namespace ProjectERP.Model.Database
         public int Province_Id { get; set; }
         public int Counterparty_Id { get; set; }
     
-        public virtual Counterparty Counterparty { get; set; }
         public virtual Province Province { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Counterparty> Counterparty { get; set; }
     }
 }
