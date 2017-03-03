@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Enums;
 using ProjectERP.Model.Database;
-using ProjectERP.Model.DataObjects;
+using ProjectERP.Model.Messages;
+using ProjectERP.ViewModel.Interfaces;
 
 namespace ProjectERP.ViewModel.UiControls
 {
@@ -19,6 +17,8 @@ namespace ProjectERP.ViewModel.UiControls
     public class MainTabControlModelView : ViewModelBase
     {
         private RelayCommand<UserControl> _addSubtabCommand;
+
+        private RelayCommand<MainTabItem> _changeActiveTabCommand;
         private RelayCommand<MainTabItem> _closeCommand;
 
         public MainTabControlModelView()
@@ -45,41 +45,55 @@ namespace ProjectERP.ViewModel.UiControls
             }
         }
 
+        public RelayCommand<MainTabItem> ChangeActiveTabCommand
+        {
+            get
+            {
+                return _changeActiveTabCommand
+                       ?? (_changeActiveTabCommand = new RelayCommand<MainTabItem>(
+                           item =>
+                           {
+                               var contentView = (IContentView) item.Content.DataContext;
+
+                               ContentViewMessage contentViewMessage = new ContentViewMessage
+                               {
+                                   ContentView = contentView
+                               };
+
+
+                               Messenger.Default.Send<ContentViewMessage>(contentViewMessage);
+                           }));
+            }
+        }
+
 
         private void RemoveTab(MainTabItem obj)
         {
-            Dispatcher.CurrentDispatcher.BeginInvoke((Action) (() =>
-            {
-                var itemToRemove = (from item in Tabs
-                    where item.Equals(obj)
-                    select item).FirstOrDefault();
+            var itemToRemove = (from item in Tabs
+                where item.Equals(obj)
+                select item).FirstOrDefault();
 
-                Tabs?.Remove(itemToRemove);
-            }));
+            Tabs?.Remove(itemToRemove);
         }
 
         private void AddTab(MainTabItem tab)
         {
-            if (!IsExistsTab(tab) && (tab.TabType == TabType.Maintab))
+            if (!IsExistsTab(tab))
             {
-
-                Tabs.Add(tab);
-            }
-
-            if (tab.TabType == TabType.Subtab)
-            {
-
-                Counterparty counterparty = tab.Extra as Counterparty;
-                if (counterparty != null)
-                {
-                    ViewModelLocator.CreateCounterpartyView(counterparty);
-                    tab.Content = ViewModelLocator.CreateCounterpartyView(counterparty);
+                if (tab.TabType == TabType.Maintab)
                     Tabs.Add(tab);
+
+                if (tab.TabType == TabType.Subtab)
+                {
+                    var counterparty = tab.Extra as Counterparty;
+                    if (counterparty != null)
+                    {
+                        ViewModelLocator.CreateCounterpartyView(counterparty);
+                        tab.Content = ViewModelLocator.CreateCounterpartyView(counterparty);
+                        Tabs.Add(tab);
+                    }
                 }
-
-
             }
-
         }
 
         private bool IsExistsTab(MainTabItem tab)

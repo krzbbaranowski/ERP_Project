@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ProjectERP.Styles">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="JadeDetailsGroupboxContent" TargetType="{x:Type FrameworkElement}">
         <Setter Property="Margin" Value="4" />
     </Style>

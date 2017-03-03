@@ -3,12 +3,14 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
-using ProjectERP.Model.DataObjects;
 using ProjectERP.Views;
 using System;
+using System.Windows.Controls;
 using System.Windows.Threading;
 using ProjectERP.Enums;
+using ProjectERP.Model.Messages;
 using ProjectERP.ViewModel.Counterparties;
+using ProjectERP.ViewModel.Interfaces;
 using ProjectERP.ViewModel.UiControls;
 
 namespace ProjectERP.ViewModel
@@ -17,6 +19,18 @@ namespace ProjectERP.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private RelayCommand _addCounterpartyCommand;
+
+        private IContentView _contentView;
+
+        public MainViewModel()
+        {
+            Messenger.Default.Register<ContentViewMessage>(this, SetCurrentContentView);
+        }
+
+        private void SetCurrentContentView(ContentViewMessage contentViewMessage)
+        {
+            _contentView = contentViewMessage.ContentView;
+        }
 
         public RelayCommand AddCounterpartyCommand
         {
@@ -43,18 +57,32 @@ namespace ProjectERP.ViewModel
                     }));
             }
         }
+        /* Header = $"Kontrahent {counterparty.Name1}",
+                            TabType = TabType.Subtab,
+                            Extra = counterparty*/
 
-
-        public MainViewModel()
+        private RelayCommand _addItemCommand;
+        public RelayCommand AddItemCommand
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            get
+            {
+                return _addItemCommand
+                    ?? (_addItemCommand = new RelayCommand(
+                    () =>
+                    {
+                        Type viewType = _contentView.GetType();
+                        object item = Convert.ChangeType(_contentView, viewType);
+
+                        MainTabItem newItem = new MainTabItem
+                        {
+                            TabType = TabType.Subtab,
+                     
+
+                        };
+
+                    }));
+            }
         }
+
     }
 }

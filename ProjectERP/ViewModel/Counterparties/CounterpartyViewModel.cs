@@ -1,12 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using ProjectERP.Model.Database;
 using ProjectERP.Services;
+using ProjectERP.ViewModel.Interfaces;
 
 namespace ProjectERP.ViewModel.Counterparties
 {
-    public class CounterpartyViewModel : ViewModelBase
+    public class CounterpartyViewModel : ViewModelBase, IContentView
     {
         public const string Name1PropertyName = "Name1";
 
@@ -301,5 +303,7 @@ namespace ProjectERP.ViewModel.Counterparties
             Url = counterparty.Address.Url;
             Province = counterparty.Address.Province.Name;
         }
+
+        public bool CanAddItem => true;
     }
 }

@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="ProjectERP.MainWindow"
     xmlns:cc="clr-namespace:ProjectERP.Views.UiControls"
+    xmlns:tv="clr-namespace:ProjectERP.Views.Toolbars"
     mc:Ignorable="d"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -16,12 +17,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <md:ColorZone Mode="Accent" Padding="8" Grid.Row="0">
             <StackPanel Orientation="Horizontal">
                 <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-
-                <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                <ToolBar Style="{DynamicResource ResourceKey=MaterialDesignToolBar}">
                     <Button ToolTip="Kontrahenci" Command="{Binding AddCounterpartyCommand}">
                         <md:PackIcon Kind="Account" />
                     </Button>
@@ -29,6 +30,7 @@
                 </ToolBar>
             </StackPanel>
         </md:ColorZone>
-        <cc:MainTabControl Grid.Row="1" />
+        <cc:MainTabControlView Grid.Row="1" />
+        <tv:ViewsManagmentToolbarView Grid.Row="2"/>
     </Grid>
 </Window>
