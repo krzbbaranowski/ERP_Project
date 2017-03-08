@@ -1,49 +1,36 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Enums;
+using ProjectERP.Interfaces;
 using ProjectERP.Model.Database;
+using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
-using ProjectERP.ViewModel.Interfaces;
+using ProjectERP.ViewModel.MVVMLight;
 
-namespace ProjectERP.ViewModel.UiControls
+namespace ProjectERP.ViewModel.Controls.MainTab
 {
     /// <summary>
     ///     Kontrolka z zakładkami. Zawiera inne widoki.
     /// </summary>
-    public class MainTabControlModelView : ViewModelBase
+    public class MainTabViewModel : ViewModelBase
     {
-        private RelayCommand<UserControl> _addSubtabCommand;
-
         private RelayCommand<MainTabItem> _changeActiveTabCommand;
         private RelayCommand<MainTabItem> _closeCommand;
 
-        public MainTabControlModelView()
+        public MainTabViewModel()
         {
             Tabs = new ObservableCollection<MainTabItem>();
-            Messenger.Default.Register<MainTabItem>(this, AddTab);
+            Messenger.Default.Register<MainTabItemMessage>(this, AddTab);
         }
-
-        public MainTabItem SelectedItem { get; set; }
 
         public ObservableCollection<MainTabItem> Tabs { get; set; }
 
         public RelayCommand<MainTabItem> CloseCommand => _closeCommand
                                                          ?? (_closeCommand = new RelayCommand<MainTabItem>(
                                                              RemoveTab));
-
-        public RelayCommand<UserControl> AddSubtabCommand
-        {
-            get
-            {
-                return _addSubtabCommand
-                       ?? (_addSubtabCommand = new RelayCommand<UserControl>(
-                           newSubtab => { }));
-            }
-        }
 
         public RelayCommand<MainTabItem> ChangeActiveTabCommand
         {
@@ -53,15 +40,17 @@ namespace ProjectERP.ViewModel.UiControls
                        ?? (_changeActiveTabCommand = new RelayCommand<MainTabItem>(
                            item =>
                            {
+                               if (item.Content.DataContext == null)
+                                   return;
                                var contentView = (IContentView) item.Content.DataContext;
 
-                               ContentViewMessage contentViewMessage = new ContentViewMessage
+                               var contentViewMessage = new ContentViewMessage
                                {
                                    ContentView = contentView
                                };
 
 
-                               Messenger.Default.Send<ContentViewMessage>(contentViewMessage);
+                               Messenger.Default.Send(contentViewMessage);
                            }));
             }
         }
@@ -76,27 +65,28 @@ namespace ProjectERP.ViewModel.UiControls
             Tabs?.Remove(itemToRemove);
         }
 
-        private void AddTab(MainTabItem tab)
+        private void AddTab(MainTabItemMessage tab)
         {
-            if (!IsExistsTab(tab))
+            MainTabItem tabItemToAdd = tab.MainTabItem;
+            if (!IsTabExists(tabItemToAdd))
             {
-                if (tab.TabType == TabType.Maintab)
-                    Tabs.Add(tab);
+                if (tabItemToAdd.TabType == TabType.Maintab)
+                    Tabs.Add(tabItemToAdd);
 
-                if (tab.TabType == TabType.Subtab)
+                if (tabItemToAdd.TabType == TabType.Subtab)
                 {
-                    var counterparty = tab.Extra as Counterparty;
+                    var counterparty = tabItemToAdd.Extra as Counterparty;
                     if (counterparty != null)
                     {
                         ViewModelLocator.CreateCounterpartyView(counterparty);
-                        tab.Content = ViewModelLocator.CreateCounterpartyView(counterparty);
-                        Tabs.Add(tab);
+                        tabItemToAdd.Content = ViewModelLocator.CreateCounterpartyView(counterparty);
+                        Tabs.Add(tabItemToAdd);
                     }
                 }
             }
         }
 
-        private bool IsExistsTab(MainTabItem tab)
+        private bool IsTabExists(MainTabItem tab)
         {
             var isContains = (from t in Tabs
                 where t.Header.Equals(tab.Header)

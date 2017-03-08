@@ -6,21 +6,22 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Enums;
+using ProjectERP.Interfaces;
 using ProjectERP.Model.Database;
+using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
 using ProjectERP.Services;
-using ProjectERP.ViewModel.Interfaces;
 
 #endregion
 
-namespace ProjectERP.ViewModel.Counterparties
+namespace ProjectERP.ViewModel.Tables
 {
-    public class CounterpartyTableModelView : ViewModelBase, IContentView
+    public class CounterpartyTableViewModel : ViewModelBase, IContentView
     {
         private readonly ERPDatabaseEntities _erpDatabase = ConnectionHelper.CreateConnection();
         private RelayCommand<Counterparty> _myCommand;
 
-        public CounterpartyTableModelView()
+        public CounterpartyTableViewModel()
         {
             var list = _erpDatabase.Counterparty.ToList();
             Counterparties = new ObservableCollection<Counterparty>(list);
@@ -29,7 +30,7 @@ namespace ProjectERP.ViewModel.Counterparties
         public ObservableCollection<Counterparty> Counterparties { get; }
 
 
-        public RelayCommand<Counterparty> SelectedRowCommand
+        public RelayCommand<Counterparty> SelectRowCommand
         {
             get
             {
@@ -43,7 +44,13 @@ namespace ProjectERP.ViewModel.Counterparties
                                    TabType = TabType.Subtab,
                                    Extra = counterparty
                                };
-                               Messenger.Default.Send(tabItem);
+
+                               MainTabItemMessage tabItemMessage = new MainTabItemMessage
+                               {
+                                   MainTabItem =  tabItem
+                               };
+
+                               Messenger.Default.Send(tabItemMessage);
                            }));
             }
         }

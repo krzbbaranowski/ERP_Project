@@ -8,10 +8,11 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using ProjectERP.Enums;
+using ProjectERP.Interfaces;
+using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
-using ProjectERP.ViewModel.Counterparties;
-using ProjectERP.ViewModel.Interfaces;
-using ProjectERP.ViewModel.UiControls;
+using ProjectERP.ViewModel.Tables;
+using CounterpartyTableView = ProjectERP.Views.Tables.CounterpartyTableView;
 
 namespace ProjectERP.ViewModel
 {
@@ -42,7 +43,7 @@ namespace ProjectERP.ViewModel
                     {
                         Dispatcher.CurrentDispatcher.BeginInvoke((Action) (() =>
                         {
-                            CounterpartyTableModelView view = ServiceLocator.Current.GetInstance<CounterpartyTableModelView>();
+                            CounterpartyTableViewModel view = ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
                             MainTabItem tabItem = new MainTabItem
                             {
                                 Header = "Kontrahenci",
@@ -51,15 +52,17 @@ namespace ProjectERP.ViewModel
 
                             };
 
-                            Messenger.Default.Send<MainTabItem>(tabItem);
+                            MainTabItemMessage tabItemMessage = new MainTabItemMessage
+                            {
+                                MainTabItem = tabItem
+                            };
+
+                            Messenger.Default.Send<MainTabItemMessage>(tabItemMessage);
                         }));
 
                     }));
             }
         }
-        /* Header = $"Kontrahent {counterparty.Name1}",
-                            TabType = TabType.Subtab,
-                            Extra = counterparty*/
 
         private RelayCommand _addItemCommand;
         public RelayCommand AddItemCommand

@@ -1,4 +1,4 @@
-﻿namespace ProjectERP.ViewModel.Interfaces
+﻿namespace ProjectERP.Interfaces
 {
     public interface IContentView
     {

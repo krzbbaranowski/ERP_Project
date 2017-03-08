@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="ProjectERP.Views.CounterpartyTableView"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="ProjectERP.Views.Tables.CounterpartyTableView"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -17,12 +17,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-
-
     <UserControl.DataContext>
         <Binding Path="CounterpartyTable" Source="{StaticResource Locator}"/>
     </UserControl.DataContext>
-
 
     <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Counterparties}" x:Name="CounterpartyGrid"
               CanUserSortColumns="True" CanUserAddRows="False"
@@ -30,7 +27,7 @@
               materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" >
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="SelectionChanged">
-                <i:InvokeCommandAction Command="{Binding SelectedRowCommand}"
+                <i:InvokeCommandAction Command="{Binding SelectRowCommand}"
                                    CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>

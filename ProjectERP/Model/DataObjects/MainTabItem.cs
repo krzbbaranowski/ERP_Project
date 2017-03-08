@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using ProjectERP.Enums;
 
-namespace ProjectERP.Model.Messages
+namespace ProjectERP.Model.DataObjects
 {
     public class MainTabItem
     {

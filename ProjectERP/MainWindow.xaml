@@ -4,10 +4,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="ProjectERP.MainWindow"
-    xmlns:cc="clr-namespace:ProjectERP.Views.UiControls"
     xmlns:tv="clr-namespace:ProjectERP.Views.Toolbars"
     mc:Ignorable="d"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:views="clr-namespace:ProjectERP.Views"
+    xmlns:parents="clr-namespace:ProjectERP.Views.Parents"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}"
     Title="MainWindow" Height="450" Width="925"
@@ -30,7 +31,7 @@
                 </ToolBar>
             </StackPanel>
         </md:ColorZone>
-        <cc:MainTabControlView Grid.Row="1" />
+        <parents:MainTabControlView Grid.Row="1" />
         <tv:ViewsManagmentToolbarView Grid.Row="2"/>
     </Grid>
 </Window>

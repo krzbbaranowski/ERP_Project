@@ -1,78 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using GalaSoft.MvvmLight;
+using ProjectERP.Interfaces;
 using ProjectERP.Model.Database;
 using ProjectERP.Services;
-using ProjectERP.ViewModel.Interfaces;
 
-namespace ProjectERP.ViewModel.Counterparties
+namespace ProjectERP.ViewModel.Details
 {
     public class CounterpartyViewModel : ViewModelBase, IContentView
     {
-        public const string Name1PropertyName = "Name1";
-
-        public const string Name3PropertyName = "Name3";
-
-        public const string CodePropertyName = "Code";
-
-        public const string NipPropertyName = "NIP";
-
-        public const string PeselPropertyName = "PESEL";
-
-        public const string RegonPropertyName = "REGON";
-
-        public const string Name2PropertyName = "Name2";
-
-
-        public const string StreetPropertyName = "Street";
-
-        public const string HousePropertyName = "House";
-
-        public const string FlatPropertyName = "Flat";
-
-        public const string PostalCodePropertyName = "PostalCode";
-
-        public const string CityPropertyName = "City";
-
-        public const string TelephonePropertyName = "Telephone";
-
-        public const string Telephone2PropertyName = "Telephone2";
-
-        public const string EmailPropertyName = "Email";
-
-        public const string FaxPropertyName = "Fax";
-
-        public const string UrlPropertyName = "Url";
-
-        public const string ProvincePropertyName = "Province";
-
         private readonly ERPDatabaseEntities _erpDatabase = ConnectionHelper.CreateConnection();
-        private string _city;
-
-        private string _code;
-        private Counterparty _counterparty;
-        private string _counterpartyName;
-        private string _email;
-        private string _fax;
-        private int _flat;
-        private int _house;
-
-        private string _name2;
-
-        private string _name3;
-
-        private string _nip;
-
-        private string _pesel;
-        private string _postalCode;
-        private string _province;
-
-        private string _regon;
-        private string _street;
-        private string _telephone;
-        private string _telephone2;
-        private string _url;
 
         public CounterpartyViewModel()
         {
@@ -81,6 +18,34 @@ namespace ProjectERP.ViewModel.Counterparties
         }
 
         public ObservableCollection<Counterparty> Counterparties { get; private set; }
+        public bool CanAddItem => true;
+
+        public void Init(Counterparty counterparty)
+        {
+            _counterparty = counterparty;
+            Name1 = _counterparty.Name1;
+            Name2 = _counterparty.Name2;
+            Name3 = _counterparty.Name3;
+            Code = _counterparty.Code;
+            PESEL = _counterparty.PESEL;
+            REGON = _counterparty.REGON;
+            NIP = _counterparty.NIP;
+
+            //Dane teleadresowe
+            Street = counterparty.Address.Street;
+            House = counterparty.Address.House;
+            Flat = counterparty.Address.Flat;
+            PostalCode = counterparty.Address.PostalCode;
+            City = counterparty.Address.City;
+            Telephone = counterparty.Address.Telephone;
+            Telephone2 = counterparty.Address.Telephone2;
+            Email = counterparty.Address.Email;
+            Fax = counterparty.Address.Fax;
+            Url = counterparty.Address.Url;
+            Province = counterparty.Address.Province.Name;
+        }
+
+        #region Model properties
 
         public string Name1
         {
@@ -278,32 +243,71 @@ namespace ProjectERP.ViewModel.Counterparties
             }
         }
 
+        #endregion
 
-        public void Init(Counterparty counterparty)
-        {
-            _counterparty = counterparty;
-            Name1 = _counterparty.Name1;
-            Name2 = _counterparty.Name2;
-            Name3 = _counterparty.Name3;
-            Code = _counterparty.Code;
-            PESEL = _counterparty.PESEL;
-            REGON = _counterparty.REGON;
-            NIP = _counterparty.NIP;
+        #region Properties Names
 
-            //Dane teleadresowe
-            Street = counterparty.Address.Street;
-            House = counterparty.Address.House;
-            Flat = counterparty.Address.Flat;
-            PostalCode = counterparty.Address.PostalCode;
-            City = counterparty.Address.City;
-            Telephone = counterparty.Address.Telephone;
-            Telephone2 = counterparty.Address.Telephone2;
-            Email = counterparty.Address.Email;
-            Fax = counterparty.Address.Fax;
-            Url = counterparty.Address.Url;
-            Province = counterparty.Address.Province.Name;
-        }
+        public const string Name1PropertyName = "Name1";
 
-        public bool CanAddItem => true;
+        public const string Name3PropertyName = "Name3";
+
+        public const string CodePropertyName = "Code";
+
+        public const string NipPropertyName = "NIP";
+
+        public const string PeselPropertyName = "PESEL";
+
+        public const string RegonPropertyName = "REGON";
+
+        public const string Name2PropertyName = "Name2";
+
+
+        public const string StreetPropertyName = "Street";
+
+        public const string HousePropertyName = "House";
+
+        public const string FlatPropertyName = "Flat";
+
+        public const string PostalCodePropertyName = "PostalCode";
+
+        public const string CityPropertyName = "City";
+
+        public const string TelephonePropertyName = "Telephone";
+
+        public const string Telephone2PropertyName = "Telephone2";
+
+        public const string EmailPropertyName = "Email";
+
+        public const string FaxPropertyName = "Fax";
+
+        public const string UrlPropertyName = "Url";
+
+        public const string ProvincePropertyName = "Province";
+
+        #endregion
+
+        #region Private model fields
+
+        private Counterparty _counterparty;
+        private string _city;
+        private string _code;
+        private string _counterpartyName;
+        private string _email;
+        private string _fax;
+        private int _flat;
+        private int _house;
+        private string _name2;
+        private string _name3;
+        private string _nip;
+        private string _pesel;
+        private string _postalCode;
+        private string _province;
+        private string _regon;
+        private string _street;
+        private string _telephone;
+        private string _telephone2;
+        private string _url;
+
+        #endregion
     }
 }

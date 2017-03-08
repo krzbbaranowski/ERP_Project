@@ -12,17 +12,17 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using System;
+using System.Diagnostics.CodeAnalysis;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using ProjectERP.Model.Database;
-using ProjectERP.ViewModel.Counterparties;
-using ProjectERP.ViewModel.UiControls;
-using System;
-using ProjectERP.Views;
-using System.Diagnostics.CodeAnalysis;
+using ProjectERP.ViewModel.Controls.MainTab;
+using ProjectERP.ViewModel.Details;
+using ProjectERP.ViewModel.Tables;
 using CounterpartyView = ProjectERP.Views.Details.CounterpartyView;
 
-namespace ProjectERP.ViewModel
+namespace ProjectERP.ViewModel.MVVMLight
 {
     public class ViewModelLocator
     {
@@ -32,8 +32,8 @@ namespace ProjectERP.ViewModel
 
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<CounterpartyTableModelView>();
-            SimpleIoc.Default.Register<MainTabControlModelView>();
+            SimpleIoc.Default.Register<CounterpartyTableViewModel>();
+            SimpleIoc.Default.Register<MainTabViewModel>();
             SimpleIoc.Default.Register<CounterpartyViewModel>();
             SimpleIoc.Default.Register<MainTabContentViewModel>();
         }
@@ -49,16 +49,16 @@ namespace ProjectERP.ViewModel
             }
         }
 
-        public MainTabControlModelView MainTabControl
+        public MainTabViewModel MainTabControl
         {
-            get { return ServiceLocator.Current.GetInstance<MainTabControlModelView>(); }
+            get { return ServiceLocator.Current.GetInstance<MainTabViewModel>(); }
         }
 
-        public CounterpartyTableModelView CounterpartyTable
+        public CounterpartyTableViewModel CounterpartyTable
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<CounterpartyTableModelView>();
+                return ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
             }
         }
 

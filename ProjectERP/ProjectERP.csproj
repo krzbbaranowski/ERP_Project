@@ -141,28 +141,28 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Messages\ContentViewMessage.cs" />
-    <Compile Include="Model\Messages\MainTabItem.cs" />
-    <Compile Include="Model\Messages\RemoveMainTabItemMessage.cs" />
+    <Compile Include="Model\DataObjects\MainTabItem.cs" />
+    <Compile Include="Model\Messages\MainTabItemMessage.cs" />
     <Compile Include="Services\ConnectionHelper.cs" />
-    <Compile Include="ViewModel\Counterparties\CounterpartyViewModel.cs" />
-    <Compile Include="ViewModel\Interfaces\IContentView.cs" />
-    <Compile Include="ViewModel\MainTabContentViewModel.cs" />
-    <Compile Include="ViewModel\UiControls\TableContentModelView.cs" />
-    <Compile Include="ViewModel\Counterparties\CounterpartyTableModelView.cs" />
+    <Compile Include="ViewModel\Details\CounterpartyViewModel.cs" />
+    <Compile Include="Interfaces\IContentView.cs" />
+    <Compile Include="ViewModel\Controls\MainTab\MainTabContentViewModel.cs" />
+    <Compile Include="ViewModel\Controls\TableContentViewModel.cs" />
+    <Compile Include="ViewModel\Tables\CounterpartyTableViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\UiControls\MainTabControlModelView.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\CounterpartyTableView.xaml.cs">
+    <Compile Include="ViewModel\Controls\MainTab\MainTabViewModel.cs" />
+    <Compile Include="ViewModel\MVVMLight\ViewModelLocator.cs" />
+    <Compile Include="Views\Tables\CounterpartyTableView.xaml.cs">
       <DependentUpon>CounterpartyTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Details\CounterpartyView.xaml.cs">
       <DependentUpon>CounterpartyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainTabContentView.xaml.cs">
+    <Compile Include="Views\Parents\MainTabContentView.xaml.cs">
       <DependentUpon>MainTabContentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainTabControlView.xaml.cs">
-      <DependentUpon>MainTabControlView.xaml</DependentUpon>
+    <Compile Include="Views\Parents\MainTabView.xaml.cs">
+      <DependentUpon>MainTabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Toolbars\ViewsManagmentToolbarView.xaml.cs">
       <DependentUpon>ViewsManagmentToolbarView.xaml</DependentUpon>
@@ -183,7 +183,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CounterpartyTableView.xaml">
+    <Page Include="Views\Tables\CounterpartyTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,11 +191,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainTabContentView.xaml">
+    <Page Include="Views\Parents\MainTabContentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainTabControlView.xaml">
+    <Page Include="Views\Parents\MainTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,10 +257,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\DataObjects\" />
-    <Folder Include="Views\Tables\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\Database\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
