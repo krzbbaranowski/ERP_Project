@@ -8,6 +8,7 @@ using ProjectERP.Interfaces;
 using ProjectERP.Model.Database;
 using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
+using ProjectERP.Utils.Helpers;
 using ProjectERP.ViewModel.MVVMLight;
 
 namespace ProjectERP.ViewModel.Controls.MainTab
@@ -23,7 +24,7 @@ namespace ProjectERP.ViewModel.Controls.MainTab
         public MainTabViewModel()
         {
             Tabs = new ObservableCollection<MainTabItem>();
-            Messenger.Default.Register<MainTabItemMessage>(this, AddTab);
+            Messenger.Default.Register<MainTabItemMessage>(this, MessengerTokens.NewTabItemToAdd, AddTab);
         }
 
         public ObservableCollection<MainTabItem> Tabs { get; set; }
@@ -47,9 +48,10 @@ namespace ProjectERP.ViewModel.Controls.MainTab
                                var contentViewMessage = new ContentViewMessage
                                {
                                    ContentView = contentView
+                                  
                                };
 
-
+                               
                                Messenger.Default.Send(contentViewMessage);
                            }));
             }

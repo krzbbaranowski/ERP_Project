@@ -6,14 +6,17 @@
              xmlns:local="clr-namespace:ProjectERP.Views.Toolbars"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Height="Auto" Width="Auto"
+             Height="35" Width="Auto"
              d:DesignHeight="35" d:DesignWidth="300" HorizontalAlignment="Stretch">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
     <materialDesign:ColorZone HorizontalAlignment="Stretch" Mode="Accent">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-            <Button Margin="2" Command="{Binding AddItemCommand}">
+            <Button Margin="2" Command="{Binding AddItemCommand}" Visibility="{Binding Path=AddButtonVisible, Converter={StaticResource BoolToVis}}">
                 <materialDesign:PackIcon Kind="Plus" />
             </Button>
-            <Button Margin="2">
+            <Button Margin="2" Visibility="{Binding Path=DeleteButtonVisible, Converter={StaticResource BoolToVis}}">
                 <materialDesign:PackIcon Kind="Delete" />
             </Button>
         </StackPanel>

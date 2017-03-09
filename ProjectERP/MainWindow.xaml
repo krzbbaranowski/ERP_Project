@@ -7,7 +7,6 @@
     xmlns:tv="clr-namespace:ProjectERP.Views.Toolbars"
     mc:Ignorable="d"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:views="clr-namespace:ProjectERP.Views"
     xmlns:parents="clr-namespace:ProjectERP.Views.Parents"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}"

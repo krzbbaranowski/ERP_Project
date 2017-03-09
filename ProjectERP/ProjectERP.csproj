@@ -144,6 +144,7 @@
     <Compile Include="Model\DataObjects\MainTabItem.cs" />
     <Compile Include="Model\Messages\MainTabItemMessage.cs" />
     <Compile Include="Services\ConnectionHelper.cs" />
+    <Compile Include="Utils\Helpers\MessengerTokens.cs" />
     <Compile Include="ViewModel\Details\CounterpartyViewModel.cs" />
     <Compile Include="Interfaces\IContentView.cs" />
     <Compile Include="ViewModel\Controls\MainTab\MainTabContentViewModel.cs" />

@@ -11,6 +11,7 @@ using ProjectERP.Model.Database;
 using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
 using ProjectERP.Services;
+using ProjectERP.Utils.Helpers;
 
 #endregion
 
@@ -50,11 +51,12 @@ namespace ProjectERP.ViewModel.Tables
                                    MainTabItem =  tabItem
                                };
 
-                               Messenger.Default.Send(tabItemMessage);
+                               Messenger.Default.Send(tabItemMessage, MessengerTokens.NewTabItemToAdd);
                            }));
             }
         }
 
         public bool CanAddItem => true;
+        public bool CanDeleteItem => true;
     }
 }

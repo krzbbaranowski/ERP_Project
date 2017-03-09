@@ -18,7 +18,7 @@ namespace ProjectERP.ViewModel.Details
         }
 
         public ObservableCollection<Counterparty> Counterparties { get; private set; }
-        public bool CanAddItem => true;
+      
 
         public void Init(Counterparty counterparty)
         {
@@ -307,6 +307,8 @@ namespace ProjectERP.ViewModel.Details
         private string _telephone;
         private string _telephone2;
         private string _url;
+        public bool CanAddItem => false;
+        public bool CanDeleteItem => false;
 
         #endregion
     }

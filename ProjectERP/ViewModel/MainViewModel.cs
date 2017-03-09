@@ -13,15 +13,44 @@ using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
 using ProjectERP.ViewModel.Tables;
 using CounterpartyTableView = ProjectERP.Views.Tables.CounterpartyTableView;
+using ProjectERP.Utils.Helpers;
 
 namespace ProjectERP.ViewModel
 {
-   
     public class MainViewModel : ViewModelBase
     {
         private RelayCommand _addCounterpartyCommand;
-
         private IContentView _contentView;
+
+        private bool _addButtonVisible = false;
+        private const string AddButtonVisiblePropertyName = "AddButtonVisible";
+        public bool AddButtonVisible
+        {
+            get
+            {
+                return _addButtonVisible;
+            }
+            private set
+            {
+                Set(AddButtonVisiblePropertyName, ref _addButtonVisible, value);
+            }
+
+        }
+
+        private bool _deleteButtonVisible = false;
+        private const string DeleteButtonVisiblePropertyName = "DeleteButtonVisible";
+        public bool DeleteButtonVisible
+        {
+            get
+            {
+                return _deleteButtonVisible;
+            }
+            private set
+            {
+                Set(DeleteButtonVisiblePropertyName, ref _deleteButtonVisible, value);
+            }
+
+        }
 
         public MainViewModel()
         {
@@ -31,6 +60,9 @@ namespace ProjectERP.ViewModel
         private void SetCurrentContentView(ContentViewMessage contentViewMessage)
         {
             _contentView = contentViewMessage.ContentView;
+
+            AddButtonVisible = _contentView.CanAddItem;
+            DeleteButtonVisible = _contentView.CanDeleteItem;
         }
 
         public RelayCommand AddCounterpartyCommand
@@ -57,7 +89,7 @@ namespace ProjectERP.ViewModel
                                 MainTabItem = tabItem
                             };
 
-                            Messenger.Default.Send<MainTabItemMessage>(tabItemMessage);
+                            Messenger.Default.Send<MainTabItemMessage>(tabItemMessage, MessengerTokens.NewTabItemToAdd);
                         }));
 
                     }));
@@ -79,8 +111,7 @@ namespace ProjectERP.ViewModel
                         MainTabItem newItem = new MainTabItem
                         {
                             TabType = TabType.Subtab,
-                     
-
+                            
                         };
 
                     }));
