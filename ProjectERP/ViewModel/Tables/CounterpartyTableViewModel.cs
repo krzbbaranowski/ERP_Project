@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Enums;
+using ProjectERP.Factories;
 using ProjectERP.Interfaces;
 using ProjectERP.Model.Database;
 using ProjectERP.Model.DataObjects;
@@ -20,7 +21,7 @@ namespace ProjectERP.ViewModel.Tables
     public class CounterpartyTableViewModel : ViewModelBase, IContentView
     {
         private readonly ERPDatabaseEntities _erpDatabase = ConnectionHelper.CreateConnection();
-        private RelayCommand<Counterparty> _myCommand;
+        private RelayCommand<object> _myCommand;
 
         public CounterpartyTableViewModel()
         {
@@ -31,20 +32,15 @@ namespace ProjectERP.ViewModel.Tables
         public ObservableCollection<Counterparty> Counterparties { get; }
 
 
-        public RelayCommand<Counterparty> SelectRowCommand
+        public RelayCommand<object> SelectRowCommand
         {
             get
             {
                 return _myCommand
-                       ?? (_myCommand = new RelayCommand<Counterparty>(
-                           counterparty =>
+                       ?? (_myCommand = new RelayCommand<object>(
+                           item =>
                            {
-                               var tabItem = new MainTabItem
-                               {
-                                   Header = $"Kontrahent {counterparty.Name1}",
-                                   TabType = TabType.Subtab,
-                                   Extra = counterparty
-                               };
+                               var tabItem = NewItemFactory.CreateClearMainTabItem(TabName.CounterpartyTab, item);
 
                                MainTabItemMessage tabItemMessage = new MainTabItemMessage
                                {

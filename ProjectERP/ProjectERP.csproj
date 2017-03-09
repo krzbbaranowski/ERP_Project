@@ -115,7 +115,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\TabNameEnum.cs" />
     <Compile Include="Enums\TabTypeEnum.cs" />
+    <Compile Include="Factories\NewItemFactory.cs" />
     <Compile Include="Model\Database\Address.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>

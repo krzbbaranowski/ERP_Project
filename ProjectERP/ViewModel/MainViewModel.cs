@@ -8,6 +8,7 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using ProjectERP.Enums;
+using ProjectERP.Factories;
 using ProjectERP.Interfaces;
 using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
@@ -76,13 +77,7 @@ namespace ProjectERP.ViewModel
                         Dispatcher.CurrentDispatcher.BeginInvoke((Action) (() =>
                         {
                             CounterpartyTableViewModel view = ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
-                            MainTabItem tabItem = new MainTabItem
-                            {
-                                Header = "Kontrahenci",
-                                Content = new CounterpartyTableView(),
-                                TabType = TabType.Maintab
-
-                            };
+                            MainTabItem tabItem = NewItemFactory.CreateClearMainTabItem(TabName.CounterpartyTabTable, null);
 
                             MainTabItemMessage tabItemMessage = new MainTabItemMessage
                             {
@@ -105,14 +100,14 @@ namespace ProjectERP.ViewModel
                     ?? (_addItemCommand = new RelayCommand(
                     () =>
                     {
-                        Type viewType = _contentView.GetType();
-                        object item = Convert.ChangeType(_contentView, viewType);
 
-                        MainTabItem newItem = new MainTabItem
+                        MainTabItem newItem = NewItemFactory.CreateClearMainTabItem(TabName.CounterpartyTab, null);
+                        MainTabItemMessage newItemMessage = new MainTabItemMessage
                         {
-                            TabType = TabType.Subtab,
-                            
+                            MainTabItem = newItem
                         };
+
+                        Messenger.Default.Send<MainTabItemMessage>(newItemMessage, MessengerTokens.NewTabItemToAdd);
 
                     }));
             }
