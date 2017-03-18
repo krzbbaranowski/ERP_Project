@@ -9,7 +9,7 @@ namespace ProjectERP.Factories
 {
     public class NewItemFactory
     {
-        public static MainTabItem CreateClearMainTabItem(TabName tabName, object extra)
+        public static MainTabItem CreateClearMainTabItem(TabName tabName, object extra=null)
         {
             MainTabItem mainTabItem = null;
 
@@ -24,8 +24,10 @@ namespace ProjectERP.Factories
                         TabName = TabName.CounterpartyTabTable
                     }; 
                     break;
+
                     case TabName.CounterpartyTab:
-                    if (extra == null)
+                    if (extra
+                        == null)
                     {
                         extra = new Counterparty();
                     }

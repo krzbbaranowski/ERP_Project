@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:ProjectERP.Views.Toolbars"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              Height="35" Width="Auto"
@@ -13,11 +12,16 @@
     </UserControl.Resources>
     <materialDesign:ColorZone HorizontalAlignment="Stretch" Mode="Accent">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-            <Button Margin="2" Command="{Binding AddItemCommand}" Visibility="{Binding Path=AddButtonVisible, Converter={StaticResource BoolToVis}}">
+            <Button Margin="2" Command="{Binding AddItemCommand}"
+                    Visibility="{Binding Path=AddButtonVisible, Converter={StaticResource BoolToVis}}">
                 <materialDesign:PackIcon Kind="Plus" />
             </Button>
             <Button Margin="2" Visibility="{Binding Path=DeleteButtonVisible, Converter={StaticResource BoolToVis}}">
                 <materialDesign:PackIcon Kind="Delete" />
+            </Button>
+            <Button Margin="2" Command="{Binding SaveItemCommand}"
+                    Visibility="{Binding Path=SaveButtonVisible, Converter={StaticResource BoolToVis}}">
+                <materialDesign:PackIcon Kind="ContentSave" />
             </Button>
         </StackPanel>
     </materialDesign:ColorZone>

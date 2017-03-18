@@ -5,5 +5,6 @@ namespace ProjectERP.Model.Messages
     public class MainTabItemMessage
     {
         public MainTabItem MainTabItem { get; set; }
+        public bool IsNewContent { get; set; }
     }
 }

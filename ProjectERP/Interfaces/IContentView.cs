@@ -2,8 +2,9 @@
 {
     public interface IContentView
     {
-        bool CanAddItem { get; }
-        bool CanDeleteItem { get; }
+        bool CanAddItem { get; set; }
+        bool CanDeleteItem { get; set; }
+        bool CanSaveItem { get; set; }
 
     }
 }

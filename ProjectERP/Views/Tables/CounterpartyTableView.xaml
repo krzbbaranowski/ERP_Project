@@ -21,7 +21,7 @@
         <Binding Path="CounterpartyTable" Source="{StaticResource Locator}"/>
     </UserControl.DataContext>
 
-    <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Counterparties}" x:Name="CounterpartyGrid"
+    <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items}" x:Name="CounterpartyGrid"
               CanUserSortColumns="True" CanUserAddRows="False"
               materialDesign:DataGridAssist.CellPadding="4 2 2 2"
               materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" >

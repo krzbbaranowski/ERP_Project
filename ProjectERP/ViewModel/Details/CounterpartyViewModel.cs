@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using ProjectERP.Interfaces;
@@ -19,40 +20,78 @@ namespace ProjectERP.ViewModel.Details
         }
 
         public ObservableCollection<Counterparty> Counterparties { get; private set; }
-      
 
-        public void Init(Counterparty counterparty)
+
+        public void Init(Counterparty counterparty, bool newContent)
         {
-            //TODO Przemyśleć sprawę dla nowego kontrahenta(nulle) - fabryka
-            try
-            {
-                _counterparty = counterparty;
-                Name1 = _counterparty.Name1;
-                Name2 = _counterparty.Name2;
-                Name3 = _counterparty.Name3;
-                Code = _counterparty.Code;
-                PESEL = _counterparty.PESEL;
-                REGON = _counterparty.REGON;
-                NIP = _counterparty.NIP;
+            _newContent = newContent;
 
-                //Dane teleadresowe
-                Street = counterparty.Address.Street;
-                House = counterparty.Address.House;
-                Flat = counterparty.Address.Flat;
-                PostalCode = counterparty.Address.PostalCode;
-                City = counterparty.Address.City;
-                Telephone = counterparty.Address.Telephone;
-                Telephone2 = counterparty.Address.Telephone2;
-                Email = counterparty.Address.Email;
-                Fax = counterparty.Address.Fax;
-                Url = counterparty.Address.Url;
-                Province = counterparty.Address.Province.Name;
-            }
-            catch ( Exception ex)
+
+            _counterparty = counterparty;
+            Name1 = _counterparty.Name1;
+            Name2 = _counterparty.Name2;
+            Name3 = _counterparty.Name3;
+            Code = _counterparty.Code;
+            PESEL = _counterparty.PESEL;
+            REGON = _counterparty.REGON;
+            NIP = _counterparty.NIP;
+
+            //Dane teleadresowe
+            Street = counterparty.Address.Street;
+            House = counterparty.Address.House;
+            Flat = counterparty.Address.Flat;
+            PostalCode = counterparty.Address.PostalCode;
+            City = counterparty.Address.City;
+            Telephone = counterparty.Address.Telephone;
+            Telephone2 = counterparty.Address.Telephone2;
+            Email = counterparty.Address.Email;
+            Fax = counterparty.Address.Fax;
+            Url = counterparty.Address.Url;
+            Province = counterparty.Address.Province.Name;
+        }
+
+        public void GetDoneCounterparty()
+        {
+            var counterparty = new Counterparty
             {
-                Console.WriteLine(ex);
+                Name1 = Name1,
+                Name2 = Name2,
+                Name3 = Name3,
+                Code = Code,
+                PESEL = PESEL,
+                REGON = REGON,
+                NIP = NIP,
+                Address = new Address
+                {
+                    Street = Street,
+                    House = House,
+                    Flat = Flat,
+                    PostalCode = PostalCode,
+                    City = City,
+                    Telephone = Telephone,
+                    Telephone2 = Telephone2,
+                    Email = Email,
+                    Fax = Fax,
+                    Url = Url,
+                    Province = new Province
+                    {
+                        Name = Province
+                    }
+                }
+            };
+
+            if (_newContent)
+            {
+                _erpDatabase.Counterparty.Add(counterparty);
             }
-            
+            else
+            {
+             //TODO aktualizacja rekordów
+                //  _context.Entry(entity).CurrentValues.SetValues(item
+
+            }
+            _erpDatabase.SaveChanges();
+
         }
 
         #region Model properties
@@ -317,8 +356,11 @@ namespace ProjectERP.ViewModel.Details
         private string _telephone;
         private string _telephone2;
         private string _url;
-        public bool CanAddItem => false;
-        public bool CanDeleteItem => false;
+        private bool _newContent;
+
+        public bool CanAddItem { get; set; } = false;
+        public bool CanDeleteItem { get; set; } = false;
+        public bool CanSaveItem { get; set; } = true;
 
         #endregion
     }

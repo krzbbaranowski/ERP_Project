@@ -41,32 +41,16 @@ namespace ProjectERP.ViewModel.MVVMLight
         [SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
-        public MainViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
 
-        public MainTabViewModel MainTabControl
-        {
-            get { return ServiceLocator.Current.GetInstance<MainTabViewModel>(); }
-        }
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public MainTabViewModel MainTabControl => ServiceLocator.Current.GetInstance<MainTabViewModel>();
+        public CounterpartyTableViewModel CounterpartyTable => ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
 
-        public CounterpartyTableViewModel CounterpartyTable
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
-            }
-        }
-
-        public static CounterpartyView CreateCounterpartyView(Counterparty counterparty)
+        public static CounterpartyView CreateCounterpartyView(Counterparty counterparty, bool newContent)
         {
             var uniqueKey = Guid.NewGuid().ToString();
             var counterpartyViewModel = SimpleIoc.Default.GetInstance<CounterpartyViewModel>(uniqueKey);
-            counterpartyViewModel.Init(counterparty);
+            counterpartyViewModel.Init(counterparty, newContent);
 
             var counterpartyView = new CounterpartyView()
             {

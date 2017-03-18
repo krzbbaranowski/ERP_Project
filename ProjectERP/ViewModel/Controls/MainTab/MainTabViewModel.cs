@@ -51,8 +51,7 @@ namespace ProjectERP.ViewModel.Controls.MainTab
                                   
                                };
 
-                               
-                               Messenger.Default.Send(contentViewMessage);
+                              Messenger.Default.Send(contentViewMessage);
                            }));
             }
         }
@@ -69,6 +68,7 @@ namespace ProjectERP.ViewModel.Controls.MainTab
 
         private void AddTab(MainTabItemMessage tab)
         {
+            bool newContent = tab.IsNewContent;
             MainTabItem tabItemToAdd = tab.MainTabItem;
             if (!IsTabExists(tabItemToAdd))
             {
@@ -78,10 +78,10 @@ namespace ProjectERP.ViewModel.Controls.MainTab
                 if (tabItemToAdd.TabType == TabType.Subtab)
                 {
                     var counterparty = tabItemToAdd.Extra as Counterparty;
+                   
                     if (counterparty != null)
                     {
-                        ViewModelLocator.CreateCounterpartyView(counterparty);
-                        tabItemToAdd.Content = ViewModelLocator.CreateCounterpartyView(counterparty);
+                        tabItemToAdd.Content = ViewModelLocator.CreateCounterpartyView(counterparty, newContent);
                         Tabs.Add(tabItemToAdd);
                     }
                 }
@@ -98,3 +98,5 @@ namespace ProjectERP.ViewModel.Controls.MainTab
         }
     }
 }
+
+

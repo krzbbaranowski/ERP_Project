@@ -117,6 +117,7 @@
     </ApplicationDefinition>
     <Compile Include="Enums\TabNameEnum.cs" />
     <Compile Include="Enums\TabTypeEnum.cs" />
+    <Compile Include="Factories\TabNameFactory.cs" />
     <Compile Include="Factories\NewItemFactory.cs" />
     <Compile Include="Model\Database\Address.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
@@ -146,11 +147,13 @@
     <Compile Include="Model\DataObjects\MainTabItem.cs" />
     <Compile Include="Model\Messages\MainTabItemMessage.cs" />
     <Compile Include="Services\ConnectionHelper.cs" />
+    <Compile Include="Services\DatabaseAccessService.cs" />
     <Compile Include="Utils\Helpers\MessengerTokens.cs" />
     <Compile Include="ViewModel\Details\CounterpartyViewModel.cs" />
     <Compile Include="Interfaces\IContentView.cs" />
     <Compile Include="ViewModel\Controls\MainTab\MainTabContentViewModel.cs" />
     <Compile Include="ViewModel\Controls\TableContentViewModel.cs" />
+    <Compile Include="ViewModel\Tables\TableViewModel.cs" />
     <Compile Include="ViewModel\Tables\CounterpartyTableViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Controls\MainTab\MainTabViewModel.cs" />

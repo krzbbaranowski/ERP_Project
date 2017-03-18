@@ -15,6 +15,7 @@ using ProjectERP.Model.Messages;
 using ProjectERP.ViewModel.Tables;
 using CounterpartyTableView = ProjectERP.Views.Tables.CounterpartyTableView;
 using ProjectERP.Utils.Helpers;
+using ProjectERP.ViewModel.Details;
 
 namespace ProjectERP.ViewModel
 {
@@ -53,6 +54,21 @@ namespace ProjectERP.ViewModel
 
         }
 
+        public bool _saveButtonVisible;
+        private const string SaveButtonVisiblePropertyName = "SaveButtonVisible";
+        public bool SaveButtonVisible
+        {
+            get
+            {
+                return _saveButtonVisible;
+            }
+            private set
+            {
+                Set(SaveButtonVisiblePropertyName, ref _saveButtonVisible, value);
+            }
+
+        }
+
         public MainViewModel()
         {
             Messenger.Default.Register<ContentViewMessage>(this, SetCurrentContentView);
@@ -64,6 +80,7 @@ namespace ProjectERP.ViewModel
 
             AddButtonVisible = _contentView.CanAddItem;
             DeleteButtonVisible = _contentView.CanDeleteItem;
+            SaveButtonVisible = _contentView.CanSaveItem;
         }
 
         public RelayCommand AddCounterpartyCommand
@@ -77,7 +94,7 @@ namespace ProjectERP.ViewModel
                         Dispatcher.CurrentDispatcher.BeginInvoke((Action) (() =>
                         {
                             CounterpartyTableViewModel view = ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
-                            MainTabItem tabItem = NewItemFactory.CreateClearMainTabItem(TabName.CounterpartyTabTable, null);
+                            MainTabItem tabItem = NewItemFactory.CreateClearMainTabItem(TabNameFactory.GeTabNameByType(view));
 
                             MainTabItemMessage tabItemMessage = new MainTabItemMessage
                             {
@@ -90,7 +107,7 @@ namespace ProjectERP.ViewModel
                     }));
             }
         }
-
+        
         private RelayCommand _addItemCommand;
         public RelayCommand AddItemCommand
         {
@@ -100,11 +117,11 @@ namespace ProjectERP.ViewModel
                     ?? (_addItemCommand = new RelayCommand(
                     () =>
                     {
-
-                        MainTabItem newItem = NewItemFactory.CreateClearMainTabItem(TabName.CounterpartyTab, null);
+                        MainTabItem newItem = NewItemFactory.CreateClearMainTabItem(TabNameFactory.GeTabNameByType(TabName.CounterpartyTab));
                         MainTabItemMessage newItemMessage = new MainTabItemMessage
                         {
-                            MainTabItem = newItem
+                            MainTabItem = newItem,
+                            IsNewContent = true
                         };
 
                         Messenger.Default.Send<MainTabItemMessage>(newItemMessage, MessengerTokens.NewTabItemToAdd);
@@ -113,5 +130,29 @@ namespace ProjectERP.ViewModel
             }
         }
 
+        private RelayCommand _saveItemCommand;
+        public RelayCommand SaveItemCommand
+        {
+            get
+            {
+                return _saveItemCommand
+                    ?? (_saveItemCommand = new RelayCommand(
+                    () =>
+                    {
+                        CounterpartyViewModel vm = (CounterpartyViewModel) _contentView;
+                        vm.GetDoneCounterparty();
+
+                    }));
+            }
+        }
+
     }
 }
+
+
+
+
+
+
+
+            
