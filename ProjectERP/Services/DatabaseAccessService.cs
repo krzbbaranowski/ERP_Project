@@ -30,8 +30,6 @@ namespace ProjectERP.Services
         {
             var value = _database.GetType().GetProperty(typeof(T).Name).GetValue(_database, null);
             var obj = value as DbSet<T>;
-
-           
         }
 
     }

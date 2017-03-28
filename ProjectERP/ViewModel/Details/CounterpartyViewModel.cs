@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using ProjectERP.Interfaces;
@@ -21,36 +20,7 @@ namespace ProjectERP.ViewModel.Details
 
         public ObservableCollection<Counterparty> Counterparties { get; private set; }
 
-
-        public void Init(Counterparty counterparty, bool newContent)
-        {
-            _newContent = newContent;
-
-
-            _counterparty = counterparty;
-            Name1 = _counterparty.Name1;
-            Name2 = _counterparty.Name2;
-            Name3 = _counterparty.Name3;
-            Code = _counterparty.Code;
-            PESEL = _counterparty.PESEL;
-            REGON = _counterparty.REGON;
-            NIP = _counterparty.NIP;
-
-            //Dane teleadresowe
-            Street = counterparty.Address.Street;
-            House = counterparty.Address.House;
-            Flat = counterparty.Address.Flat;
-            PostalCode = counterparty.Address.PostalCode;
-            City = counterparty.Address.City;
-            Telephone = counterparty.Address.Telephone;
-            Telephone2 = counterparty.Address.Telephone2;
-            Email = counterparty.Address.Email;
-            Fax = counterparty.Address.Fax;
-            Url = counterparty.Address.Url;
-            Province = counterparty.Address.Province.Name;
-        }
-
-        public void GetDoneCounterparty()
+        public void AddToDatabase()
         {
             var counterparty = new Counterparty
             {
@@ -86,12 +56,56 @@ namespace ProjectERP.ViewModel.Details
             }
             else
             {
-             //TODO aktualizacja rekordów
-                //  _context.Entry(entity).CurrentValues.SetValues(item
+                var dbFoo = _erpDatabase.Counterparty.
+                    Include(x=>x.Address).
+                    Include(x=>x.Address.Province).
+                    Include(x =>x).Where(c => c.Id == _counterparty.Id ).Select(d=>d).Single();
 
+                counterparty.Id = _counterparty.Id;
+                _erpDatabase.Entry(dbFoo).CurrentValues.SetValues(counterparty);
+                _erpDatabase.Entry(dbFoo.Address).CurrentValues.SetValues(counterparty.Address);
+                _erpDatabase.Entry(dbFoo.Address.Province).CurrentValues.SetValues(counterparty.Address.Province);
+                /* context.Entry(dbFoo).CurrentValues.SetValues(newFoo);
+                    context.Entry(dbFoo.SubFoo).CurrentValues.SetValues(newFoo.SubFoo);
+                    context.Entry(dbFoo.AnotherSubFoo).CurrentValues.SetValues(newFoo.AnotherSubFoo);*/
+
+
+              
+               
             }
-            _erpDatabase.SaveChanges();
 
+            _erpDatabase.SaveChanges();
+        }
+
+        public void Init(Counterparty counterparty, bool newContent)
+        {
+            _newContent = newContent;
+
+            if (newContent)
+                return;
+
+            _counterparty = counterparty;
+            
+            Name1 = _counterparty.Name1;
+            Name2 = _counterparty.Name2;
+            Name3 = _counterparty.Name3;
+            Code = _counterparty.Code;
+            PESEL = _counterparty.PESEL;
+            REGON = _counterparty.REGON;
+            NIP = _counterparty.NIP;
+
+            //Dane teleadresowe
+            Street = counterparty.Address.Street;
+            House = counterparty.Address.House;
+            Flat = counterparty.Address.Flat;
+            PostalCode = counterparty.Address.PostalCode;
+            City = counterparty.Address.City;
+            Telephone = counterparty.Address.Telephone;
+            Telephone2 = counterparty.Address.Telephone2;
+            Email = counterparty.Address.Email;
+            Fax = counterparty.Address.Fax;
+            Url = counterparty.Address.Url;
+            Province = counterparty.Address.Province.Name;
         }
 
         #region Model properties
@@ -338,24 +352,25 @@ namespace ProjectERP.ViewModel.Details
         #region Private model fields
 
         private Counterparty _counterparty;
-        private string _city;
-        private string _code;
-        private string _counterpartyName;
-        private string _email;
-        private string _fax;
+        private string _city = string.Empty;
+        private string _code = string.Empty;
+        private string _counterpartyName = string.Empty;
+        private string _email = string.Empty;
+        private string _fax = string.Empty;
         private int _flat;
         private int _house;
-        private string _name2;
-        private string _name3;
-        private string _nip;
-        private string _pesel;
-        private string _postalCode;
-        private string _province;
-        private string _regon;
-        private string _street;
-        private string _telephone;
-        private string _telephone2;
-        private string _url;
+        private string _name2 = string.Empty;
+        private string _name3 = string.Empty;
+        private string _nip = string.Empty;
+        private string _pesel = string.Empty;
+        private string _postalCode = string.Empty;
+        private string _province = string.Empty;
+        private string _regon = string.Empty;
+        private string _street = string.Empty;
+        private string _telephone = string.Empty;
+        private string _telephone2 = string.Empty;
+
+        private string _url = string.Empty;
         private bool _newContent;
 
         public bool CanAddItem { get; set; } = false;
@@ -365,3 +380,4 @@ namespace ProjectERP.ViewModel.Details
         #endregion
     }
 }
+ 

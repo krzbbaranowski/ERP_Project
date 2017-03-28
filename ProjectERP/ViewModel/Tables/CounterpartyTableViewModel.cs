@@ -17,5 +17,10 @@ namespace ProjectERP.ViewModel.Tables
         public bool CanAddItem { get; set; } = true;
         public bool CanDeleteItem { get; set; } = true;
         public bool CanSaveItem { get; set; } = false;
+
+        public void AddToDatabase()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -136,13 +136,12 @@ namespace ProjectERP.ViewModel
             get
             {
                 return _saveItemCommand
-                    ?? (_saveItemCommand = new RelayCommand(
-                    () =>
-                    {
-                        CounterpartyViewModel vm = (CounterpartyViewModel) _contentView;
-                        vm.GetDoneCounterparty();
+                       ?? (_saveItemCommand = new RelayCommand(
+                           () =>
+                           {
+                               _contentView.AddToDatabase();
 
-                    }));
+                           }));
             }
         }
 

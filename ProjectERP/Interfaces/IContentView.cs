@@ -6,5 +6,7 @@
         bool CanDeleteItem { get; set; }
         bool CanSaveItem { get; set; }
 
+
+        void AddToDatabase();
     }
 }
