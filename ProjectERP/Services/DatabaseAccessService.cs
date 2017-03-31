@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using ProjectERP.Model.Database;
 
 namespace ProjectERP.Services
@@ -24,12 +25,6 @@ namespace ProjectERP.Services
             var obj = value as DbSet<T>;
 
             return new List<T>(obj);
-        }
-
-        public void AddEntities<T>(T entity) where T : class
-        {
-            var value = _database.GetType().GetProperty(typeof(T).Name).GetValue(_database, null);
-            var obj = value as DbSet<T>;
         }
 
     }

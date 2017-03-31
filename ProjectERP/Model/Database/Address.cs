@@ -31,6 +31,7 @@ namespace ProjectERP.Model.Database
         public string Email { get; set; }
         public string Fax { get; set; }
         public string Url { get; set; }
+
         public int Province_Id { get; set; }
         public int Counterparty_Id { get; set; }
     

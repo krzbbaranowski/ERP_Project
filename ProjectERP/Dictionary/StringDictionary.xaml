@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!--Counterparties-->
+    <system:String x:Key="Id">Id</system:String>
+    <system:String x:Key="Code">Kod</system:String>
+    <system:String x:Key="Name">Nazwa</system:String>
+    <system:String x:Key="Nip">NIP</system:String>
+    <system:String x:Key="Regon">REGON</system:String>
+    <system:String x:Key="Pesel">PESEL</system:String>
+
+    <system:String x:Key="Street">Ulica</system:String>
+    <system:String x:Key="House">Dom</system:String>
+    <system:String x:Key="Flat">Mieszkanie</system:String>
+    <system:String x:Key="PostalCode">Kod pocztowy</system:String>
+    <system:String x:Key="City">Poczta</system:String>
+    <system:String x:Key="Telephone">Telefon</system:String>
+    <system:String x:Key="Email">E-mail</system:String>
+    <system:String x:Key="Fax">Fax</system:String>
+    <system:String x:Key="Url">WWW</system:String>
+    
+    <system:String x:Key="Province">Województwo</system:String>
+
+
+</ResourceDictionary>

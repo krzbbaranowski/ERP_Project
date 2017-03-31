@@ -7,7 +7,7 @@ using ProjectERP.Views.Tables;
 
 namespace ProjectERP.Factories
 {
-    public class NewItemFactory
+    public class TabItemFactory
     {
         public static MainTabItem CreateClearMainTabItem(TabName tabName, object extra=null)
         {

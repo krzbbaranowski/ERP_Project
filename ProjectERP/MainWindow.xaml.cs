@@ -9,10 +9,15 @@ namespace ProjectERP
     public partial class MainWindow : Window
     {
         private DatabaseAccessService _databaseService;
+        private DatabaseAccessServiceClient _databaseAccessServiceGetter;
+
         public MainWindow()
         {
             InitializeComponent();
+
             _databaseService = new DatabaseAccessService();
+            _databaseAccessServiceGetter = new DatabaseAccessServiceClient();
+            
         }
     }
 }

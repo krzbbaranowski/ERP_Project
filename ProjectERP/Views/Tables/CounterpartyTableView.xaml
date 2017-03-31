@@ -1,12 +1,13 @@
 ﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="ProjectERP.Views.Tables.CounterpartyTableView"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="ProjectERP.Views.Tables.CounterpartyTableView"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,24 +15,51 @@
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DataGrid.xaml" />
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="../../Dictionary/StringDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
     <UserControl.DataContext>
-        <Binding Path="CounterpartyTable" Source="{StaticResource Locator}"/>
+        <Binding Path="CounterpartyTable" Source="{StaticResource Locator}" />
     </UserControl.DataContext>
-
-    <DataGrid Margin="0 8 0 0" ItemsSource="{Binding Items}" x:Name="CounterpartyGrid"
-              CanUserSortColumns="True" CanUserAddRows="False"
+    <DataGrid ItemsSource="{Binding Counterparties, IsAsync=True}" x:Name="CounterpartyGrid"
+              CanUserSortColumns="True" CanUserAddRows="False" CanUserDeleteRows="False"
+              IsReadOnly="True" AutoGenerateColumns="False"
               materialDesign:DataGridAssist.CellPadding="4 2 2 2"
-              materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" >
+              materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
         <i:Interaction.Triggers>
-            <i:EventTrigger EventName="SelectionChanged">
+            <i:EventTrigger EventName="MouseDoubleClick">
                 <i:InvokeCommandAction Command="{Binding SelectRowCommand}"
-                                   CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
+                                       CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name1}" />
+            <DataGridTextColumn Header="{StaticResource Code}" Binding="{Binding Code}" />
+            <DataGridTextColumn Header="{StaticResource Nip}" Binding="{Binding NIP}" />
+            <DataGridTextColumn Header="{StaticResource Regon}" Binding="{Binding REGON}" />
+            <DataGridTextColumn Header="{StaticResource Pesel}" Binding="{Binding PESEL}" />
 
+            <DataGridTextColumn Header="{StaticResource Street}">
+                <DataGridTextColumn.Binding>
+                    <MultiBinding StringFormat=" {0} {1}/{2} ">
+                        <Binding Path="Address.Street" />
+                        <Binding Path="Address.House" />
+                        <Binding Path="Address.Flat" />
+                    </MultiBinding>
+                </DataGridTextColumn.Binding>
+            </DataGridTextColumn>
+
+            <DataGridTextColumn Header="{StaticResource PostalCode}" Binding="{Binding Address.PostalCode}" />
+            <DataGridTextColumn Header="{StaticResource City}" Binding="{Binding Address.City}" />
+            <DataGridTextColumn Header="{StaticResource Telephone}" Binding="{Binding Address.Telephone}" />
+            <DataGridTextColumn Header="{StaticResource Email}" Binding="{Binding Address.Email}" />
+            <DataGridTextColumn Header="{StaticResource Telephone}" Binding="{Binding Address.Telephone}" />
+            <DataGridTextColumn Header="{StaticResource Fax}" Binding="{Binding Address.Fax}" />
+            <DataGridTextColumn Header="{StaticResource Url}" Binding="{Binding Address.Url}" />
+            <DataGridTextColumn Header="{StaticResource Email}" Binding="{Binding Address.Email}" />
+            <DataGridTextColumn Header="{StaticResource Province}" Binding="{Binding Address.Province.Name}" />
+        </DataGrid.Columns>
 
 
     </DataGrid>

@@ -39,7 +39,5 @@
                 <parents:MainTabContentView />
             </DataTemplate>
         </dragablz:TabablzControl.ContentTemplate>
-
-
     </dragablz:TabablzControl>
 </UserControl>

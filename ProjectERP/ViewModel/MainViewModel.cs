@@ -22,65 +22,11 @@ namespace ProjectERP.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private RelayCommand _addCounterpartyCommand;
-        private IContentView _contentView;
 
-        private bool _addButtonVisible = false;
-        private const string AddButtonVisiblePropertyName = "AddButtonVisible";
-        public bool AddButtonVisible
-        {
-            get
-            {
-                return _addButtonVisible;
-            }
-            private set
-            {
-                Set(AddButtonVisiblePropertyName, ref _addButtonVisible, value);
-            }
-
-        }
-
-        private bool _deleteButtonVisible = false;
-        private const string DeleteButtonVisiblePropertyName = "DeleteButtonVisible";
-        public bool DeleteButtonVisible
-        {
-            get
-            {
-                return _deleteButtonVisible;
-            }
-            private set
-            {
-                Set(DeleteButtonVisiblePropertyName, ref _deleteButtonVisible, value);
-            }
-
-        }
-
-        public bool _saveButtonVisible;
-        private const string SaveButtonVisiblePropertyName = "SaveButtonVisible";
-        public bool SaveButtonVisible
-        {
-            get
-            {
-                return _saveButtonVisible;
-            }
-            private set
-            {
-                Set(SaveButtonVisiblePropertyName, ref _saveButtonVisible, value);
-            }
-
-        }
 
         public MainViewModel()
         {
-            Messenger.Default.Register<ContentViewMessage>(this, SetCurrentContentView);
-        }
-
-        private void SetCurrentContentView(ContentViewMessage contentViewMessage)
-        {
-            _contentView = contentViewMessage.ContentView;
-
-            AddButtonVisible = _contentView.CanAddItem;
-            DeleteButtonVisible = _contentView.CanDeleteItem;
-            SaveButtonVisible = _contentView.CanSaveItem;
+         
         }
 
         public RelayCommand AddCounterpartyCommand
@@ -94,7 +40,7 @@ namespace ProjectERP.ViewModel
                         Dispatcher.CurrentDispatcher.BeginInvoke((Action) (() =>
                         {
                             CounterpartyTableViewModel view = ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
-                            MainTabItem tabItem = NewItemFactory.CreateClearMainTabItem(TabNameFactory.GeTabNameByType(view));
+                            MainTabItem tabItem = TabItemFactory.CreateClearMainTabItem(TabNameFactory.GeTabNameByType(view));
 
                             MainTabItemMessage tabItemMessage = new MainTabItemMessage
                             {
@@ -107,43 +53,11 @@ namespace ProjectERP.ViewModel
                     }));
             }
         }
-        
-        private RelayCommand _addItemCommand;
-        public RelayCommand AddItemCommand
-        {
-            get
-            {
-                return _addItemCommand
-                    ?? (_addItemCommand = new RelayCommand(
-                    () =>
-                    {
-                        MainTabItem newItem = NewItemFactory.CreateClearMainTabItem(TabNameFactory.GeTabNameByType(TabName.CounterpartyTab));
-                        MainTabItemMessage newItemMessage = new MainTabItemMessage
-                        {
-                            MainTabItem = newItem,
-                            IsNewContent = true
-                        };
 
-                        Messenger.Default.Send<MainTabItemMessage>(newItemMessage, MessengerTokens.NewTabItemToAdd);
+      
+     
 
-                    }));
-            }
-        }
-
-        private RelayCommand _saveItemCommand;
-        public RelayCommand SaveItemCommand
-        {
-            get
-            {
-                return _saveItemCommand
-                       ?? (_saveItemCommand = new RelayCommand(
-                           () =>
-                           {
-                               _contentView.AddToDatabase();
-
-                           }));
-            }
-        }
+       
 
     }
 }

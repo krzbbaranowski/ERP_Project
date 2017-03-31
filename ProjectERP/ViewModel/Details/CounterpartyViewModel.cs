@@ -14,11 +14,13 @@ namespace ProjectERP.ViewModel.Details
 
         public CounterpartyViewModel()
         {
-            var list = _erpDatabase.Counterparty.ToList();
-            Counterparties = new ObservableCollection<Counterparty>(list);
+
         }
 
-        public ObservableCollection<Counterparty> Counterparties { get; private set; }
+        public void DeleteToDatabase()
+        {
+          // var dbEnity = _erpDatabase.
+        }
 
         public void AddToDatabase()
         {
@@ -57,21 +59,15 @@ namespace ProjectERP.ViewModel.Details
             else
             {
                 var dbFoo = _erpDatabase.Counterparty.
-                    Include(x=>x.Address).
-                    Include(x=>x.Address.Province).
-                    Include(x =>x).Where(c => c.Id == _counterparty.Id ).Select(d=>d).Single();
+                    Include(x => x.Address).
+                    Include(x => x.Address.Province).
+                    Include(x => x).Where(c => c.Id == _counterparty.Id).Select(d => d).Single();
 
                 counterparty.Id = _counterparty.Id;
                 _erpDatabase.Entry(dbFoo).CurrentValues.SetValues(counterparty);
                 _erpDatabase.Entry(dbFoo.Address).CurrentValues.SetValues(counterparty.Address);
                 _erpDatabase.Entry(dbFoo.Address.Province).CurrentValues.SetValues(counterparty.Address.Province);
-                /* context.Entry(dbFoo).CurrentValues.SetValues(newFoo);
-                    context.Entry(dbFoo.SubFoo).CurrentValues.SetValues(newFoo.SubFoo);
-                    context.Entry(dbFoo.AnotherSubFoo).CurrentValues.SetValues(newFoo.AnotherSubFoo);*/
 
-
-              
-               
             }
 
             _erpDatabase.SaveChanges();
@@ -376,6 +372,8 @@ namespace ProjectERP.ViewModel.Details
         public bool CanAddItem { get; set; } = false;
         public bool CanDeleteItem { get; set; } = false;
         public bool CanSaveItem { get; set; } = true;
+
+      
 
         #endregion
     }

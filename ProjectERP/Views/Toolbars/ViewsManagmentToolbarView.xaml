@@ -6,7 +6,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              Height="35" Width="Auto"
-             d:DesignHeight="35" d:DesignWidth="300" HorizontalAlignment="Stretch">
+             d:DesignHeight="35" d:DesignWidth="300" HorizontalAlignment="Stretch"
+             DataContext="{Binding Source={StaticResource Locator}, Path=ViewsManagmentToolbar}">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
@@ -16,7 +17,8 @@
                     Visibility="{Binding Path=AddButtonVisible, Converter={StaticResource BoolToVis}}">
                 <materialDesign:PackIcon Kind="Plus" />
             </Button>
-            <Button Margin="2" Visibility="{Binding Path=DeleteButtonVisible, Converter={StaticResource BoolToVis}}">
+            <Button Margin="2" Command="{Binding DeleteItemCommand}"
+                    Visibility="{Binding Path=DeleteButtonVisible, Converter={StaticResource BoolToVis}}">
                 <materialDesign:PackIcon Kind="Delete" />
             </Button>
             <Button Margin="2" Command="{Binding SaveItemCommand}"

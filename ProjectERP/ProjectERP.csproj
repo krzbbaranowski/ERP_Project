@@ -118,7 +118,7 @@
     <Compile Include="Enums\TabNameEnum.cs" />
     <Compile Include="Enums\TabTypeEnum.cs" />
     <Compile Include="Factories\TabNameFactory.cs" />
-    <Compile Include="Factories\NewItemFactory.cs" />
+    <Compile Include="Factories\TabItemFactory.cs" />
     <Compile Include="Model\Database\Address.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -148,6 +148,7 @@
     <Compile Include="Model\Messages\MainTabItemMessage.cs" />
     <Compile Include="Services\ConnectionHelper.cs" />
     <Compile Include="Services\DatabaseAccessService.cs" />
+    <Compile Include="Services\DatabaseAccessServiceClient.cs" />
     <Compile Include="Utils\Helpers\MessengerTokens.cs" />
     <Compile Include="ViewModel\Details\CounterpartyViewModel.cs" />
     <Compile Include="Interfaces\IContentView.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Controls\MainTab\MainTabViewModel.cs" />
     <Compile Include="ViewModel\MVVMLight\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\Toolbar\ViewsManagmentToolbarViewModel.cs" />
     <Compile Include="Views\Tables\CounterpartyTableView.xaml.cs">
       <DependentUpon>CounterpartyTableView.xaml</DependentUpon>
     </Compile>
@@ -173,6 +175,10 @@
     <Compile Include="Views\Toolbars\ViewsManagmentToolbarView.xaml.cs">
       <DependentUpon>ViewsManagmentToolbarView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dictionary\StringDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
