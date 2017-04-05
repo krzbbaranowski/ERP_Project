@@ -4,7 +4,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="ProjectERP.MainWindow"
-    xmlns:tv="clr-namespace:ProjectERP.Views.Toolbars"
     mc:Ignorable="d"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:parents="clr-namespace:ProjectERP.Views.Parents"
@@ -17,7 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <md:ColorZone Mode="Accent" Padding="8" Grid.Row="0">
             <StackPanel Orientation="Horizontal">
@@ -31,7 +30,6 @@
             </StackPanel>
         </md:ColorZone>
         <parents:MainTabControlView Grid.Row="1" />
-        
-        <tv:ViewsManagmentToolbarView Grid.Row="2"/>
+
     </Grid>
 </Window>

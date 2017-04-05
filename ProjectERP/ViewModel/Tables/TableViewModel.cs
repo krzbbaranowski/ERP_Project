@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -36,7 +35,7 @@ namespace ProjectERP.ViewModel.Tables
                            item =>
                            {
                                var tabItem = TabItemFactory.CreateClearMainTabItem(
-                                   TabNameFactory.GeTabNameByType(item), item);
+                                   TabNameFactory.GetTabNameByType(item), item);
                                var tabItemMessage = new MainTabItemMessage
                                {
                                    MainTabItem = tabItem,

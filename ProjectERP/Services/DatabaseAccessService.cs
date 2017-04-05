@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using ProjectERP.Model.Database;
 
 namespace ProjectERP.Services
@@ -26,6 +25,5 @@ namespace ProjectERP.Services
 
             return new List<T>(obj);
         }
-
     }
 }

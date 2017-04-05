@@ -6,7 +6,7 @@
     <Style x:Key="JadeDetailsGroupBox" TargetType="{x:Type GroupBox}"
            BasedOn="{StaticResource MaterialDesignGroupBox}">
         <Setter Property="Margin" Value="4" />
-        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top" />
     </Style>
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource JadeDetailsGroupboxContent}" />
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource JadeDetailsGroupboxContent}" />

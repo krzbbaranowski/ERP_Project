@@ -3,7 +3,7 @@
 namespace ProjectERP.Views.Details
 {
     /// <summary>
-    /// Interaction logic for CounterpartyView.xaml
+    ///     Interaction logic for CounterpartyView.xaml
     /// </summary>
     public partial class CounterpartyView : UserControl
     {

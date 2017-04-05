@@ -1,9 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using ProjectERP.Interfaces;
 using ProjectERP.Model.Database;
+using ProjectERP.Model.DataObjects;
 using ProjectERP.Services;
 
 namespace ProjectERP.ViewModel.Details
@@ -11,15 +12,18 @@ namespace ProjectERP.ViewModel.Details
     public class CounterpartyViewModel : ViewModelBase, IContentView
     {
         private readonly ERPDatabaseEntities _erpDatabase = ConnectionHelper.CreateConnection();
+        private RelayCommand<MainTabItem> _deleteItemCommand;
 
-        public CounterpartyViewModel()
-        {
+        private RelayCommand _saveItemCommand;
 
-        }
+        public RelayCommand SaveItemCommand => _saveItemCommand
+                                               ?? (_saveItemCommand = new RelayCommand(
+                                                   () => { AddToDatabase(); }));
+
 
         public void DeleteToDatabase()
         {
-          // var dbEnity = _erpDatabase.
+            // var dbEnity = _erpDatabase.
         }
 
         public void AddToDatabase()
@@ -61,13 +65,16 @@ namespace ProjectERP.ViewModel.Details
                 var dbFoo = _erpDatabase.Counterparty.
                     Include(x => x.Address).
                     Include(x => x.Address.Province).
-                    Include(x => x).Where(c => c.Id == _counterparty.Id).Select(d => d).Single();
+                    Where(c => c.Id == _counterparty.Id).
+                    Select(c => c).FirstOrDefault();
+                   
 
+
+            
                 counterparty.Id = _counterparty.Id;
                 _erpDatabase.Entry(dbFoo).CurrentValues.SetValues(counterparty);
                 _erpDatabase.Entry(dbFoo.Address).CurrentValues.SetValues(counterparty.Address);
                 _erpDatabase.Entry(dbFoo.Address.Province).CurrentValues.SetValues(counterparty.Address.Province);
-
             }
 
             _erpDatabase.SaveChanges();
@@ -81,7 +88,7 @@ namespace ProjectERP.ViewModel.Details
                 return;
 
             _counterparty = counterparty;
-            
+
             Name1 = _counterparty.Name1;
             Name2 = _counterparty.Name2;
             Name3 = _counterparty.Name3;
@@ -372,8 +379,6 @@ namespace ProjectERP.ViewModel.Details
         public bool CanAddItem { get; set; } = false;
         public bool CanDeleteItem { get; set; } = false;
         public bool CanSaveItem { get; set; } = true;
-
-      
 
         #endregion
     }

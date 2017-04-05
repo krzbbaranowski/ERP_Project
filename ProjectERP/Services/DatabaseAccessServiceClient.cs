@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 
 namespace ProjectERP.Services
 {
     public class DatabaseAccessServiceClient
     {
-        public static DatabaseAccessServiceClient Current { get; private set; }
-
         public DatabaseAccessServiceClient()
         {
             if (Current != null)
@@ -20,9 +14,11 @@ namespace ProjectERP.Services
             Current = this;
         }
 
+        public static DatabaseAccessServiceClient Current { get; private set; }
+
         public List<object> GetEntities(Type entityType)
         {
-            List<object> items  = new List<object>();
+            var items = new List<object>();
 
             var ex = typeof(DatabaseAccessService);
             var mi = ex.GetMethod("GetEntities");

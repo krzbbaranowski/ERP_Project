@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="ProjectERP.Views.Parents.MainTabContentView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
@@ -15,18 +15,18 @@
         <materialDesign:ColorZone Mode="Accent" Padding="2" Grid.Row="0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource MaterialDesignCloseItemCommandButtonStyle}"
-                                    Command="{Binding DataContext.CloseCommand, RelativeSource={RelativeSource AncestorType=UserControl, AncestorLevel=2}}"
-                                    CommandParameter="{Binding}"
-                                    Margin="0 0 8 0" Height="30" Width="30" HorizontalAlignment="Right"
-                                    ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                        Command="{Binding DataContext.CloseCommand, RelativeSource={RelativeSource AncestorType=UserControl, AncestorLevel=2}}"
+                        CommandParameter="{Binding}"
+                        Margin="0 0 8 0" Height="30" Width="30" HorizontalAlignment="Right"
+                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
                     <materialDesign:PackIcon Kind="WindowClose" Background="Transparent" Height="15"
-                                                         Width="15" />
+                                             Width="15" />
                 </Button>
             </StackPanel>
         </materialDesign:ColorZone>
 
         <ContentControl Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                    Content="{Binding Content}" />
+                        Content="{Binding Content}" />
 
 
     </Grid>

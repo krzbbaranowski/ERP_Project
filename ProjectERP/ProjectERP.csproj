@@ -159,7 +159,6 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Controls\MainTab\MainTabViewModel.cs" />
     <Compile Include="ViewModel\MVVMLight\ViewModelLocator.cs" />
-    <Compile Include="ViewModel\Toolbar\ViewsManagmentToolbarViewModel.cs" />
     <Compile Include="Views\Tables\CounterpartyTableView.xaml.cs">
       <DependentUpon>CounterpartyTableView.xaml</DependentUpon>
     </Compile>
@@ -171,9 +170,6 @@
     </Compile>
     <Compile Include="Views\Parents\MainTabView.xaml.cs">
       <DependentUpon>MainTabView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Toolbars\ViewsManagmentToolbarView.xaml.cs">
-      <DependentUpon>ViewsManagmentToolbarView.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary\StringDictionary.xaml">
       <SubType>Designer</SubType>
@@ -208,10 +204,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Parents\MainTabView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Toolbars\ViewsManagmentToolbarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,7 +261,10 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\Toolbar\" />
+    <Folder Include="Views\Toolbars\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Database\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

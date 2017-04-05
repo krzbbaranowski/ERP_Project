@@ -3,7 +3,7 @@
 namespace ProjectERP.Views.Parents
 {
     /// <summary>
-    /// Interaction logic for MainTabControl.xaml
+    ///     Interaction logic for MainTabControl.xaml
     /// </summary>
     public partial class MainTabControlView : UserControl
     {

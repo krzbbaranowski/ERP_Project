@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             Background="{DynamicResource MaterialDesignPaper}" Height="223" Width="972">
+             Background="{DynamicResource MaterialDesignPaper}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,128 +15,150 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+    
+    <Grid VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.Resources>
-            <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="../../Styles/Jade.Details.GroupBox.xaml" />
-                </ResourceDictionary.MergedDictionaries>
-            </ResourceDictionary>
-        </Grid.Resources>
-        <GroupBox HorizontalAlignment="Stretch"
-                  Header="Dane podstawowe"
-                  md:ColorZoneAssist.Mode="Accent">
-            <Grid Width="Auto">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../../Styles/Jade.Details.GroupBox.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Grid.Resources>
+            <GroupBox HorizontalAlignment="Stretch"
+                      Header="Dane podstawowe"
+                      md:ColorZoneAssist.Mode="Accent">
+                <Grid Width="Auto">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="100" />
-                    <ColumnDefinition MinWidth="120" />
-                    <ColumnDefinition MinWidth="100" />
-                    <ColumnDefinition MinWidth="120" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0">Kod</TextBlock>
-                <TextBlock Grid.Row="0" Grid.Column="2">NIP</TextBlock>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="100" />
+                        <ColumnDefinition MinWidth="120" />
+                        <ColumnDefinition MinWidth="100" />
+                        <ColumnDefinition MinWidth="120" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">Kod</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2">NIP</TextBlock>
 
-                <TextBlock Grid.Row="1" Grid.Column="0">REGON</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="2">PESEL</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0">REGON</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2">PESEL</TextBlock>
 
-                <TextBlock Grid.Row="2" Grid.Column="0">Nazwa</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0">Nazwa</TextBlock>
 
-                <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                         Text="{Binding Code}" />
-                <TextBox Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                         Text="{Binding NIP}" />
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding Code}" />
+                    <TextBox Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding NIP}" />
 
-                <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                         Text="{Binding REGON}" />
-                <TextBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                         Text="{Binding PESEL}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding REGON}" />
+                    <TextBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding PESEL}" />
 
-                <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch" Text="{Binding Name1}" />
-                <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch" Text="{Binding Name2}" />
-                <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch" Text="{Binding Name3}" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" Text="{Binding Name1}" />
+                    <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" Text="{Binding Name2}" />
+                    <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" Text="{Binding Name3}" />
 
-            </Grid>
+                </Grid>
 
-        </GroupBox>
+            </GroupBox>
 
-        <GroupBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"
-                  Header="Dane teleadresowe" md:ColorZoneAssist.Mode="Accent">
-            <Grid Width="Auto">
+            <GroupBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"
+                      Header="Dane teleadresowe" md:ColorZoneAssist.Mode="Accent">
+                <Grid Width="Auto">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="100" />
-                    <ColumnDefinition MinWidth="120" />
-                    <ColumnDefinition MinWidth="100" />
-                    <ColumnDefinition MinWidth="50" />
-                    <ColumnDefinition MinWidth="20" />
-                    <ColumnDefinition MinWidth="50" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0">Miasto</TextBlock>
-                <TextBlock Grid.Row="0" Grid.Column="2">Województwo</TextBlock>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="100" />
+                        <ColumnDefinition MinWidth="120" />
+                        <ColumnDefinition MinWidth="100" />
+                        <ColumnDefinition MinWidth="50" />
+                        <ColumnDefinition MinWidth="20" />
+                        <ColumnDefinition MinWidth="50" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">Miasto</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2">Województwo</TextBlock>
 
-                <TextBlock Grid.Row="1" Grid.Column="0">Poczta</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="2">Kod pocztowy</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0">Poczta</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2">Kod pocztowy</TextBlock>
 
-                <TextBlock Grid.Row="2" Grid.Column="0">Ulica</TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="0">Telefony</TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="2">E-Mail</TextBlock>
-                <TextBlock Grid.Row="4" Grid.Column="2">Fax</TextBlock>
-                <TextBlock Grid.Row="5" Grid.Column="2">URL</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0">Ulica</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0">Telefony</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="2">E-Mail</TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="2">Fax</TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="2">URL</TextBlock>
 
-                <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding City}" />
-                <TextBox Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch" Text="{Binding Province}" />
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding City}" />
+                    <TextBox Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" Text="{Binding Province}" />
 
-                <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Text="{Binding City}"/>
-                <TextBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch" Text="{Binding PostalCode}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding City}" />
+                    <TextBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" Text="{Binding PostalCode}" />
 
-                <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding Street}" />
-                <TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Text="{Binding House}"/>
-                <TextBlock Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center">/</TextBlock>
-                <TextBox Grid.Row="2" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding Flat}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding Street}" />
+                    <TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding House}" />
+                    <TextBlock Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center">/</TextBlock>
+                    <TextBox Grid.Row="2" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding Flat}" />
 
-                <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding Telephone}" />
-                <TextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch" Text="{Binding Email}"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding Telephone}" />
+                    <TextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" Text="{Binding Email}" />
 
-                <TextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding Telephone2}"/>
-                <TextBox Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch"  Text="{Binding Fax}"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding Telephone2}" />
+                    <TextBox Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" Text="{Binding Fax}" />
 
-                <TextBox Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch" Text="{Binding Url}" />
+                    <TextBox Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" Text="{Binding Url}" />
 
 
-            </Grid>
+                </Grid>
 
-        </GroupBox>
+            </GroupBox>
+        </Grid>
+        <md:ColorZone HorizontalAlignment="Stretch" Mode="Accent" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <Button Margin="2" Command="{Binding SaveItemCommand}">
+                    <md:PackIcon Kind="ContentSave" />
+                </Button>
+            </StackPanel>
+        </md:ColorZone>
     </Grid>
+
 </UserControl>

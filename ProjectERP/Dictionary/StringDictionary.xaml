@@ -19,7 +19,7 @@
     <system:String x:Key="Email">E-mail</system:String>
     <system:String x:Key="Fax">Fax</system:String>
     <system:String x:Key="Url">WWW</system:String>
-    
+
     <system:String x:Key="Province">Województwo</system:String>
 
 

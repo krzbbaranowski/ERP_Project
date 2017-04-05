@@ -4,7 +4,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Enums;
-using ProjectERP.Interfaces;
 using ProjectERP.Model.Database;
 using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
@@ -39,20 +38,7 @@ namespace ProjectERP.ViewModel.Controls.MainTab
             {
                 return _changeActiveTabCommand
                        ?? (_changeActiveTabCommand = new RelayCommand<MainTabItem>(
-                           item =>
-                           {
-                               if (item.Content.DataContext == null)
-                                   return;
-                               var contentView = (IContentView) item.Content.DataContext;
-
-                               var contentViewMessage = new ContentViewMessage
-                               {
-                                   ContentView = contentView
-                                  
-                               };
-
-                              Messenger.Default.Send(contentViewMessage);
-                           }));
+                           item => { }));
             }
         }
 
@@ -68,21 +54,22 @@ namespace ProjectERP.ViewModel.Controls.MainTab
 
         private void AddTab(MainTabItemMessage tab)
         {
-            bool newContent = tab.IsNewContent;
-            MainTabItem tabItemToAdd = tab.MainTabItem;
-            if (!IsTabExists(tabItemToAdd))
-            {
-                if (tabItemToAdd.TabType == TabType.Maintab)
-                    Tabs.Add(tabItemToAdd);
+            var newContent = tab.IsNewContent;
+            var tabToAdd = tab.MainTabItem;
 
-                if (tabItemToAdd.TabType == TabType.Subtab)
+            if (!IsTabExists(tabToAdd))
+            {
+                if (tabToAdd.TabType == TabType.Single)
+                    Tabs.Add(tabToAdd);
+
+                if (tabToAdd.TabType == TabType.Multiple)
                 {
-                    var counterparty = tabItemToAdd.Extra as Counterparty;
-                   
+                    var counterparty = tabToAdd.Extra as Counterparty;
+
                     if (counterparty != null)
                     {
-                        tabItemToAdd.Content = ViewModelLocator.CreateCounterpartyView(counterparty, newContent);
-                        Tabs.Add(tabItemToAdd);
+                        tabToAdd.Content = ViewModelLocator.CreateCounterpartyView(counterparty, newContent);
+                        Tabs.Add(tabToAdd);
                     }
                 }
             }
@@ -98,5 +85,3 @@ namespace ProjectERP.ViewModel.Controls.MainTab
         }
     }
 }
-
-

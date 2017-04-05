@@ -6,7 +6,6 @@ using ProjectERP.Model.Database;
 using ProjectERP.ViewModel.Controls.MainTab;
 using ProjectERP.ViewModel.Details;
 using ProjectERP.ViewModel.Tables;
-using ProjectERP.ViewModel.Toolbar;
 using ProjectERP.Views.Details;
 
 namespace ProjectERP.ViewModel.MVVMLight
@@ -23,7 +22,6 @@ namespace ProjectERP.ViewModel.MVVMLight
             SimpleIoc.Default.Register<MainTabViewModel>();
             SimpleIoc.Default.Register<CounterpartyViewModel>();
             SimpleIoc.Default.Register<MainTabContentViewModel>();
-            SimpleIoc.Default.Register<ViewsManagmentToolbarViewModel>();
         }
 
         [SuppressMessage("Microsoft.Performance",
@@ -36,11 +34,11 @@ namespace ProjectERP.ViewModel.MVVMLight
         public CounterpartyTableViewModel CounterpartyTable
             => ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
 
-        public ViewsManagmentToolbarViewModel ViewsManagmentToolbar
-            => ServiceLocator.Current.GetInstance<ViewsManagmentToolbarViewModel>();
 
         public static CounterpartyView CreateCounterpartyView(Counterparty counterparty, bool newContent)
         {
+            //return ServiceLocator.Current.GetInstance<CounterpartyView>(Guid.NewGuid().ToString());
+
             var uniqueKey = Guid.NewGuid().ToString();
             var counterpartyViewModel = SimpleIoc.Default.GetInstance<CounterpartyViewModel>(uniqueKey);
             counterpartyViewModel.Init(counterparty, newContent);

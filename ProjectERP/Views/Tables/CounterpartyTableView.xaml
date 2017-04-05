@@ -22,47 +22,64 @@
     <UserControl.DataContext>
         <Binding Path="CounterpartyTable" Source="{StaticResource Locator}" />
     </UserControl.DataContext>
-    <DataGrid ItemsSource="{Binding Counterparties, IsAsync=True}" x:Name="CounterpartyGrid"
-              CanUserSortColumns="True" CanUserAddRows="False" CanUserDeleteRows="False"
-              IsReadOnly="True" AutoGenerateColumns="False"
-              materialDesign:DataGridAssist.CellPadding="4 2 2 2"
-              materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="MouseDoubleClick">
-                <i:InvokeCommandAction Command="{Binding SelectRowCommand}"
-                                       CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
-        <DataGrid.Columns>
-            <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name1}" />
-            <DataGridTextColumn Header="{StaticResource Code}" Binding="{Binding Code}" />
-            <DataGridTextColumn Header="{StaticResource Nip}" Binding="{Binding NIP}" />
-            <DataGridTextColumn Header="{StaticResource Regon}" Binding="{Binding REGON}" />
-            <DataGridTextColumn Header="{StaticResource Pesel}" Binding="{Binding PESEL}" />
 
-            <DataGridTextColumn Header="{StaticResource Street}">
-                <DataGridTextColumn.Binding>
-                    <MultiBinding StringFormat=" {0} {1}/{2} ">
-                        <Binding Path="Address.Street" />
-                        <Binding Path="Address.House" />
-                        <Binding Path="Address.Flat" />
-                    </MultiBinding>
-                </DataGridTextColumn.Binding>
-            </DataGridTextColumn>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" ItemsSource="{Binding Counterparties, IsAsync=True}" x:Name="CounterpartyGrid"
+                  CanUserSortColumns="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                  IsReadOnly="True" AutoGenerateColumns="False"
+                  materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding SelectRowCommand}"
+                                           CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name1}" />
+                <DataGridTextColumn Header="{StaticResource Code}" Binding="{Binding Code}" />
+                <DataGridTextColumn Header="{StaticResource Nip}" Binding="{Binding NIP}" />
+                <DataGridTextColumn Header="{StaticResource Regon}" Binding="{Binding REGON}" />
+                <DataGridTextColumn Header="{StaticResource Pesel}" Binding="{Binding PESEL}" />
 
-            <DataGridTextColumn Header="{StaticResource PostalCode}" Binding="{Binding Address.PostalCode}" />
-            <DataGridTextColumn Header="{StaticResource City}" Binding="{Binding Address.City}" />
-            <DataGridTextColumn Header="{StaticResource Telephone}" Binding="{Binding Address.Telephone}" />
-            <DataGridTextColumn Header="{StaticResource Email}" Binding="{Binding Address.Email}" />
-            <DataGridTextColumn Header="{StaticResource Telephone}" Binding="{Binding Address.Telephone}" />
-            <DataGridTextColumn Header="{StaticResource Fax}" Binding="{Binding Address.Fax}" />
-            <DataGridTextColumn Header="{StaticResource Url}" Binding="{Binding Address.Url}" />
-            <DataGridTextColumn Header="{StaticResource Email}" Binding="{Binding Address.Email}" />
-            <DataGridTextColumn Header="{StaticResource Province}" Binding="{Binding Address.Province.Name}" />
-        </DataGrid.Columns>
+                <DataGridTextColumn Header="{StaticResource Street}">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat=" {0} {1}/{2} ">
+                            <Binding Path="Address.Street" />
+                            <Binding Path="Address.House" />
+                            <Binding Path="Address.Flat" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
 
+                <DataGridTextColumn Header="{StaticResource PostalCode}" Binding="{Binding Address.PostalCode}" />
+                <DataGridTextColumn Header="{StaticResource City}" Binding="{Binding Address.City}" />
+                <DataGridTextColumn Header="{StaticResource Telephone}" Binding="{Binding Address.Telephone}" />
+                <DataGridTextColumn Header="{StaticResource Email}" Binding="{Binding Address.Email}" />
+                <DataGridTextColumn Header="{StaticResource Telephone}" Binding="{Binding Address.Telephone}" />
+                <DataGridTextColumn Header="{StaticResource Fax}" Binding="{Binding Address.Fax}" />
+                <DataGridTextColumn Header="{StaticResource Url}" Binding="{Binding Address.Url}" />
+                <DataGridTextColumn Header="{StaticResource Email}" Binding="{Binding Address.Email}" />
+                <DataGridTextColumn Header="{StaticResource Province}" Binding="{Binding Address.Province.Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <materialDesign:ColorZone Grid.Row="1" HorizontalAlignment="Stretch" Mode="Accent">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <Button Margin="2" Command="{Binding AddItemCommand}">
+                    <materialDesign:PackIcon Kind="Plus" />
+                </Button>
+                <Button Margin="2" Command="{Binding DeleteItemCommand}">
+                    <materialDesign:PackIcon Kind="Delete" />
+                </Button>
 
-    </DataGrid>
+            </StackPanel>
+        </materialDesign:ColorZone>
+    </Grid>
 
 
 </UserControl>

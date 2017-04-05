@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-using ProjectERP.Enums;
-using ProjectERP.Interfaces;
+﻿using ProjectERP.Enums;
 using ProjectERP.Model.Database;
 using ProjectERP.Model.DataObjects;
 using ProjectERP.Views.Tables;
@@ -9,7 +7,7 @@ namespace ProjectERP.Factories
 {
     public class TabItemFactory
     {
-        public static MainTabItem CreateClearMainTabItem(TabName tabName, object extra=null)
+        public static MainTabItem CreateClearMainTabItem(TabName tabName, object extra = null)
         {
             MainTabItem mainTabItem = null;
 
@@ -20,22 +18,20 @@ namespace ProjectERP.Factories
                     {
                         Header = "Kontrahenci",
                         Content = new CounterpartyTableView(),
-                        TabType = TabType.Maintab,
+                        TabType = TabType.Single,
                         TabName = TabName.CounterpartyTabTable
-                    }; 
+                    };
                     break;
 
-                    case TabName.CounterpartyTab:
+                case TabName.CounterpartyTab:
                     if (extra
                         == null)
-                    {
                         extra = new Counterparty();
-                    }
-                    Counterparty counterparty = (Counterparty) extra;
+                    var counterparty = (Counterparty) extra;
                     mainTabItem = new MainTabItem
                     {
                         Header = $"Kontrahent {counterparty.Name1}",
-                        TabType = TabType.Subtab,
+                        TabType = TabType.Multiple,
                         Extra = counterparty,
                         TabName = TabName.CounterpartyTab
                     };
