@@ -5,7 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="ProjectERP.Views.Tables.CounterpartyTableView"
+    xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+    xmlns:dialogs="clr-namespace:ProjectERP.Views.Dialogs"
+    x:Class="ProjectERP.Views.Tables.CounterpartyTableView"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -28,6 +30,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
         <DataGrid Grid.Row="0" ItemsSource="{Binding Counterparties, IsAsync=True}" x:Name="CounterpartyGrid"
                   CanUserSortColumns="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   IsReadOnly="True" AutoGenerateColumns="False"
@@ -67,9 +70,19 @@
                 <DataGridTextColumn Header="{StaticResource Province}" Binding="{Binding Address.Province.Name}" />
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <materialDesign:ColorZone Grid.Row="1" HorizontalAlignment="Stretch" Mode="Accent">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <dialogs:NotificationDialogBox x:Name="notificationDialogBox"
+                                               Caption="ZadaniaWPF" CommandBefore="{Binding Path=DodajZadanie}">
+                    <dialogs:NotificationDialogBox.CommandParameter>
+                        <MultiBinding Converter="{StaticResource twórzZadanie}">
+                            <Binding ElementName="tbOpis" Path="Text" />
+                            <Binding ElementName="dpTerminRealizacji" Path="SelectedDate" />
+                            <Binding ElementName="cbPriorytet" Path="Text" />
+                        </MultiBinding>
+                    </dialogs:NotificationDialogBox.CommandParameter>
+                </dialogs:NotificationDialogBox>
                 <Button Margin="2" Command="{Binding AddItemCommand}">
                     <materialDesign:PackIcon Kind="Plus" />
                 </Button>
@@ -80,6 +93,4 @@
             </StackPanel>
         </materialDesign:ColorZone>
     </Grid>
-
-
 </UserControl>

@@ -159,6 +159,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Controls\MainTab\MainTabViewModel.cs" />
     <Compile Include="ViewModel\MVVMLight\ViewModelLocator.cs" />
+    <Compile Include="Views\Dialogs\DialogBox.cs" />
     <Compile Include="Views\Tables\CounterpartyTableView.xaml.cs">
       <DependentUpon>CounterpartyTableView.xaml</DependentUpon>
     </Compile>
