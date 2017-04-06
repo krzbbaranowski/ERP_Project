@@ -1,6 +1,7 @@
 ﻿using ProjectERP.Enums;
 using ProjectERP.Model.Database;
 using ProjectERP.Model.DataObjects;
+using ProjectERP.Model.Enitites;
 using ProjectERP.Views.Tables;
 
 namespace ProjectERP.Factories

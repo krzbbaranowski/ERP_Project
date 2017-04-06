@@ -75,13 +75,8 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <dialogs:NotificationDialogBox x:Name="notificationDialogBox"
                                                Caption="ZadaniaWPF" CommandBefore="{Binding Path=DodajZadanie}">
-                    <dialogs:NotificationDialogBox.CommandParameter>
-                        <MultiBinding Converter="{StaticResource twórzZadanie}">
-                            <Binding ElementName="tbOpis" Path="Text" />
-                            <Binding ElementName="dpTerminRealizacji" Path="SelectedDate" />
-                            <Binding ElementName="cbPriorytet" Path="Text" />
-                        </MultiBinding>
-                    </dialogs:NotificationDialogBox.CommandParameter>
+                   
+                 
                 </dialogs:NotificationDialogBox>
                 <Button Margin="2" Command="{Binding AddItemCommand}">
                     <materialDesign:PackIcon Kind="Plus" />

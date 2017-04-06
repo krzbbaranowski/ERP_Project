@@ -119,30 +119,15 @@
     <Compile Include="Enums\TabTypeEnum.cs" />
     <Compile Include="Factories\TabNameFactory.cs" />
     <Compile Include="Factories\TabItemFactory.cs" />
-    <Compile Include="Model\Database\Address.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+    <Compile Include="Migrations\201704061650387_AppMigration.cs" />
+    <Compile Include="Migrations\201704061650387_AppMigration.Designer.cs">
+      <DependentUpon>201704061650387_AppMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Database\Counterparty.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Database\ModelDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Database\ModelDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Database\ModelDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Database\Province.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Database\ERPDatabaseEntities.cs" />
+    <Compile Include="Model\Enitites\Counterparty.cs" />
+    <Compile Include="Model\Enitites\Province.cs" />
+    <Compile Include="Model\Enitites\Address.cs" />
     <Compile Include="Model\Messages\ContentViewMessage.cs" />
     <Compile Include="Model\DataObjects\MainTabItem.cs" />
     <Compile Include="Model\Messages\MainTabItemMessage.cs" />
@@ -223,17 +208,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201704061650387_AppMigration.resx">
+      <DependentUpon>201704061650387_AppMigration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Database\ModelDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\Database\ModelDB.edmx.diagram">
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -265,19 +246,6 @@
   <ItemGroup>
     <Folder Include="ViewModel\Toolbar\" />
     <Folder Include="Views\Toolbars\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Model\Database\ModelDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelDB.Context.cs</LastGenOutput>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model\Database\ModelDB.edmx.sql" />
-    <Content Include="Model\Database\ModelDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelDB.cs</LastGenOutput>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

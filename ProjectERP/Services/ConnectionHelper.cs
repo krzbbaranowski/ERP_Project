@@ -9,12 +9,12 @@ namespace ProjectERP.Services
         public static string MetaData =
             "res://*/Model.Database.ModelDB.csdl|res://*/Model.Database.ModelDB.ssdl|res://*/Model.Database.ModelDB.msl";
 
-        //public static string dataSource = @"(localdb)\MSSQLLocalDB";
-        //public static string initialCatalog = "ERP_Database";
+        public static string DataSource = @"(localdb)\MSSQLLocalDB";
+        public static string InitialCatalog = "ERP_Database";
 
 
-        public static string DataSource = @"DESKTOP-B44EI83";
-        public static string InitialCatalog = "JadeDatabase";
+        //   public static string DataSource = @"DESKTOP-B44EI83";
+        // public static string InitialCatalog = "JadeDatabase";
 
         public static string CreateConnectionString(string metaData, string dataSource, string initialCatalog)
         {
@@ -42,7 +42,7 @@ namespace ProjectERP.Services
 
         public static ERPDatabaseEntities CreateConnection()
         {
-            var db = new ERPDatabaseEntities(CreateConnectionString(MetaData, DataSource, InitialCatalog));
+            ERPDatabaseEntities db = new ERPDatabaseEntities();// ERPDatabaseEntities(CreateConnectionString(MetaData, DataSource, InitialCatalog));
             if (!db.Database.Exists())
                 db.Database.Create();
 
@@ -51,7 +51,7 @@ namespace ProjectERP.Services
 
         public static ERPDatabaseEntities CreateConnection(string metaData, string dataSource, string initialCatalog)
         {
-            return new ERPDatabaseEntities(CreateConnectionString(metaData, dataSource, initialCatalog));
+            return new ERPDatabaseEntities();//CreateConnectionString(metaData, dataSource, initialCatalog));
         }
     }
 }

@@ -6,6 +6,7 @@ using ProjectERP.Interfaces;
 using ProjectERP.Model.Database;
 using ProjectERP.Model.DataObjects;
 using ProjectERP.Services;
+using ProjectERP.Model.Enitites;
 
 namespace ProjectERP.ViewModel.Details
 {

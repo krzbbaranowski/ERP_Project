@@ -9,6 +9,7 @@ using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
 using ProjectERP.Utils.Helpers;
 using ProjectERP.ViewModel.MVVMLight;
+using ProjectERP.Model.Enitites;
 
 namespace ProjectERP.ViewModel.Controls.MainTab
 {

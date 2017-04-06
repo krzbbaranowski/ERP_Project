@@ -7,6 +7,7 @@ using ProjectERP.ViewModel.Controls.MainTab;
 using ProjectERP.ViewModel.Details;
 using ProjectERP.ViewModel.Tables;
 using ProjectERP.Views.Details;
+using ProjectERP.Model.Enitites;
 
 namespace ProjectERP.ViewModel.MVVMLight
 {
