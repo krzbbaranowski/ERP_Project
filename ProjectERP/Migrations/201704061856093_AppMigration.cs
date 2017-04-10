@@ -22,13 +22,20 @@ namespace ProjectERP.Migrations
                         Email = c.String(),
                         Fax = c.String(),
                         Url = c.String(),
-                        Province_Id = c.Int(nullable: false),
-                        Counterparty_Id = c.Int(nullable: false),
-                        Province_Id1 = c.Int(),
+                        Province_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Provinces", t => t.Province_Id1)
-                .Index(t => t.Province_Id1);
+                .ForeignKey("dbo.Provinces", t => t.Province_Id)
+                .Index(t => t.Province_Id);
+            
+            CreateTable(
+                "dbo.Provinces",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Counterparties",
@@ -40,33 +47,24 @@ namespace ProjectERP.Migrations
                         Name2 = c.String(),
                         Name3 = c.String(),
                         NIP = c.String(),
-                        REGON = c.String(),
-                        PESEL = c.String(),
+                        Regon = c.String(),
+                        Pesel = c.String(),
                         Address_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Addresses", t => t.Address_Id)
                 .Index(t => t.Address_Id);
             
-            CreateTable(
-                "dbo.Provinces",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Addresses", "Province_Id1", "dbo.Provinces");
             DropForeignKey("dbo.Counterparties", "Address_Id", "dbo.Addresses");
+            DropForeignKey("dbo.Addresses", "Province_Id", "dbo.Provinces");
             DropIndex("dbo.Counterparties", new[] { "Address_Id" });
-            DropIndex("dbo.Addresses", new[] { "Province_Id1" });
-            DropTable("dbo.Provinces");
+            DropIndex("dbo.Addresses", new[] { "Province_Id" });
             DropTable("dbo.Counterparties");
+            DropTable("dbo.Provinces");
             DropTable("dbo.Addresses");
         }
     }

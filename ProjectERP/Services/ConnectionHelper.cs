@@ -7,14 +7,15 @@ namespace ProjectERP.Services
     public class ConnectionHelper
     {
         public static string MetaData =
-            "res://*/Model.Database.ModelDB.csdl|res://*/Model.Database.ModelDB.ssdl|res://*/Model.Database.ModelDB.msl";
+            @"res://*/Model.Database.ModelDB.csdl|res://*/Model.Database.ModelDB.ssdl|
+res://*/Model.Database.ModelDB.msl";
 
-        public static string DataSource = @"(localdb)\MSSQLLocalDB";
-        public static string InitialCatalog = "ERP_Database";
+      // public static string DataSource = @"(localdb)\MSSQLLocalDB";
+        //public static string InitialCatalog = "ERP_Database";
 
 
-        //   public static string DataSource = @"DESKTOP-B44EI83";
-        // public static string InitialCatalog = "JadeDatabase";
+           public static string DataSource = @"DESKTOP-B44EI83";
+         public static string InitialCatalog = "JadeDatabase";
 
         public static string CreateConnectionString(string metaData, string dataSource, string initialCatalog)
         {
@@ -42,7 +43,9 @@ namespace ProjectERP.Services
 
         public static ERPDatabaseEntities CreateConnection()
         {
-            ERPDatabaseEntities db = new ERPDatabaseEntities();// ERPDatabaseEntities(CreateConnectionString(MetaData, DataSource, InitialCatalog));
+            var a = CreateConnectionString(MetaData, DataSource, InitialCatalog);
+            var db = new ERPDatabaseEntities();
+                // ERPDatabaseEntities(CreateConnectionString(MetaData, DataSource, InitialCatalog));
             if (!db.Database.Exists())
                 db.Database.Create();
 
@@ -51,7 +54,7 @@ namespace ProjectERP.Services
 
         public static ERPDatabaseEntities CreateConnection(string metaData, string dataSource, string initialCatalog)
         {
-            return new ERPDatabaseEntities();//CreateConnectionString(metaData, dataSource, initialCatalog));
+            return new ERPDatabaseEntities(); //CreateConnectionString(metaData, dataSource, initialCatalog));
         }
     }
 }

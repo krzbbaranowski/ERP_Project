@@ -51,6 +51,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Dragablz, Version=0.0.3.186, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dragablz.0.0.3.186\lib\net45\Dragablz.dll</HintPath>
     </Reference>
@@ -119,9 +122,9 @@
     <Compile Include="Enums\TabTypeEnum.cs" />
     <Compile Include="Factories\TabNameFactory.cs" />
     <Compile Include="Factories\TabItemFactory.cs" />
-    <Compile Include="Migrations\201704061650387_AppMigration.cs" />
-    <Compile Include="Migrations\201704061650387_AppMigration.Designer.cs">
-      <DependentUpon>201704061650387_AppMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201704061856093_AppMigration.cs" />
+    <Compile Include="Migrations\201704061856093_AppMigration.Designer.cs">
+      <DependentUpon>201704061856093_AppMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Database\ERPDatabaseEntities.cs" />
@@ -131,6 +134,9 @@
     <Compile Include="Model\Messages\ContentViewMessage.cs" />
     <Compile Include="Model\DataObjects\MainTabItem.cs" />
     <Compile Include="Model\Messages\MainTabItemMessage.cs" />
+    <Compile Include="Model\Repository\CounterpartyRepository.cs" />
+    <Compile Include="Model\Repository\Interfaces\ICounterpartyRepository.cs" />
+    <Compile Include="Model\Repository\Interfaces\IRepository.cs" />
     <Compile Include="Services\ConnectionHelper.cs" />
     <Compile Include="Services\DatabaseAccessService.cs" />
     <Compile Include="Services\DatabaseAccessServiceClient.cs" />
@@ -208,8 +214,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201704061650387_AppMigration.resx">
-      <DependentUpon>201704061650387_AppMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704061856093_AppMigration.resx">
+      <DependentUpon>201704061856093_AppMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

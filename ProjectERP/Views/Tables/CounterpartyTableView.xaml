@@ -46,8 +46,8 @@
                 <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name1}" />
                 <DataGridTextColumn Header="{StaticResource Code}" Binding="{Binding Code}" />
                 <DataGridTextColumn Header="{StaticResource Nip}" Binding="{Binding NIP}" />
-                <DataGridTextColumn Header="{StaticResource Regon}" Binding="{Binding REGON}" />
-                <DataGridTextColumn Header="{StaticResource Pesel}" Binding="{Binding PESEL}" />
+                <DataGridTextColumn Header="{StaticResource Regon}" Binding="{Binding Regon}" />
+                <DataGridTextColumn Header="{StaticResource Pesel}" Binding="{Binding Pesel}" />
 
                 <DataGridTextColumn Header="{StaticResource Street}">
                     <DataGridTextColumn.Binding>

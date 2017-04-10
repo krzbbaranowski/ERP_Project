@@ -13,7 +13,7 @@ namespace ProjectERP.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704061650387_AppMigration"; }
+            get { return "201704061856093_AppMigration"; }
         }
         
         string IMigrationMetadata.Source

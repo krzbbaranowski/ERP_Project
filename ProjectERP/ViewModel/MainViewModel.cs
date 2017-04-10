@@ -1,10 +1,12 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 using ProjectERP.Factories;
 using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
+using ProjectERP.Model.Repository.Interfaces;
 using ProjectERP.Utils.Helpers;
 using ProjectERP.ViewModel.Tables;
 
@@ -28,8 +30,8 @@ namespace ProjectERP.ViewModel
                        ?? (_addCounterpartyCommand = new RelayCommand(
                            () =>
                            {
-                               CounterpartyTableViewModel view =
-                                   ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
+                               var view =
+                                   SimpleIoc.Default.GetInstance<CounterpartyTableViewModel>();
                                MainTabItem tabItem =
                                    TabItemFactory.CreateClearMainTabItem(TabNameFactory.GetTabNameByType(view));
 

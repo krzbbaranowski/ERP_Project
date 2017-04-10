@@ -1,13 +1,13 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using ProjectERP.Model.Database;
+using ProjectERP.Model.Enitites;
+using ProjectERP.Model.Repository;
+using ProjectERP.Model.Repository.Interfaces;
 using ProjectERP.ViewModel.Controls.MainTab;
 using ProjectERP.ViewModel.Details;
 using ProjectERP.ViewModel.Tables;
 using ProjectERP.Views.Details;
-using ProjectERP.Model.Enitites;
 
 namespace ProjectERP.ViewModel.MVVMLight
 {
@@ -17,17 +17,17 @@ namespace ProjectERP.ViewModel.MVVMLight
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-
+            SimpleIoc.Default.Register<ICounterpartyRepository, CounterpartyRepository>();
+ 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<CounterpartyTableViewModel>();
             SimpleIoc.Default.Register<MainTabViewModel>();
-            SimpleIoc.Default.Register<CounterpartyViewModel>();
+          
             SimpleIoc.Default.Register<MainTabContentViewModel>();
+            SimpleIoc.Default.Register<CounterpartyViewModel>();
+            SimpleIoc.Default.Register<CounterpartyTableViewModel>();
         }
 
-        [SuppressMessage("Microsoft.Performance",
-            "CA1822:MarkMembersAsStatic",
-            Justification = "This non-static member is needed for data binding purposes.")]
+
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
 
         public MainTabViewModel MainTabControl => ServiceLocator.Current.GetInstance<MainTabViewModel>();

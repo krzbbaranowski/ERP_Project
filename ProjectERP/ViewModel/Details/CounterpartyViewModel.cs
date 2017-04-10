@@ -1,19 +1,18 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using ProjectERP.Interfaces;
 using ProjectERP.Model.Database;
 using ProjectERP.Model.DataObjects;
-using ProjectERP.Services;
 using ProjectERP.Model.Enitites;
+using ProjectERP.Model.Repository.Interfaces;
+using ProjectERP.Services;
 
 namespace ProjectERP.ViewModel.Details
 {
-    public class CounterpartyViewModel : ViewModelBase, IContentView
+    public class CounterpartyViewModel : ViewModelBase
     {
-        private readonly ERPDatabaseEntities _erpDatabase = ConnectionHelper.CreateConnection();
-        private RelayCommand<MainTabItem> _deleteItemCommand;
+        private ICounterpartyRepository _counterpartyRepository;
+
 
         private RelayCommand _saveItemCommand;
 
@@ -21,6 +20,10 @@ namespace ProjectERP.ViewModel.Details
                                                ?? (_saveItemCommand = new RelayCommand(
                                                    () => { AddToDatabase(); }));
 
+        public CounterpartyViewModel()
+        {
+           // _counterpartyRepository = counterpartyRepository;
+        }
 
         public void DeleteToDatabase()
         {
@@ -29,56 +32,43 @@ namespace ProjectERP.ViewModel.Details
 
         public void AddToDatabase()
         {
-            var counterparty = new Counterparty
-            {
-                Name1 = Name1,
-                Name2 = Name2,
-                Name3 = Name3,
-                Code = Code,
-                PESEL = PESEL,
-                REGON = REGON,
-                NIP = NIP,
-                Address = new Address
-                {
-                    Street = Street,
-                    House = House,
-                    Flat = Flat,
-                    PostalCode = PostalCode,
-                    City = City,
-                    Telephone = Telephone,
-                    Telephone2 = Telephone2,
-                    Email = Email,
-                    Fax = Fax,
-                    Url = Url,
-                    Province = new Province
-                    {
-                        Name = Province
-                    }
-                }
-            };
+            /*Name1 = Name1,
+                 Name2 = Name2,
+                 Name3 = Name3,
+                 Code = Code,
+                 Pesel = PESEL,
+                 Regon = REGON,
+                 NIP = NIP,
+                 Address = new Address
+                 {
+                     Street = Street,
+                     House = House,
+                     Flat = Flat,
+                     PostalCode = PostalCode,
+                     City = City,
+                     Telephone = Telephone,
+                     Telephone2 = Telephone2,
+                     Email = Email,
+                     Fax = Fax,
+                     Url = Url,
+                     Province = new Province
+                     {
+                         Name = Province
+                     }
+                 }
+             };
+             */
+            //if (_newContent)
+            //    _erpDatabase.Counterparty.Add(_counterparty);
+            //else
+            //    _erpDatabase.Counterparty.Attach(_counterparty);
 
-            if (_newContent)
-            {
-                _erpDatabase.Counterparty.Add(counterparty);
-            }
-            else
-            {
-                var dbFoo = _erpDatabase.Counterparty.
-                    Include(x => x.Address).
-                    Include(x => x.Address.Province).
-                    Where(c => c.Id == _counterparty.Id).
-                    Select(c => c).FirstOrDefault();
-                   
+            //_erpDatabase.SaveChanges();
+        }
 
+        private void SyncModel(Counterparty c)
+        {
 
-            
-                counterparty.Id = _counterparty.Id;
-                _erpDatabase.Entry(dbFoo).CurrentValues.SetValues(counterparty);
-                _erpDatabase.Entry(dbFoo.Address).CurrentValues.SetValues(counterparty.Address);
-                _erpDatabase.Entry(dbFoo.Address.Province).CurrentValues.SetValues(counterparty.Address.Province);
-            }
-
-            _erpDatabase.SaveChanges();
         }
 
         public void Init(Counterparty counterparty, bool newContent)
@@ -94,8 +84,8 @@ namespace ProjectERP.ViewModel.Details
             Name2 = _counterparty.Name2;
             Name3 = _counterparty.Name3;
             Code = _counterparty.Code;
-            PESEL = _counterparty.PESEL;
-            REGON = _counterparty.REGON;
+            PESEL = _counterparty.Pesel;
+            REGON = _counterparty.Regon;
             NIP = _counterparty.NIP;
 
             //Dane teleadresowe
@@ -162,10 +152,6 @@ namespace ProjectERP.ViewModel.Details
 
             set
             {
-                if (_street == value)
-                    return;
-
-                _street = value;
                 RaisePropertyChanged(StreetPropertyName);
             }
         }
@@ -310,6 +296,7 @@ namespace ProjectERP.ViewModel.Details
             }
         }
 
+
         #endregion
 
         #region Properties Names
@@ -373,15 +360,11 @@ namespace ProjectERP.ViewModel.Details
         private string _street = string.Empty;
         private string _telephone = string.Empty;
         private string _telephone2 = string.Empty;
-
+ 
         private string _url = string.Empty;
         private bool _newContent;
 
-        public bool CanAddItem { get; set; } = false;
-        public bool CanDeleteItem { get; set; } = false;
-        public bool CanSaveItem { get; set; } = true;
 
         #endregion
     }
 }
- 
