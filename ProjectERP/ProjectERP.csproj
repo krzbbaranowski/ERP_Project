@@ -145,7 +145,6 @@
     <Compile Include="Interfaces\IContentView.cs" />
     <Compile Include="ViewModel\Controls\MainTab\MainTabContentViewModel.cs" />
     <Compile Include="ViewModel\Controls\TableContentViewModel.cs" />
-    <Compile Include="ViewModel\Tables\TableViewModel.cs" />
     <Compile Include="ViewModel\Tables\CounterpartyTableViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Controls\MainTab\MainTabViewModel.cs" />
