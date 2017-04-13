@@ -7,7 +7,7 @@ namespace ProjectERP.Services
 {
     public class DatabaseAccessService
     {
-        private readonly ERPDatabaseEntities _database = ConnectionHelper.CreateConnection();
+        private readonly ErpDatabaseEntities _database = ConnectionHelper.CreateConnection();
 
         public DatabaseAccessService()
         {

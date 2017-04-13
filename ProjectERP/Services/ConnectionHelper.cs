@@ -41,10 +41,10 @@ res://*/Model.Database.ModelDB.msl";
             return efBuilder.ConnectionString;
         }
 
-        public static ERPDatabaseEntities CreateConnection()
+        public static ErpDatabaseEntities CreateConnection()
         {
             var a = CreateConnectionString(MetaData, DataSource, InitialCatalog);
-            var db = new ERPDatabaseEntities();
+            var db = new ErpDatabaseEntities();
                 // ERPDatabaseEntities(CreateConnectionString(MetaData, DataSource, InitialCatalog));
             if (!db.Database.Exists())
                 db.Database.Create();
@@ -52,9 +52,9 @@ res://*/Model.Database.ModelDB.msl";
             return db;
         }
 
-        public static ERPDatabaseEntities CreateConnection(string metaData, string dataSource, string initialCatalog)
+        public static ErpDatabaseEntities CreateConnection(string metaData, string dataSource, string initialCatalog)
         {
-            return new ERPDatabaseEntities(); //CreateConnectionString(metaData, dataSource, initialCatalog));
+            return new ErpDatabaseEntities(); //CreateConnectionString(metaData, dataSource, initialCatalog));
         }
     }
 }

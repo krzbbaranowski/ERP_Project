@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using ProjectERP.Model.Database;
+using ProjectERP.Model.Database.Interfaces;
 using ProjectERP.Model.Enitites;
 using ProjectERP.Model.Repository.Interfaces;
 
@@ -10,9 +11,14 @@ namespace ProjectERP.Model.Repository
 {
     internal class CounterpartyRepository : ICounterpartyRepository, IDisposable
     {
-        private readonly ERPDatabaseEntities _dbContext = new ERPDatabaseEntities();
+        private readonly IErpDatabaseContext _dbContext;
 
         private bool _disposed;
+
+        public CounterpartyRepository(IErpDatabaseContext erpDatabaseContext)
+        {
+            _dbContext = erpDatabaseContext;
+        }
 
         public IEnumerable<Counterparty> GetEntities()
         {
@@ -47,9 +53,9 @@ namespace ProjectERP.Model.Repository
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed && disposing)
-                _dbContext.Dispose();
-            _disposed = true;
+            //if (!_disposed && disposing)
+             //   _dbContext.Dispose();
+          //  _disposed = true;
         }
 
         public Counterparty GetById(int id)

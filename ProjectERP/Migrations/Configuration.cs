@@ -5,14 +5,14 @@ namespace ProjectERP.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ProjectERP.Model.Database.ERPDatabaseEntities>
+    internal sealed class Configuration : DbMigrationsConfiguration<ProjectERP.Model.Database.ErpDatabaseEntities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ProjectERP.Model.Database.ERPDatabaseEntities context)
+        protected override void Seed(ProjectERP.Model.Database.ErpDatabaseEntities context)
         {
             //  This method will be called after migrating to the latest version.
 

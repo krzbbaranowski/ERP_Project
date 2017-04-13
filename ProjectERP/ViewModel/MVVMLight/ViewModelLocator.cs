@@ -1,6 +1,8 @@
 using System;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using ProjectERP.Model.Database;
+using ProjectERP.Model.Database.Interfaces;
 using ProjectERP.Model.Enitites;
 using ProjectERP.Model.Repository;
 using ProjectERP.Model.Repository.Interfaces;
@@ -18,7 +20,9 @@ namespace ProjectERP.ViewModel.MVVMLight
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<ICounterpartyRepository, CounterpartyRepository>();
- 
+            SimpleIoc.Default.Register<IErpDatabaseContext, ErpDatabaseEntities>();
+
+
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MainTabViewModel>();
           
