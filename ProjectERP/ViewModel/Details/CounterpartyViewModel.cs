@@ -1,28 +1,50 @@
-﻿using GalaSoft.MvvmLight;
+﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using ProjectERP.Interfaces;
-using ProjectERP.Model.Database;
-using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Enitites;
 using ProjectERP.Model.Repository.Interfaces;
-using ProjectERP.Services;
+using ProjectERP.ViewModel.Interfaces;
 
 namespace ProjectERP.ViewModel.Details
 {
-    public class CounterpartyViewModel : ViewModelBase
+    public class CounterpartyViewModel : ViewModelBase, IMainTabDetailsItem
     {
-        private ICounterpartyRepository _counterpartyRepository;
+        private readonly ICounterpartyRepository _counterpartyRepository;
 
 
         private RelayCommand _saveItemCommand;
 
+        public CounterpartyViewModel(ICounterpartyRepository counterpartyRepository)
+        {
+            _counterpartyRepository = counterpartyRepository;
+        }
+
         public RelayCommand SaveItemCommand => _saveItemCommand
                                                ?? (_saveItemCommand = new RelayCommand(
-                                                   () => { AddToDatabase(); }));
+                                                   () =>
+                                                   {
+                                                       var config = new MapperConfiguration(cfg => {
+                                                           cfg.CreateMap<CounterpartyViewModel, Counterparty>();
 
-        public CounterpartyViewModel()
+                                                       });
+
+                                                       IMapper mapper = config.CreateMapper();
+                                                       mapper.Map<CounterpartyViewModel, Counterparty>(this, _dbCounterparty);
+
+                                                       _counterpartyRepository.Update(_dbCounterparty);
+                                                       _counterpartyRepository.Save();
+                                                   }));
+
+        public void Initialize(int entityId)
         {
-           // _counterpartyRepository = counterpartyRepository;
+            _dbCounterparty = _counterpartyRepository.GetById(entityId);
+
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Counterparty, CounterpartyViewModel>();
+            });
+
+            IMapper mapper = config.CreateMapper();
+            mapper.Map<Counterparty, CounterpartyViewModel>(_dbCounterparty, this);
         }
 
         public void DeleteToDatabase()
@@ -30,319 +52,133 @@ namespace ProjectERP.ViewModel.Details
             // var dbEnity = _erpDatabase.
         }
 
-        public void AddToDatabase()
-        {
-            /*Name1 = Name1,
-                 Name2 = Name2,
-                 Name3 = Name3,
-                 Code = Code,
-                 Pesel = PESEL,
-                 Regon = REGON,
-                 NIP = NIP,
-                 Address = new Address
-                 {
-                     Street = Street,
-                     House = House,
-                     Flat = Flat,
-                     PostalCode = PostalCode,
-                     City = City,
-                     Telephone = Telephone,
-                     Telephone2 = Telephone2,
-                     Email = Email,
-                     Fax = Fax,
-                     Url = Url,
-                     Province = new Province
-                     {
-                         Name = Province
-                     }
-                 }
-             };
-             */
-            //if (_newContent)
-            //    _erpDatabase.Counterparty.Add(_counterparty);
-            //else
-            //    _erpDatabase.Counterparty.Attach(_counterparty);
-
-            //_erpDatabase.SaveChanges();
-        }
-
-        private void SyncModel(Counterparty c)
-        {
-
-        }
-
-        public void Init(Counterparty counterparty, bool newContent)
-        {
-            _newContent = newContent;
-
-            if (newContent)
-                return;
-
-            _counterparty = counterparty;
-
-            Name1 = _counterparty.Name1;
-            Name2 = _counterparty.Name2;
-            Name3 = _counterparty.Name3;
-            Code = _counterparty.Code;
-            PESEL = _counterparty.Pesel;
-            REGON = _counterparty.Regon;
-            NIP = _counterparty.NIP;
-
-            //Dane teleadresowe
-            Street = counterparty.Address.Street;
-            House = counterparty.Address.House;
-            Flat = counterparty.Address.Flat;
-            PostalCode = counterparty.Address.PostalCode;
-            City = counterparty.Address.City;
-            Telephone = counterparty.Address.Telephone;
-            Telephone2 = counterparty.Address.Telephone2;
-            Email = counterparty.Address.Email;
-            Fax = counterparty.Address.Fax;
-            Url = counterparty.Address.Url;
-            Province = counterparty.Address.Province.Name;
-        }
-
+       
+        
         #region Model properties
 
         public string Name1
         {
             get { return _counterpartyName; }
-            set { Set(Name1PropertyName, ref _counterpartyName, value); }
+            set { Set(nameof(Name1), ref _counterpartyName, value); }
         }
 
         public string Name3
         {
             get { return _name3; }
-            set { Set(Name3PropertyName, ref _name3, value); }
+            set { Set(nameof(Name3), ref _name3, value); }
         }
 
         public string Code
         {
             get { return _code; }
-            set { Set(CodePropertyName, ref _code, value); }
+            set { Set(nameof(Code), ref _code, value); }
         }
 
         public string NIP
         {
             get { return _nip; }
-            set { Set(NipPropertyName, ref _nip, value); }
+            set { Set(nameof(NIP), ref _nip, value); }
         }
 
         public string PESEL
         {
             get { return _pesel; }
-            set { Set(PeselPropertyName, ref _pesel, value); }
+            set { Set(nameof(PESEL), ref _pesel, value); }
         }
 
         public string REGON
         {
             get { return _regon; }
-            set { Set(RegonPropertyName, ref _regon, value); }
+            set { Set(nameof(REGON), ref _regon, value); }
         }
 
         public string Name2
         {
             get { return _name2; }
-            set { Set(Name2PropertyName, ref _name2, value); }
+            set { Set(nameof(Name2), ref _name2, value); }
         }
 
         public string Street
         {
             get { return _street; }
 
-            set
-            {
-                RaisePropertyChanged(StreetPropertyName);
-            }
+            set { Set(nameof(Street), ref _street, value); }
         }
 
         public int House
         {
             get { return _house; }
 
-            set
-            {
-                if (_house == value)
-                    return;
-
-                _house = value;
-                RaisePropertyChanged(HousePropertyName);
-            }
+            set { Set(nameof(House), ref _house, value); }
         }
 
         public int Flat
         {
             get { return _flat; }
 
-            set
-            {
-                if (_flat == value)
-                    return;
-
-                _flat = value;
-                RaisePropertyChanged(FlatPropertyName);
-            }
+            set { Set(nameof(Flat), ref _flat, value); }
         }
 
         public string PostalCode
         {
             get { return _postalCode; }
 
-            set
-            {
-                if (_postalCode == value)
-                    return;
-
-                _postalCode = value;
-                RaisePropertyChanged(PostalCodePropertyName);
-            }
+            set { Set(nameof(PostalCode), ref _postalCode, value); }
         }
 
         public string City
         {
             get { return _city; }
 
-            set
-            {
-                if (_city == value)
-                    return;
-
-                _city = value;
-                RaisePropertyChanged(CityPropertyName);
-            }
+            set { Set(nameof(City), ref _city, value); }
         }
 
         public string Telephone
         {
             get { return _telephone; }
 
-            set
-            {
-                if (_telephone == value)
-                    return;
-
-                _telephone = value;
-                RaisePropertyChanged(TelephonePropertyName);
-            }
+            set { Set(nameof(Telephone), ref _telephone, value); }
         }
 
         public string Telephone2
         {
             get { return _telephone2; }
 
-            set
-            {
-                if (_telephone2 == value)
-                    return;
-
-                _telephone2 = value;
-                RaisePropertyChanged(Telephone2PropertyName);
-            }
+            set { Set(nameof(Telephone2), ref _telephone2, value); }
         }
 
         public string Email
         {
             get { return _email; }
 
-            set
-            {
-                if (_email == value)
-                    return;
-
-                _email = value;
-                RaisePropertyChanged(EmailPropertyName);
-            }
+            set { Set(nameof(Email), ref _email, value); }
         }
 
         public string Fax
         {
             get { return _fax; }
 
-            set
-            {
-                if (_fax == value)
-                    return;
-
-                _fax = value;
-                RaisePropertyChanged(FaxPropertyName);
-            }
+            set { Set(nameof(Fax), ref _fax, value); }
         }
 
         public string Url
         {
             get { return _url; }
 
-            set
-            {
-                if (_url == value)
-                    return;
-
-                _url = value;
-                RaisePropertyChanged(UrlPropertyName);
-            }
+            set { Set(nameof(Street), ref _url, value); }
         }
 
         public string Province
         {
             get { return _province; }
 
-            set
-            {
-                if (_province == value)
-                    return;
-
-                _province = value;
-                RaisePropertyChanged(ProvincePropertyName);
-            }
+            set { Set(nameof(Province), ref _province, value); }
         }
-
-
-        #endregion
-
-        #region Properties Names
-
-        public const string Name1PropertyName = "Name1";
-
-        public const string Name3PropertyName = "Name3";
-
-        public const string CodePropertyName = "Code";
-
-        public const string NipPropertyName = "NIP";
-
-        public const string PeselPropertyName = "PESEL";
-
-        public const string RegonPropertyName = "REGON";
-
-        public const string Name2PropertyName = "Name2";
-
-
-        public const string StreetPropertyName = "Street";
-
-        public const string HousePropertyName = "House";
-
-        public const string FlatPropertyName = "Flat";
-
-        public const string PostalCodePropertyName = "PostalCode";
-
-        public const string CityPropertyName = "City";
-
-        public const string TelephonePropertyName = "Telephone";
-
-        public const string Telephone2PropertyName = "Telephone2";
-
-        public const string EmailPropertyName = "Email";
-
-        public const string FaxPropertyName = "Fax";
-
-        public const string UrlPropertyName = "Url";
-
-        public const string ProvincePropertyName = "Province";
 
         #endregion
 
         #region Private model fields
 
-        private Counterparty _counterparty;
         private string _city = string.Empty;
         private string _code = string.Empty;
         private string _counterpartyName = string.Empty;
@@ -360,10 +196,12 @@ namespace ProjectERP.ViewModel.Details
         private string _street = string.Empty;
         private string _telephone = string.Empty;
         private string _telephone2 = string.Empty;
- 
         private string _url = string.Empty;
-        private bool _newContent;
+        private Counterparty _dbCounterparty;
 
+
+        public string Header { get; set; } = "Kontrahent";
+        public bool IsMultiply { get; set; } = true;
 
         #endregion
     }

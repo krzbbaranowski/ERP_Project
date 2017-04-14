@@ -10,6 +10,7 @@ using ProjectERP.Model.Messages;
 using ProjectERP.Utils.Helpers;
 using ProjectERP.ViewModel.MVVMLight;
 using ProjectERP.Model.Enitites;
+using ProjectERP.ViewModel.Interfaces;
 
 namespace ProjectERP.ViewModel.Controls.MainTab
 {
@@ -18,33 +19,32 @@ namespace ProjectERP.ViewModel.Controls.MainTab
     /// </summary>
     public class MainTabViewModel : ViewModelBase
     {
-        private RelayCommand<MainTabItem> _changeActiveTabCommand;
-        private RelayCommand<MainTabItem> _closeCommand;
+        private RelayCommand<IMainTabItem> _changeActiveTabCommand;
+        private RelayCommand<IMainTabItem> _closeCommand;
 
         public MainTabViewModel()
         {
-            Tabs = new ObservableCollection<MainTabItem>();
+            Tabs = new ObservableCollection<IMainTabItem>();
             Messenger.Default.Register<MainTabItemMessage>(this, MessengerTokens.NewTabItemToAdd, AddTab);
         }
 
-        public ObservableCollection<MainTabItem> Tabs { get; set; }
+        public ObservableCollection<IMainTabItem> Tabs { get; set; }
 
-        public RelayCommand<MainTabItem> CloseCommand => _closeCommand
-                                                         ?? (_closeCommand = new RelayCommand<MainTabItem>(
+        public RelayCommand<IMainTabItem> CloseCommand => _closeCommand
+                                                         ?? (_closeCommand = new RelayCommand<IMainTabItem>(
                                                              RemoveTab));
 
-        public RelayCommand<MainTabItem> ChangeActiveTabCommand
+        public RelayCommand<IMainTabItem> ChangeActiveTabCommand
         {
             get
             {
                 return _changeActiveTabCommand
-                       ?? (_changeActiveTabCommand = new RelayCommand<MainTabItem>(
+                       ?? (_changeActiveTabCommand = new RelayCommand<IMainTabItem>(
                            item => { }));
             }
         }
 
-
-        private void RemoveTab(MainTabItem obj)
+        private void RemoveTab(IMainTabItem obj)
         {
             var itemToRemove = (from item in Tabs
                 where item.Equals(obj)
@@ -55,28 +55,21 @@ namespace ProjectERP.ViewModel.Controls.MainTab
 
         private void AddTab(MainTabItemMessage tab)
         {
-            var newContent = tab.IsNewContent;
-            var tabToAdd = tab.MainTabItem;
+            IMainTabItem tabToAdd = tab.MainTabItem;
 
-            if (!IsTabExists(tabToAdd))
+            if (!tabToAdd.IsMultiply)
+                Tabs.Add(tabToAdd);
+
+            if (tabToAdd.IsMultiply)
             {
-                if (tabToAdd.TabType == TabType.Single)
-                    Tabs.Add(tabToAdd);
 
-                if (tabToAdd.TabType == TabType.Multiple)
-                {
-                    var counterparty = tabToAdd.Extra as Counterparty;
+                Tabs.Add(tabToAdd);
 
-                    if (counterparty != null)
-                    {
-                        tabToAdd.Content = ViewModelLocator.CreateCounterpartyView(counterparty, newContent);
-                        Tabs.Add(tabToAdd);
-                    }
-                }
             }
+
         }
 
-        private bool IsTabExists(MainTabItem tab)
+        private bool IsTabExists(IMainTabItem tab)
         {
             var isContains = (from t in Tabs
                 where t.Header.Equals(tab.Header)

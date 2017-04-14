@@ -8,6 +8,7 @@ using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
 using ProjectERP.Model.Repository.Interfaces;
 using ProjectERP.Utils.Helpers;
+using ProjectERP.ViewModel.Interfaces;
 using ProjectERP.ViewModel.Tables;
 
 namespace ProjectERP.ViewModel
@@ -30,19 +31,16 @@ namespace ProjectERP.ViewModel
                        ?? (_addCounterpartyCommand = new RelayCommand(
                            () =>
                            {
-                               var view =
+                               IMainTabItem counterpartyTableVM =
                                    SimpleIoc.Default.GetInstance<CounterpartyTableViewModel>();
-                               MainTabItem tabItem =
-                                   TabItemFactory.CreateClearMainTabItem(TabNameFactory.GetTabNameByType(view));
 
                                MainTabItemMessage tabItemMessage = new MainTabItemMessage
                                {
-                                   MainTabItem = tabItem
+                                   MainTabItem = counterpartyTableVM
                                };
 
                                Messenger.Default.Send<MainTabItemMessage>(tabItemMessage,
                                    MessengerTokens.NewTabItemToAdd);
-
 
                            }));
             }

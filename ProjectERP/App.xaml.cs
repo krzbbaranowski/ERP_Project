@@ -1,4 +1,7 @@
 ﻿using System.Windows;
+using AutoMapper;
+using ProjectERP.Model.Enitites;
+using ProjectERP.ViewModel.Details;
 
 namespace ProjectERP
 {
@@ -7,5 +10,6 @@ namespace ProjectERP
     /// </summary>
     public partial class App : Application
     {
+       
     }
 }

@@ -1,10 +1,10 @@
 ﻿using ProjectERP.Model.DataObjects;
+using ProjectERP.ViewModel.Interfaces;
 
 namespace ProjectERP.Model.Messages
 {
     public class MainTabItemMessage
     {
-        public MainTabItem MainTabItem { get; set; }
-        public bool IsNewContent { get; set; }
+        public IMainTabItem MainTabItem { get; set; }
     }
 }

@@ -32,12 +32,12 @@ namespace ProjectERP.Model.Repository
 
         public void Remove(Counterparty entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Counterparty.Remove(entity);
         }
 
         public void Update(Counterparty entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+           var a =  _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
         public void Save()
