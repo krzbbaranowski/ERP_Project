@@ -28,13 +28,23 @@ namespace ProjectERP.ViewModel.Tables
     {
         private readonly ICounterpartyRepository _counterpartyRepository;
         private RelayCommand _addItemCommand;
-        private RelayCommand<IMainTabItem> _deleteItemCommand;
+        private RelayCommand<Counterparty> _deleteItemCommand;
 
         public CounterpartyTableViewModel(ICounterpartyRepository counterpartyRepository)
         {
             _counterpartyRepository = counterpartyRepository;
+            UpdateData();
+        }
+
+        private void UpdateData()
+        {
             IEnumerable<Counterparty> counterparties = _counterpartyRepository.GetEntities();
-            Counterparties = new ObservableCollection<Counterparty>(counterparties);
+
+            Counterparties.Clear();
+            foreach (var counterparty in counterparties)
+            {
+                Counterparties.Add(counterparty);
+            }
         }
 
         public ObservableCollection<Counterparty> Counterparties { get; protected set; } =
@@ -86,15 +96,19 @@ namespace ProjectERP.ViewModel.Tables
             }
         }
 
-        public RelayCommand<IMainTabItem> DeleteItemCommand
+        public RelayCommand<Counterparty> DeleteItemCommand
         {
             get
             {
                 return _deleteItemCommand
-                       ?? (_deleteItemCommand = new RelayCommand<IMainTabItem>(
-                           tab =>
+                       ?? (_deleteItemCommand = new RelayCommand<Counterparty>(
+                           counterparty =>
                            {
-                               
+                               Counterparty dbCounterparty = _counterpartyRepository.GetById(counterparty.Id);
+                               _counterpartyRepository.Remove(dbCounterparty);
+                               _counterpartyRepository.Save();
+
+                               UpdateData();
                            }));
             }
         }

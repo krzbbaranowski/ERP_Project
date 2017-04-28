@@ -3,7 +3,7 @@ namespace ProjectERP.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AppMigration : DbMigration
+    public partial class codefirst4 : DbMigration
     {
         public override void Up()
         {
@@ -11,7 +11,7 @@ namespace ProjectERP.Migrations
                 "dbo.Addresses",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         Street = c.String(),
                         House = c.Int(nullable: false),
                         Flat = c.Int(nullable: false),
@@ -22,20 +22,11 @@ namespace ProjectERP.Migrations
                         Email = c.String(),
                         Fax = c.String(),
                         Url = c.String(),
-                        Province_Id = c.Int(),
+                        Province = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Provinces", t => t.Province_Id)
-                .Index(t => t.Province_Id);
-            
-            CreateTable(
-                "dbo.Provinces",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
+                .ForeignKey("dbo.Counterparties", t => t.Id)
+                .Index(t => t.Id);
             
             CreateTable(
                 "dbo.Counterparties",
@@ -49,22 +40,16 @@ namespace ProjectERP.Migrations
                         NIP = c.String(),
                         Regon = c.String(),
                         Pesel = c.String(),
-                        Address_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Addresses", t => t.Address_Id)
-                .Index(t => t.Address_Id);
+                .PrimaryKey(t => t.Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Counterparties", "Address_Id", "dbo.Addresses");
-            DropForeignKey("dbo.Addresses", "Province_Id", "dbo.Provinces");
-            DropIndex("dbo.Counterparties", new[] { "Address_Id" });
-            DropIndex("dbo.Addresses", new[] { "Province_Id" });
+            DropForeignKey("dbo.Addresses", "Id", "dbo.Counterparties");
+            DropIndex("dbo.Addresses", new[] { "Id" });
             DropTable("dbo.Counterparties");
-            DropTable("dbo.Provinces");
             DropTable("dbo.Addresses");
         }
     }

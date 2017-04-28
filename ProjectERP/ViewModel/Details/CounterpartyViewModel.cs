@@ -27,9 +27,6 @@ namespace ProjectERP.ViewModel.Details
                                                        {
                                                            cfg.CreateMap<CounterpartyViewModel, Address>()
                                                                .ForMember(x => x.Province, opt => opt.Ignore());
-                                                           cfg.CreateMap<CounterpartyViewModel, Province>()
-                                                               .ForMember(dest => dest.Name,
-                                                                   opt => opt.MapFrom(src => src.Province));
 
                                                            cfg.CreateMap<CounterpartyViewModel, Counterparty>();
                                                        });
@@ -37,18 +34,10 @@ namespace ProjectERP.ViewModel.Details
                                                        var mapper = config.CreateMapper();
 
                                                        if (_dbCounterparty == null)
-                                                       {
                                                            _dbCounterparty = new Counterparty
                                                            {
-                                                               Address = new Address
-                                                               {
-                                                                   Province = new Province()
-                                                               }
+                                                               Address = new Address()
                                                            };
-                                                       }
-
-                                                       mapper.Map(this,
-                                                           _dbCounterparty.Address.Province);
 
                                                        mapper.Map(this,
                                                            _dbCounterparty.Address);
@@ -73,15 +62,12 @@ namespace ProjectERP.ViewModel.Details
             {
                 cfg.CreateMap<Counterparty, CounterpartyViewModel>();
                 cfg.CreateMap<Address, CounterpartyViewModel>();
-                cfg.CreateMap<Province, CounterpartyViewModel>()
-                    .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.Name));
             });
 
             var mapper = config.CreateMapper();
 
             mapper.Map(_dbCounterparty, this);
             mapper.Map(_dbCounterparty.Address, this);
-            mapper.Map(_dbCounterparty.Address.Province, this);
         }
 
         public void DeleteToDatabase()

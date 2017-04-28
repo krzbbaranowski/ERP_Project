@@ -7,13 +7,13 @@ namespace ProjectERP.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AppMigration : IMigrationMetadata
+    public sealed partial class codefirst4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AppMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(codefirst4));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704061856093_AppMigration"; }
+            get { return "201704282128192_codefirst4"; }
         }
         
         string IMigrationMetadata.Source

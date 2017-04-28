@@ -97,16 +97,12 @@
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -122,15 +118,14 @@
     <Compile Include="Enums\TabNameEnum.cs" />
     <Compile Include="Enums\TabTypeEnum.cs" />
     <Compile Include="Factories\TabNameFactory.cs" />
-    <Compile Include="Migrations\201704061856093_AppMigration.cs" />
-    <Compile Include="Migrations\201704061856093_AppMigration.Designer.cs">
-      <DependentUpon>201704061856093_AppMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201704282128192_codefirst4.cs" />
+    <Compile Include="Migrations\201704282128192_codefirst4.Designer.cs">
+      <DependentUpon>201704282128192_codefirst4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Database\ERPDatabaseEntities.cs" />
     <Compile Include="Model\Database\Interfaces\IErpDatabaseContext.cs" />
     <Compile Include="Model\Enitites\Counterparty.cs" />
-    <Compile Include="Model\Enitites\Province.cs" />
     <Compile Include="Model\Enitites\Address.cs" />
     <Compile Include="Model\Messages\ContentViewMessage.cs" />
     <Compile Include="Model\DataObjects\MainTabItem.cs" />
@@ -213,8 +208,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201704061856093_AppMigration.resx">
-      <DependentUpon>201704061856093_AppMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704282128192_codefirst4.resx">
+      <DependentUpon>201704282128192_codefirst4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -81,7 +81,8 @@
                 <Button Margin="2" Command="{Binding AddItemCommand}">
                     <materialDesign:PackIcon Kind="Plus" />
                 </Button>
-                <Button Margin="2" Command="{Binding DeleteItemCommand}">
+                <Button Margin="2" Command="{Binding DeleteItemCommand}"  CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}">
+
                     <materialDesign:PackIcon Kind="Delete" />
                 </Button>
 

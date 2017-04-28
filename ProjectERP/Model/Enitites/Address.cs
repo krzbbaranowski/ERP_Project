@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectERP.Model.Enitites
 {
     public class Address
     {
         [Key]
+        [ForeignKey("Counterparty")]
         public int Id { get; set; }
 
         public string Street { get; set; }
@@ -17,7 +19,8 @@ namespace ProjectERP.Model.Enitites
         public string Email { get; set; }
         public string Fax { get; set; }
         public string Url { get; set; }
+        public string Province { get; set; }
 
-        public virtual Province Province { get; set; }
+        public virtual Counterparty Counterparty { get; set; }
     }
 }
