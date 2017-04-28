@@ -23,28 +23,65 @@ namespace ProjectERP.ViewModel.Details
                                                ?? (_saveItemCommand = new RelayCommand(
                                                    () =>
                                                    {
-                                                       var config = new MapperConfiguration(cfg => {
-                                                           cfg.CreateMap<CounterpartyViewModel, Counterparty>();
+                                                       var config = new MapperConfiguration(cfg =>
+                                                       {
+                                                           cfg.CreateMap<CounterpartyViewModel, Address>()
+                                                               .ForMember(x => x.Province, opt => opt.Ignore());
+                                                           cfg.CreateMap<CounterpartyViewModel, Province>()
+                                                               .ForMember(dest => dest.Name,
+                                                                   opt => opt.MapFrom(src => src.Province));
 
+                                                           cfg.CreateMap<CounterpartyViewModel, Counterparty>();
                                                        });
 
-                                                       IMapper mapper = config.CreateMapper();
-                                                       mapper.Map<CounterpartyViewModel, Counterparty>(this, _dbCounterparty);
+                                                       var mapper = config.CreateMapper();
 
-                                                       _counterpartyRepository.Update(_dbCounterparty);
+                                                       if (_dbCounterparty == null)
+                                                       {
+                                                           _dbCounterparty = new Counterparty
+                                                           {
+                                                               Address = new Address
+                                                               {
+                                                                   Province = new Province()
+                                                               }
+                                                           };
+                                                       }
+
+                                                       mapper.Map(this,
+                                                           _dbCounterparty.Address.Province);
+
+                                                       mapper.Map(this,
+                                                           _dbCounterparty.Address);
+
+                                                       mapper.Map(this,
+                                                           _dbCounterparty);
+
+                                                       if (_isNew)
+                                                           _counterpartyRepository.Add(_dbCounterparty);
+                                                       else
+                                                           _counterpartyRepository.Update(_dbCounterparty);
+
                                                        _counterpartyRepository.Save();
                                                    }));
 
         public void Initialize(int entityId)
         {
+            _isNew = false;
             _dbCounterparty = _counterpartyRepository.GetById(entityId);
 
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<Counterparty, CounterpartyViewModel>();
+                cfg.CreateMap<Address, CounterpartyViewModel>();
+                cfg.CreateMap<Province, CounterpartyViewModel>()
+                    .ForMember(dest => dest.Province, opt => opt.MapFrom(src => src.Name));
             });
 
-            IMapper mapper = config.CreateMapper();
-            mapper.Map<Counterparty, CounterpartyViewModel>(_dbCounterparty, this);
+            var mapper = config.CreateMapper();
+
+            mapper.Map(_dbCounterparty, this);
+            mapper.Map(_dbCounterparty.Address, this);
+            mapper.Map(_dbCounterparty.Address.Province, this);
         }
 
         public void DeleteToDatabase()
@@ -52,14 +89,12 @@ namespace ProjectERP.ViewModel.Details
             // var dbEnity = _erpDatabase.
         }
 
-       
-        
         #region Model properties
 
         public string Name1
         {
-            get { return _counterpartyName; }
-            set { Set(nameof(Name1), ref _counterpartyName, value); }
+            get { return _name1; }
+            set { Set(nameof(Name1), ref _name1, value); }
         }
 
         public string Name3
@@ -74,22 +109,22 @@ namespace ProjectERP.ViewModel.Details
             set { Set(nameof(Code), ref _code, value); }
         }
 
-        public string NIP
+        public string Nip
         {
             get { return _nip; }
-            set { Set(nameof(NIP), ref _nip, value); }
+            set { Set(nameof(Nip), ref _nip, value); }
         }
 
-        public string PESEL
+        public string Pesel
         {
             get { return _pesel; }
-            set { Set(nameof(PESEL), ref _pesel, value); }
+            set { Set(nameof(Pesel), ref _pesel, value); }
         }
 
-        public string REGON
+        public string Regon
         {
             get { return _regon; }
-            set { Set(nameof(REGON), ref _regon, value); }
+            set { Set(nameof(Regon), ref _regon, value); }
         }
 
         public string Name2
@@ -181,7 +216,7 @@ namespace ProjectERP.ViewModel.Details
 
         private string _city = string.Empty;
         private string _code = string.Empty;
-        private string _counterpartyName = string.Empty;
+        private string _name1 = string.Empty;
         private string _email = string.Empty;
         private string _fax = string.Empty;
         private int _flat;
@@ -198,6 +233,7 @@ namespace ProjectERP.ViewModel.Details
         private string _telephone2 = string.Empty;
         private string _url = string.Empty;
         private Counterparty _dbCounterparty;
+        private bool _isNew = true;
 
 
         public string Header { get; set; } = "Kontrahent";

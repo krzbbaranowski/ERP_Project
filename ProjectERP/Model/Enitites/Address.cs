@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ProjectERP.Model.Enitites
 {
@@ -24,6 +19,5 @@ namespace ProjectERP.Model.Enitites
         public string Url { get; set; }
 
         public virtual Province Province { get; set; }
-     
     }
 }
