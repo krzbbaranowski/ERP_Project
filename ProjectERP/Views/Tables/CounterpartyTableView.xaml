@@ -67,23 +67,28 @@
                 <DataGridTextColumn Header="{StaticResource Fax}" Binding="{Binding Address.Fax}" />
                 <DataGridTextColumn Header="{StaticResource Url}" Binding="{Binding Address.Url}" />
                 <DataGridTextColumn Header="{StaticResource Email}" Binding="{Binding Address.Email}" />
-                <DataGridTextColumn Header="{StaticResource Province}" Binding="{Binding Address.Province.Name}" />
+                <DataGridTextColumn Header="{StaticResource Province}" Binding="{Binding Address.Province}" />
             </DataGrid.Columns>
         </DataGrid>
 
         <materialDesign:ColorZone Grid.Row="1" HorizontalAlignment="Stretch" Mode="Accent">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <dialogs:NotificationDialogBox x:Name="notificationDialogBox"
-                                               Caption="ZadaniaWPF" CommandBefore="{Binding Path=DodajZadanie}">
-                   
-                 
-                </dialogs:NotificationDialogBox>
+                <dialogs:MessageDialogBox
+                    x:Name="questionYesNo"
+                    Caption="Pytanie" Icon="Question" Buttons="YesNo"
+                    CommandYes="{Binding Path=DeleteItemCommand}"
+                    CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
+
                 <Button Margin="2" Command="{Binding AddItemCommand}">
                     <materialDesign:PackIcon Kind="Plus" />
                 </Button>
-                <Button Margin="2" Command="{Binding DeleteItemCommand}"  CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}">
+                <Button Margin="2" Command="{Binding ElementName=questionYesNo, Path=Show}"
+                        CommandParameter="{StaticResource DialogDeleteCounterparty}">
 
                     <materialDesign:PackIcon Kind="Delete" />
+                </Button>
+                <Button Margin="30,2" Command="{Binding CloseCommand}" HorizontalAlignment="Right" >
+                    <materialDesign:PackIcon Kind="CloseBox" />
                 </Button>
 
             </StackPanel>

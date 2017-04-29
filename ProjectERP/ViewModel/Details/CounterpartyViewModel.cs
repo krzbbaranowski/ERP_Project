@@ -1,8 +1,13 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Model.Enitites;
+using ProjectERP.Model.Messages;
 using ProjectERP.Model.Repository.Interfaces;
+using ProjectERP.Utils.Helpers;
 using ProjectERP.ViewModel.Interfaces;
 
 namespace ProjectERP.ViewModel.Details
@@ -19,15 +24,26 @@ namespace ProjectERP.ViewModel.Details
             _counterpartyRepository = counterpartyRepository;
         }
 
+        public RelayCommand CloseCommand => _closeCommand
+                                            ?? (_closeCommand = new RelayCommand(
+                                                () =>
+                                                {
+                                                    var newItemMessage = new MainTabItemMessage
+                                                    {
+                                                        MainTabItem = this
+                                                    };
+
+                                                    Messenger.Default.Send(newItemMessage, MessengerTokens.CloseTab);
+                                                }));
+
+
         public RelayCommand SaveItemCommand => _saveItemCommand
                                                ?? (_saveItemCommand = new RelayCommand(
                                                    () =>
                                                    {
                                                        var config = new MapperConfiguration(cfg =>
                                                        {
-                                                           cfg.CreateMap<CounterpartyViewModel, Address>()
-                                                               .ForMember(x => x.Province, opt => opt.Ignore());
-
+                                                           cfg.CreateMap<CounterpartyViewModel, Address>();
                                                            cfg.CreateMap<CounterpartyViewModel, Counterparty>();
                                                        });
 
@@ -70,10 +86,7 @@ namespace ProjectERP.ViewModel.Details
             mapper.Map(_dbCounterparty.Address, this);
         }
 
-        public void DeleteToDatabase()
-        {
-            // var dbEnity = _erpDatabase.
-        }
+       
 
         #region Model properties
 
@@ -220,6 +233,7 @@ namespace ProjectERP.ViewModel.Details
         private string _url = string.Empty;
         private Counterparty _dbCounterparty;
         private bool _isNew = true;
+        private RelayCommand _closeCommand;
 
 
         public string Header { get; set; } = "Kontrahent";

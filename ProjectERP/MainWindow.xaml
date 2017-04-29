@@ -10,26 +10,60 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}"
     Title="MainWindow" Height="450" Width="925"
+    FontFamily="{StaticResource MaterialDesignFont}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DataGrid.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="Dictionary/StringDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="70" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <md:ColorZone Mode="Accent" Padding="8" Grid.Row="0">
-            <StackPanel Orientation="Horizontal">
-                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                <ToolBar Style="{DynamicResource ResourceKey=MaterialDesignToolBar}">
-                    <Button ToolTip="Kontrahenci" Command="{Binding AddCounterpartyCommand}">
-                        <md:PackIcon Kind="Account" />
-                    </Button>
-                    <Separator />
-                </ToolBar>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <md:ColorZone Grid.Column="0" Grid.Row="1" Mode="Dark" VerticalAlignment="Stretch" HorizontalAlignment="Left"
+                      Grid.RowSpan="2" Padding="8">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ToggleButton  Style="{StaticResource MaterialDesignActionToggleButton}"
+                                  Command="{Binding AddCounterpartyCommand}">
+                        <ToggleButton.Content>
+                            <md:PackIcon Kind="AccountBox" />
+                        </ToggleButton.Content>
+                        <md:ToggleButtonAssist.OnContent>
+                            <md:PackIcon Kind="AccountBox" />
+                        </md:ToggleButtonAssist.OnContent>
+                    </ToggleButton>
+
+                    <TextBlock Margin="5,0,5,0" VerticalAlignment="Center"
+                               Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                               Text="{StaticResource CounterpartyCaption}" />
+                </StackPanel>
+
             </StackPanel>
         </md:ColorZone>
-        <parents:MainTabControlView Grid.Row="1" />
+
+        <md:ColorZone VerticalAlignment="Stretch" Grid.Column="0" Grid.ColumnSpan="2" Mode="Accent"  Grid.Row="0">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Style="{StaticResource MaterialDesignDisplay1TextBlock}" 
+                           Margin="0 4 20 4">Jade ERP</TextBlock >
+            </StackPanel>
+        </md:ColorZone>
+        <parents:MainTabControlView Grid.Row="1" Grid.Column="1" />
 
     </Grid>
 </Window>

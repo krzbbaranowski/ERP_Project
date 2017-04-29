@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:dialogs="clr-namespace:ProjectERP.Views.Dialogs"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}">
     <UserControl.Resources>
@@ -37,6 +38,12 @@
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </Grid.Resources>
+            <dialogs:MessageDialogBox
+                x:Name="questionYesNo"
+                Caption="Pytanie" Icon="Question" Buttons="YesNo"
+                CommandYes="{Binding Path=DeleteItemCommand}"
+                CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
+            
             <GroupBox HorizontalAlignment="Stretch"
                       Header="Dane podstawowe"
                       md:ColorZoneAssist.Mode="Accent">
@@ -151,6 +158,9 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <Button Margin="2" Command="{Binding SaveItemCommand}">
                     <md:PackIcon Kind="ContentSave" />
+                </Button>
+                <Button Margin="30,2" Command="{Binding CloseCommand}" HorizontalAlignment="Right" >
+                    <md:PackIcon Kind="CloseBox" />
                 </Button>
             </StackPanel>
         </md:ColorZone>

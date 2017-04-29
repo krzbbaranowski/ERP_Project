@@ -8,6 +8,7 @@
     xmlns:tables1="clr-namespace:ProjectERP.Views.Tables"
     xmlns:details="clr-namespace:ProjectERP.ViewModel.Details"
     xmlns:details1="clr-namespace:ProjectERP.Views.Details"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight"
     x:Class="ProjectERP.Views.Parents.MainTabControlView"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
@@ -34,5 +35,12 @@
                 <TextBlock Text="{Binding Header}" />
             </DataTemplate>
         </dragablz:TabablzControl.HeaderItemTemplate>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="SelectionChanged">
+                <i:InvokeCommandAction Command="{Binding  ChangeActiveTabCommand}" 
+                                       CommandParameter="{Binding Path=SelectedValue, ElementName=MainTabControl}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
     </dragablz:TabablzControl>
 </UserControl>
+    

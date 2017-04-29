@@ -6,6 +6,129 @@ using GalaSoft.MvvmLight.Command;
 
 namespace ProjectERP.Views.Dialogs
 {
+
+    public class MessageDialogBox : CommandDialogBox
+    {
+        public MessageBoxResult? LastResult { get; protected set; }
+        public MessageBoxButton Buttons { get; set; } = MessageBoxButton.OK;
+        public MessageBoxImage Icon { get; set; } = MessageBoxImage.None;
+        public bool IsLastResultYes
+        {
+            get
+            {
+                if (!LastResult.HasValue) return false;
+                return LastResult.Value == MessageBoxResult.Yes;
+            }
+        }
+        public bool IsLastResultNo
+        {
+            get
+            {
+                if (!LastResult.HasValue) return false;
+                return LastResult.Value == MessageBoxResult.No;
+            }
+        }
+        public bool IsLastResultCancel
+        {
+            get
+            {
+                if (!LastResult.HasValue) return false;
+                return LastResult.Value == MessageBoxResult.Cancel;
+            }
+        }
+        public bool IsLastResultOK
+        {
+            get
+            {
+                if (!LastResult.HasValue) return false;
+                return LastResult.Value == MessageBoxResult.OK;
+            }
+        }
+        public MessageDialogBox()
+        {
+            execute = o =>
+            {
+                LastResult = MessageBox.Show((string)o, Caption, Buttons, Icon);
+                OnPropertyChanged("LastResult");
+                switch (LastResult)
+                {
+                    case MessageBoxResult.Yes:
+                        OnPropertyChanged("IsLastResultYes");
+                        ExecuteCommand(CommandYes, CommandParameter);
+                        break;
+                    case MessageBoxResult.No:
+                        OnPropertyChanged("IsLastResultNo");
+                        ExecuteCommand(CommandNo, CommandParameter);
+                        break;
+                    case MessageBoxResult.Cancel:
+                        OnPropertyChanged("IsLastResultCancel");
+                        ExecuteCommand(CommandCancel, CommandParameter);
+                        break;
+                    case MessageBoxResult.OK:
+                        OnPropertyChanged("IsLastResultOK");
+                        ExecuteCommand(CommandOK, CommandParameter);
+                        break;
+                }
+            };
+        }
+        public static DependencyProperty CommandYesProperty =
+        DependencyProperty.Register("CommandYes", typeof(ICommand), typeof(MessageDialogBox));
+
+        public static DependencyProperty CommandNoProperty =
+        DependencyProperty.Register("CommandNo", typeof(ICommand), typeof(MessageDialogBox));
+
+        public static DependencyProperty CommandCancelProperty =
+        DependencyProperty.Register("CommandCancel", typeof(ICommand), typeof(MessageDialogBox));
+
+        public static DependencyProperty CommandOKProperty =
+        DependencyProperty.Register("CommandOK", typeof(ICommand), typeof(MessageDialogBox));
+
+        public ICommand CommandYes
+        {
+            get
+            {
+                return (ICommand)GetValue(CommandYesProperty);
+            }
+            set
+            {
+                SetValue(CommandYesProperty, value);
+            }
+        }
+        public ICommand CommandNo
+        {
+            get
+            {
+                return (ICommand)GetValue(CommandNoProperty);
+            }
+            set
+            {
+                SetValue(CommandNoProperty, value);
+            }
+        }
+        public ICommand CommandCancel
+        {
+            get
+            {
+                return (ICommand)GetValue(CommandCancelProperty);
+            }
+            set
+            {
+                SetValue(CommandCancelProperty, value);
+            }
+        }
+        public ICommand CommandOK
+        {
+            get
+            {
+                return (ICommand)GetValue(CommandOKProperty);
+            }
+            set
+            {
+                SetValue(CommandOKProperty, value);
+            }
+        }
+    }
+
     public class CommandDialogBox : DialogBox
     {
         public static DependencyProperty CommandParameterProperty =

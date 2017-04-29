@@ -2,6 +2,7 @@
 {
     public enum MessengerTokens
     {
-        NewTabItemToAdd = 0
+        NewTabItemToAdd = 0,
+        CloseTab
     }
 }

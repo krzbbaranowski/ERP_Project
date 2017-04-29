@@ -3,6 +3,8 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!--Counterparties-->
+    <system:String x:Key="CounterpartyCaption">Kontrahenci</system:String>
+    
     <system:String x:Key="Id">Id</system:String>
     <system:String x:Key="Code">Kod</system:String>
     <system:String x:Key="Name">Nazwa</system:String>
@@ -19,8 +21,11 @@
     <system:String x:Key="Email">E-mail</system:String>
     <system:String x:Key="Fax">Fax</system:String>
     <system:String x:Key="Url">WWW</system:String>
-
     <system:String x:Key="Province">Województwo</system:String>
+
+
+    <!--Dialogs-->
+    <system:String x:Key="DialogDeleteCounterparty">Czy jesteś pewien, że chcesz usunąć kontrahenta?"</system:String>
 
 
 </ResourceDictionary>
