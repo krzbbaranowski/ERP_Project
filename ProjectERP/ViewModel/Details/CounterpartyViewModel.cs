@@ -84,6 +84,8 @@ namespace ProjectERP.ViewModel.Details
 
             mapper.Map(_dbCounterparty, this);
             mapper.Map(_dbCounterparty.Address, this);
+
+            Header = $"Kontrahent {Code}";
         }
 
        
@@ -236,7 +238,7 @@ namespace ProjectERP.ViewModel.Details
         private RelayCommand _closeCommand;
 
 
-        public string Header { get; set; } = "Kontrahent";
+        public string Header { get; set; }
         public bool IsMultiply { get; set; } = true;
 
         #endregion

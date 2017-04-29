@@ -1,15 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using ProjectERP.Enums;
-using ProjectERP.Model.Database;
-using ProjectERP.Model.DataObjects;
 using ProjectERP.Model.Messages;
 using ProjectERP.Utils.Helpers;
-using ProjectERP.ViewModel.MVVMLight;
-using ProjectERP.Model.Enitites;
 using ProjectERP.ViewModel.Interfaces;
 
 namespace ProjectERP.ViewModel.Controls.MainTab
@@ -19,9 +15,11 @@ namespace ProjectERP.ViewModel.Controls.MainTab
     /// </summary>
     public class MainTabViewModel : ViewModelBase
     {
+        private static readonly Dictionary<IMainTabItem, int> _ids = new Dictionary<IMainTabItem, int>();
         private RelayCommand<IMainTabItem> _changeActiveTabCommand;
         private RelayCommand<IMainTabItem> _closeCommand;
-        private IMainTabItem _currentTab = null;
+        private IMainTabItem _currentTab;
+
         public MainTabViewModel()
         {
             Tabs = new ObservableCollection<IMainTabItem>();
@@ -39,21 +37,15 @@ namespace ProjectERP.ViewModel.Controls.MainTab
                        ?? (_changeActiveTabCommand = new RelayCommand<IMainTabItem>(
                            item =>
                            {
-                               if(_currentTab!=item)
-                               {
+                               if (_currentTab != item)
                                    _currentTab = item;
-                               }
                                else
-                               {
                                    return;
-                               }
 
                                if (item is IUpdateView)
                                {
-                                   ((IUpdateView)item).UpdateView();;
+                                   ((IUpdateView) item).UpdateView();
                                }
-                           
-
                            }));
             }
         }
@@ -69,27 +61,53 @@ namespace ProjectERP.ViewModel.Controls.MainTab
 
         private void AddTab(MainTabItemMessage tab)
         {
-            IMainTabItem tabToAdd = tab.MainTabItem;
-
-            if (!tabToAdd.IsMultiply)
-                Tabs.Add(tabToAdd);
-
-            if (tabToAdd.IsMultiply)
+            var tabToAdd = tab.MainTabItem;
+            if(!TabExists(tabToAdd))
             {
-
-                Tabs.Add(tabToAdd);
+                if (tabToAdd.IsMultiply)
+                {
+                    AddId(tabToAdd);
+                    Tabs.Add(tabToAdd);
+                }
 
             }
-
+           
         }
 
-        private bool IsTabExists(IMainTabItem tab)
-        {
-            var isContains = (from t in Tabs
-                where t.Header.Equals(tab.Header)
-                select t).Any();
 
-            return isContains;
+        public bool TabExists(IMainTabItem tab)
+        {
+            var isEx = (from item in Tabs
+                where item.Header.Equals(tab.Header)
+                select item).Any();
+
+
+            return isEx;
+        }
+
+        public bool AddId(IMainTabItem tab)
+        {
+            var nextId = 0;
+
+            if (_ids.Count == 0)
+                nextId = 1;
+            else
+                nextId = _ids.Values.Max() + 1;
+
+            if (!_ids.ContainsKey(tab))
+            {
+                _ids.Add(tab, nextId);
+                return true;
+            }
+
+            return false;
+        }
+
+        public int GetId(IMainTabItem tab)
+        {
+            return (from item in _ids
+                where item.Key.Equals(tab)
+                select item.Value).FirstOrDefault();
         }
     }
 }
