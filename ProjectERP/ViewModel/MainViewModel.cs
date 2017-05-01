@@ -16,7 +16,7 @@ namespace ProjectERP.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private RelayCommand _addCounterpartyCommand;
-
+        private RelayCommand _addArticleCommand;
 
         public MainViewModel()
         {
@@ -37,6 +37,31 @@ namespace ProjectERP.ViewModel
                                MainTabItemMessage tabItemMessage = new MainTabItemMessage
                                {
                                    MainTabItem = counterpartyTableVM
+                               };
+
+                               Messenger.Default.Send<MainTabItemMessage>(tabItemMessage,
+                                   MessengerTokens.NewTabItemToAdd);
+
+                           }));
+            }
+        }
+
+
+
+        public RelayCommand AddArticleCommand
+        {
+            get
+            {
+                return _addArticleCommand
+                       ?? (_addArticleCommand = new RelayCommand(
+                           () =>
+                           {
+                               IMainTabItem articleTableVM =
+                                   SimpleIoc.Default.GetInstance<ArticleTableViewModel>();
+
+                               MainTabItemMessage tabItemMessage = new MainTabItemMessage
+                               {
+                                   MainTabItem = articleTableVM
                                };
 
                                Messenger.Default.Send<MainTabItemMessage>(tabItemMessage,

@@ -4,8 +4,10 @@
 
     <!--Counterparties-->
     <system:String x:Key="CounterpartyCaption">Kontrahenci</system:String>
+    <system:String x:Key="Counterparty">Kontrahent</system:String>
     
-    <system:String x:Key="Id">Id</system:String>
+    <system:String x:Key="CounterpartyTable">Lista kontrahentów</system:String>
+    
     <system:String x:Key="Code">Kod</system:String>
     <system:String x:Key="Name">Nazwa</system:String>
     <system:String x:Key="Nip">NIP</system:String>
@@ -23,9 +25,28 @@
     <system:String x:Key="Url">WWW</system:String>
     <system:String x:Key="Province">Województwo</system:String>
 
+    <!--Articles-->
+    <system:String x:Key="ArticleCaption">Towary</system:String>
+    <system:String x:Key="ArticlePricesCaption">Ceny</system:String>
 
+    <system:String x:Key="Article">Towar</system:String>
+
+    <system:String x:Key="ArticleTable">Lista towarów</system:String>
+
+    <system:String x:Key="Vat">VAT</system:String>
+    <system:String x:Key="DefaultPrice">Cena domyślna</system:String>
+    <system:String x:Key="Price">Cena</system:String>
+    <system:String x:Key="Netto">Wartość netto</system:String>
+    <system:String x:Key="Brutto">Wartość brutto</system:String>
+    <system:String x:Key="Quantity">Ilość</system:String>
+    <system:String x:Key="Ean">Ean</system:String>
+    <system:String x:Key="Measure">Jm</system:String>
+    <system:String x:Key="ArticleType">towar</system:String>
+    <system:String x:Key="ServiceType">usługa</system:String>
+ 
     <!--Dialogs-->
     <system:String x:Key="DialogDeleteCounterparty">Czy jesteś pewien, że chcesz usunąć kontrahenta?"</system:String>
+    <system:String x:Key="DialogDeleteArticle">Czy jesteś pewien, że chcesz usunąć towar?"</system:String>
 
 
 </ResourceDictionary>

@@ -8,33 +8,33 @@ using ProjectERP.Model.Repository.Interfaces;
 
 namespace ProjectERP.Model.Repository
 {
-    internal class CounterpartyRepository : ICounterpartyRepository, IDisposable
+    internal class MeasureRepository : IMeasureRepository, IDisposable
     {
         private readonly IErpDatabaseContext _dbContext;
 
         private bool _disposed;
 
-        public CounterpartyRepository(IErpDatabaseContext erpDatabaseContext)
+        public MeasureRepository(IErpDatabaseContext erpDatabaseContext)
         {
             _dbContext = erpDatabaseContext;
         }
 
-        public IEnumerable<Counterparty> GetEntities()
+        public IEnumerable<ArticleMeasure> GetEntities()
         {
-            return _dbContext.Counterparty.ToList();
+            return _dbContext.ArticleMeasure.ToList();
         }
 
-        public void Add(Counterparty entity)
+        public void Add(ArticleMeasure entity)
         {
-            _dbContext.Counterparty.Add(entity);
+            _dbContext.ArticleMeasure.Add(entity);
         }
 
-        public void Remove(Counterparty entity)
+        public void Remove(ArticleMeasure entity)
         {
-            _dbContext.Counterparty.Remove(entity);
+            _dbContext.ArticleMeasure.Remove(entity);
         }
 
-        public void Update(Counterparty entity)
+        public void Update(ArticleMeasure entity)
         {
             var a = _dbContext.Entry(entity).State = EntityState.Modified;
         }
@@ -44,9 +44,9 @@ namespace ProjectERP.Model.Repository
             _dbContext.SaveChanges();
         }
 
-        public Counterparty GetById(int id)
+        public ArticleMeasure GetById(int id)
         {
-            return _dbContext.Counterparty.Find(id);
+            return _dbContext.ArticleMeasure.Find(id);
         }
 
         public void Dispose()

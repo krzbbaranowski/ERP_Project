@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="MainMenuTreeView" TargetType="{x:Type TreeView}" 
+           BasedOn="{StaticResource MaterialDesignTreeView}">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+    
+    <Style x:Key="MainMenuBigCaption" TargetType="{x:Type TextBlock}"
+           BasedOn="{StaticResource MaterialDesignSubheadingTextBlock}">
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style x:Key="MainMenuSmallCaption" TargetType="{x:Type TextBlock}"
+           BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Opacity="0.7" Color="White" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MainMenuIconSmall" TargetType="{x:Type Control}">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Opacity="0.7" Color="White" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MainMenuIconBig" TargetType="{x:Type Control}">
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+</ResourceDictionary>

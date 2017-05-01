@@ -46,7 +46,7 @@
             
             <GroupBox HorizontalAlignment="Stretch"
                       Header="Dane podstawowe"
-                      md:ColorZoneAssist.Mode="Accent">
+                      md:ColorZoneAssist.Mode="PrimaryMid">
                 <Grid Width="Auto">
 
                     <Grid.ColumnDefinitions>
@@ -92,7 +92,7 @@
             </GroupBox>
 
             <GroupBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"
-                      Header="Dane teleadresowe" md:ColorZoneAssist.Mode="Accent">
+                      Header="Dane teleadresowe" md:ColorZoneAssist.Mode="PrimaryMid">
                 <Grid Width="Auto">
 
                     <Grid.ColumnDefinitions>
@@ -154,7 +154,7 @@
 
             </GroupBox>
         </Grid>
-        <md:ColorZone HorizontalAlignment="Stretch" Mode="Accent" Grid.Row="1">
+        <md:ColorZone HorizontalAlignment="Stretch" Mode="PrimaryLight" Grid.Row="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <Button Margin="2" Command="{Binding SaveItemCommand}">
                     <md:PackIcon Kind="ContentSave" />

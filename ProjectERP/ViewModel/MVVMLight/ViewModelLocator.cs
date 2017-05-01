@@ -1,15 +1,13 @@
-using System;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using ProjectERP.Model.Database;
 using ProjectERP.Model.Database.Interfaces;
-using ProjectERP.Model.Enitites;
 using ProjectERP.Model.Repository;
 using ProjectERP.Model.Repository.Interfaces;
 using ProjectERP.ViewModel.Controls.MainTab;
 using ProjectERP.ViewModel.Details;
 using ProjectERP.ViewModel.Tables;
-using ProjectERP.Views.Details;
+using System;
 
 namespace ProjectERP.ViewModel.MVVMLight
 {
@@ -20,14 +18,19 @@ namespace ProjectERP.ViewModel.MVVMLight
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<ICounterpartyRepository, CounterpartyRepository>();
+            SimpleIoc.Default.Register<ITaxRepository, TaxRepository>();
+            SimpleIoc.Default.Register<IArticleRepository, ArticleRepository>();
+            SimpleIoc.Default.Register<IMeasureRepository, MeasureRepository>();
             SimpleIoc.Default.Register<IErpDatabaseContext, ErpDatabaseEntities>();
-
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MainTabViewModel>();
          
             SimpleIoc.Default.Register<CounterpartyViewModel>();
+            SimpleIoc.Default.Register<ArticleViewModel>();
+
             SimpleIoc.Default.Register<CounterpartyTableViewModel>();
+            SimpleIoc.Default.Register<ArticleTableViewModel>();
         }
 
 
@@ -38,6 +41,11 @@ namespace ProjectERP.ViewModel.MVVMLight
         public CounterpartyTableViewModel CounterpartyTable
             => ServiceLocator.Current.GetInstance<CounterpartyTableViewModel>();
 
+        public ArticleTableViewModel ArticleTable
+            => ServiceLocator.Current.GetInstance<ArticleTableViewModel>();
+
+        public ArticleViewModel ArticleView
+            => ServiceLocator.Current.GetInstance<ArticleViewModel>(Guid.NewGuid().ToString());
 
         public static void Cleanup()
         {

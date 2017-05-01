@@ -3,15 +3,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="ProjectERP.MainWindow"
-    mc:Ignorable="d"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:parents="clr-namespace:ProjectERP.Views.Parents"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+    x:Class="ProjectERP.MainWindow"
+    mc:Ignorable="d"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}"
-    Title="MainWindow" Height="450" Width="925"
-    FontFamily="{StaticResource MaterialDesignFont}"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    Title="MainWindow" Height="450" Width="1600">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,11 +20,19 @@
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="Dictionary/StringDictionary.xaml" />
+                <ResourceDictionary Source="Styles/Jade.MainMenuStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
     </Window.Resources>
+    <Window.FontFamily>
+        <StaticResource ResourceKey="MaterialDesignFont" />
+    </Window.FontFamily>
+    <Window.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}" />
+    </Window.DataContext>
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition />
@@ -38,32 +46,82 @@
         <md:ColorZone Grid.Column="0" Grid.Row="1" Mode="Dark" VerticalAlignment="Stretch" HorizontalAlignment="Left"
                       Grid.RowSpan="2" Padding="8">
             <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <ToggleButton  Style="{StaticResource MaterialDesignActionToggleButton}"
-                                  Command="{Binding AddCounterpartyCommand}">
-                        <ToggleButton.Content>
-                            <md:PackIcon Kind="AccountBox" />
-                        </ToggleButton.Content>
-                        <md:ToggleButtonAssist.OnContent>
-                            <md:PackIcon Kind="AccountBox" />
-                        </md:ToggleButtonAssist.OnContent>
-                    </ToggleButton>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TreeView Grid.Column="0" MinWidth="220" Style="{StaticResource MainMenuTreeView}">
+                        <!--Kontrahenci-->
+                        <TreeViewItem>
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Style="{StaticResource MainMenuIconBig}" Kind="AccountBox" />
+                                    <TextBlock Style="{StaticResource MainMenuBigCaption}" Margin="8 0 0 0"
+                                               Text="{StaticResource CounterpartyCaption}" />
+                                </StackPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                <i:InvokeCommandAction Command="{Binding AddCounterpartyCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <md:PackIcon Style="{StaticResource MainMenuIconSmall}" Kind="Table" />
+                                        <TextBlock Style="{StaticResource MainMenuSmallCaption}" Margin="8 0 0 0"
+                                                   Text="{StaticResource CounterpartyTable}"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <!--Towary-->
+                        <TreeViewItem>
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Style="{StaticResource MainMenuIconBig}" Kind="Cube" />
+                                    <TextBlock Style="{StaticResource MainMenuBigCaption}" Margin="8 0 0 0"
+                                               Text="{StaticResource ArticleCaption}" />
+                                </StackPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                <i:InvokeCommandAction Command="{Binding AddArticleCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <md:PackIcon Style="{StaticResource MainMenuIconSmall}" Kind="Table" />
+                                        <TextBlock Style="{StaticResource MainMenuSmallCaption}" Margin="8 0 0 0"
+                                                   Text="{StaticResource ArticleTable}"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
 
-                    <TextBlock Margin="5,0,5,0" VerticalAlignment="Center"
-                               Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                               Text="{StaticResource CounterpartyCaption}" />
-                </StackPanel>
+                    </TreeView>
+                </Grid>
 
             </StackPanel>
         </md:ColorZone>
 
-        <md:ColorZone VerticalAlignment="Stretch" Grid.Column="0" Grid.ColumnSpan="2" Mode="Accent"  Grid.Row="0">
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Style="{StaticResource MaterialDesignDisplay1TextBlock}" 
-                           Margin="0 4 20 4">Jade ERP</TextBlock >
+        <md:ColorZone VerticalAlignment="Stretch" Grid.Column="0" Grid.ColumnSpan="2" Mode="PrimaryDark" Grid.Row="0">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center"
+                           Style="{StaticResource MaterialDesignDisplay1TextBlock}"
+                           Margin="20 4 0 4">
+                    <Run Text="Jade ERP" Foreground="White" />
+                </TextBlock>
+                <TextBlock VerticalAlignment="Bottom"
+                           Style="{StaticResource MaterialDesignBody2TextBlock}"
+                           Margin="0 4 0 15">
+                    <Run Text="production" Foreground="White" />
+                </TextBlock>
             </StackPanel>
         </md:ColorZone>
-        <parents:MainTabControlView Grid.Row="1" Grid.Column="1" />
+        <parents:MainTabControlView Margin="0" Grid.Row="1" Grid.Column="1" />
 
     </Grid>
 </Window>

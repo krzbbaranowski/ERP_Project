@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ProjectERP.Services;
 
 namespace ProjectERP
 {
@@ -10,6 +11,13 @@ namespace ProjectERP
         public MainWindow()
         {
             InitializeComponent();
+            AppInitialize();
+        }
+
+        private void AppInitialize()
+        {
+            AppDictionary.Instance.RegisterDictionary("Dictionary/StringDictionary.xaml", "StringLocs");
+
         }
     }
 }

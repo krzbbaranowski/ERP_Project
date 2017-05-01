@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="ProjectERP.Views.Details.ArticleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:dialogs="clr-namespace:ProjectERP.Views.Dialogs"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Dictionary/StringDictionary.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../../Styles/Jade.Details.GroupBox.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Grid.Resources>
+            <dialogs:MessageDialogBox
+                x:Name="questionYesNo"
+                Caption="Pytanie" Icon="Question" Buttons="YesNo"
+                CommandYes="{Binding Path=DeleteItemCommand}"
+                CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
+
+            <GroupBox VerticalAlignment="Stretch"
+                      Header="Dane podstawowe"
+                      md:ColorZoneAssist.Mode="PrimaryMid">
+                <Grid Width="Auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="100" />
+                        <ColumnDefinition MinWidth="120" />
+                        <ColumnDefinition MinWidth="100" />
+                        <ColumnDefinition MinWidth="120" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{StaticResource Code}" />
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="{StaticResource Vat}" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{StaticResource Name}" />
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{StaticResource Ean}" />
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="{StaticResource Measure}" />
+                   
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{StaticResource DefaultPrice}" />
+
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding ArticleCode}" />
+                    <ComboBox Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              ItemsSource="{Binding Taxs}" SelectedIndex="1"
+                              SelectedItem="{Binding ArticleTax,Mode=OneWayToSource}" IsSynchronizedWithCurrentItem= "true" IsReadOnly="True">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0}%">
+                                            <Binding Path="TaxValue" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2"
+                             HorizontalAlignment="Stretch" AcceptsReturn="True"
+                             Text="{Binding ArticleName}" />
+                    <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch"
+                             Text="{Binding ArticleEan}" />
+                    <ComboBox Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              ItemsSource="{Binding Measures}" DisplayMemberPath="ArticleMeasureName"
+                              SelectedItem="{Binding ArticleMeasure, Mode=OneWayToSource}" IsSynchronizedWithCurrentItem= "true" 
+                              SelectedIndex="1" IsReadOnly="True" />
+                    <RadioButton Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" GroupName="A" Content="{StaticResource ArticleType}"/>
+                    <RadioButton Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" GroupName="A" Content="{StaticResource ServiceType}"/>
+                    <!--<ComboBox Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              ItemsSource="{Binding Taxs}" SelectedIndex="1"
+                              SelectedItem="{Binding ArticleTax,Mode=OneWayToSource}" IsSynchronizedWithCurrentItem= "true" IsReadOnly="True"/>-->
+
+                </Grid>
+
+            </GroupBox>
+
+            <GroupBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      Header="{StaticResource ArticlePricesCaption}" md:ColorZoneAssist.Mode="PrimaryMid">
+              <StackPanel>
+                    <DataGrid ItemsSource="{Binding Prices, IsAsync=True}" x:Name="PricessGrid"
+                            CanUserSortColumns="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                            IsReadOnly="True" AutoGenerateColumns="False"
+                            md:DataGridAssist.CellPadding="4 2 2 2"
+                            md:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
+                      <i:Interaction.Triggers>
+                          <i:EventTrigger EventName="MouseDoubleClick">
+                              <i:InvokeCommandAction Command="{Binding SelectRowCommand}"
+                                                     CommandParameter="{Binding Path=SelectedItem, ElementName=ArticleGrid}" />
+                          </i:EventTrigger>
+                      </i:Interaction.Triggers>
+                      <DataGrid.Columns>
+                          <DataGridTextColumn Header="{StaticResource Price}" Binding="{Binding ArticleName}" />
+                          <DataGridTextColumn Header="{StaticResource Netto}" Binding="{Binding ArticleCode}" />
+                          <DataGridTextColumn Header="{StaticResource Brutto}" Binding="{Binding ArticleMeasure}" />
+                        
+                      </DataGrid.Columns>
+                  </DataGrid>
+                </StackPanel>
+
+            </GroupBox>
+        </Grid>
+        <md:ColorZone HorizontalAlignment="Stretch" Mode="PrimaryLight" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <Button Margin="2" Command="{Binding SaveItemCommand}">
+                    <md:PackIcon Kind="ContentSave" />
+                </Button>
+                <Button Margin="30,2" Command="{Binding CloseCommand}" HorizontalAlignment="Right">
+                    <md:PackIcon Kind="CloseBox" />
+                </Button>
+            </StackPanel>
+        </md:ColorZone>
+    </Grid>
+
+</UserControl>

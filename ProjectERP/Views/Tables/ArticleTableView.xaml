@@ -7,9 +7,9 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:Custom="http://www.galasoft.ch/mvvmlight"
     xmlns:dialogs="clr-namespace:ProjectERP.Views.Dialogs"
-    x:Class="ProjectERP.Views.Tables.CounterpartyTableView"
+    x:Class="ProjectERP.Views.Tables.ArticleTableView"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="300">
+    d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,7 +22,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <UserControl.DataContext>
-        <Binding Path="CounterpartyTable" Source="{StaticResource Locator}" />
+        <Binding Path="ArticleTable" Source="{StaticResource Locator}" />
     </UserControl.DataContext>
 
     <Grid VerticalAlignment="Stretch">
@@ -31,7 +31,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" ItemsSource="{Binding Counterparties, IsAsync=True}" x:Name="CounterpartyGrid"
+        <DataGrid Grid.Row="0" ItemsSource="{Binding Articles, IsAsync=True}" x:Name="ArticleGrid"
                   CanUserSortColumns="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   IsReadOnly="True" AutoGenerateColumns="False"
                   materialDesign:DataGridAssist.CellPadding="4 2 2 2"
@@ -39,35 +39,17 @@
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding SelectRowCommand}"
-                                           CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
+                                           CommandParameter="{Binding Path=SelectedItem, ElementName=ArticleGrid}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name1}" />
-                <DataGridTextColumn Header="{StaticResource Code}" Binding="{Binding Code}" />
-                <DataGridTextColumn Header="{StaticResource Nip}" Binding="{Binding NIP}" />
-                <DataGridTextColumn Header="{StaticResource Regon}" Binding="{Binding Regon}" />
-                <DataGridTextColumn Header="{StaticResource Pesel}" Binding="{Binding Pesel}" />
-
-                <DataGridTextColumn Header="{StaticResource Street}">
-                    <DataGridTextColumn.Binding>
-                        <MultiBinding StringFormat=" {0} {1}/{2} ">
-                            <Binding Path="Address.Street" />
-                            <Binding Path="Address.House" />
-                            <Binding Path="Address.Flat" />
-                        </MultiBinding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-
-                <DataGridTextColumn Header="{StaticResource PostalCode}" Binding="{Binding Address.PostalCode}" />
-                <DataGridTextColumn Header="{StaticResource City}" Binding="{Binding Address.City}" />
-                <DataGridTextColumn Header="{StaticResource Telephone}" Binding="{Binding Address.Telephone}" />
-                <DataGridTextColumn Header="{StaticResource Email}" Binding="{Binding Address.Email}" />
-                <DataGridTextColumn Header="{StaticResource Telephone}" Binding="{Binding Address.Telephone}" />
-                <DataGridTextColumn Header="{StaticResource Fax}" Binding="{Binding Address.Fax}" />
-                <DataGridTextColumn Header="{StaticResource Url}" Binding="{Binding Address.Url}" />
-                <DataGridTextColumn Header="{StaticResource Email}" Binding="{Binding Address.Email}" />
-                <DataGridTextColumn Header="{StaticResource Province}" Binding="{Binding Address.Province}" />
+                <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding ArticleName}" />
+                <DataGridTextColumn Header="{StaticResource Code}" Binding="{Binding ArticleCode}" />
+                <DataGridTextColumn Header="{StaticResource Measure}" Binding="{Binding ArticleMeasure}" />
+                <DataGridTextColumn Header="{StaticResource Vat}" Binding="{Binding ArticleTax}" />
+                <DataGridTextColumn Header="{StaticResource Netto}" Binding="{Binding DefaultArticlePrice.ArticlePriceValueNetto}" />
+                <DataGridTextColumn Header="{StaticResource Brutto}" Binding="{Binding DefaultArticlePrice.ArticlePriceValueBrutto}" />
+                <DataGridTextColumn Header="{StaticResource Quantity}" Binding="{Binding ArticleQuantity}" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -77,13 +59,13 @@
                     x:Name="questionYesNo"
                     Caption="Pytanie" Icon="Question" Buttons="YesNo"
                     CommandYes="{Binding Path=DeleteItemCommand}"
-                    CommandParameter="{Binding Path=SelectedItem, ElementName=CounterpartyGrid}" />
+                    CommandParameter="{Binding Path=SelectedItem, ElementName=ArticleGrid}" />
 
                 <Button Margin="2" Command="{Binding AddItemCommand}">
                     <materialDesign:PackIcon Kind="Plus" />
                 </Button>
                 <Button Margin="2" Command="{Binding ElementName=questionYesNo, Path=Show}"
-                        CommandParameter="{StaticResource DialogDeleteCounterparty}">
+                        CommandParameter="{StaticResource DialogDeleteArticle}">
 
                     <materialDesign:PackIcon Kind="Delete" />
                 </Button>

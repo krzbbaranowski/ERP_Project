@@ -122,29 +122,75 @@
     <Compile Include="Migrations\201704282128192_codefirst4.Designer.cs">
       <DependentUpon>201704282128192_codefirst4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705010027541_ArticleMigration.cs" />
+    <Compile Include="Migrations\201705010027541_ArticleMigration.Designer.cs">
+      <DependentUpon>201705010027541_ArticleMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705010104211_ArticleMigration1.cs" />
+    <Compile Include="Migrations\201705010104211_ArticleMigration1.Designer.cs">
+      <DependentUpon>201705010104211_ArticleMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705010110080_ArticleMigration2.cs" />
+    <Compile Include="Migrations\201705010110080_ArticleMigration2.Designer.cs">
+      <DependentUpon>201705010110080_ArticleMigration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705011149086_asd.cs" />
+    <Compile Include="Migrations\201705011149086_asd.Designer.cs">
+      <DependentUpon>201705011149086_asd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705012226284_asd2.cs" />
+    <Compile Include="Migrations\201705012226284_asd2.Designer.cs">
+      <DependentUpon>201705012226284_asd2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705012228454_asd25.cs" />
+    <Compile Include="Migrations\201705012228454_asd25.Designer.cs">
+      <DependentUpon>201705012228454_asd25.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Database\ERPDatabaseEntities.cs" />
     <Compile Include="Model\Database\Interfaces\IErpDatabaseContext.cs" />
+    <Compile Include="Model\Enitites\Article.cs" />
+    <Compile Include="Model\Enitites\ArticleGroup.cs" />
+    <Compile Include="Model\Enitites\ArticleMeasure.cs" />
+    <Compile Include="Model\Enitites\ArticlePriceType.cs" />
+    <Compile Include="Model\Enitites\ArticlePrice.cs" />
+    <Compile Include="Model\Enitites\ArticleType.cs" />
     <Compile Include="Model\Enitites\Counterparty.cs" />
     <Compile Include="Model\Enitites\Address.cs" />
+    <Compile Include="Model\Enitites\Tax.cs" />
     <Compile Include="Model\Messages\ContentViewMessage.cs" />
     <Compile Include="Model\DataObjects\MainTabItem.cs" />
     <Compile Include="Model\Messages\MainTabItemMessage.cs" />
+    <Compile Include="Model\Repository\ArticleRepository.cs" />
+    <Compile Include="Model\Repository\MeasureRepository.cs" />
+    <Compile Include="Model\Repository\Interfaces\IMeasureRepository.cs" />
+    <Compile Include="Model\Repository\TaxRepository.cs" />
     <Compile Include="Model\Repository\CounterpartyRepository.cs" />
+    <Compile Include="Model\Repository\Interfaces\ITaxRepository.cs" />
+    <Compile Include="Model\Repository\Interfaces\IArticleRepository.cs" />
     <Compile Include="Model\Repository\Interfaces\ICounterpartyRepository.cs" />
     <Compile Include="Model\Repository\Interfaces\IRepository.cs" />
+    <Compile Include="Services\AppDictionary.cs" />
     <Compile Include="Services\ConnectionHelper.cs" />
     <Compile Include="Utils\Helpers\MessengerTokens.cs" />
+    <Compile Include="ViewModel\Details\ArticleViewModel.cs" />
     <Compile Include="ViewModel\Details\CounterpartyViewModel.cs" />
     <Compile Include="Interfaces\IContentView.cs" />
     <Compile Include="ViewModel\Interfaces\IMainTabDetailsItem.cs" />
     <Compile Include="ViewModel\Interfaces\IMainTabItem.cs" />
     <Compile Include="ViewModel\Interfaces\IUpdateView.cs" />
+    <Compile Include="ViewModel\Tables\ArticleTableViewModel.cs" />
     <Compile Include="ViewModel\Tables\CounterpartyTableViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Controls\MainTab\MainTabViewModel.cs" />
     <Compile Include="ViewModel\MVVMLight\ViewModelLocator.cs" />
+    <Compile Include="Views\Details\ArticleView.xaml.cs">
+      <DependentUpon>ArticleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dialogs\DialogBox.cs" />
+    <Compile Include="Views\Tables\ArticleTableView.xaml.cs">
+      <DependentUpon>ArticleTableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tables\CounterpartyTableView.xaml.cs">
       <DependentUpon>CounterpartyTableView.xaml</DependentUpon>
     </Compile>
@@ -173,7 +219,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\Jade.MainMenuStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Jade.Details.GroupBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Details\ArticleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tables\ArticleTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -210,6 +268,24 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201704282128192_codefirst4.resx">
       <DependentUpon>201704282128192_codefirst4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705010027541_ArticleMigration.resx">
+      <DependentUpon>201705010027541_ArticleMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705010104211_ArticleMigration1.resx">
+      <DependentUpon>201705010104211_ArticleMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705010110080_ArticleMigration2.resx">
+      <DependentUpon>201705010110080_ArticleMigration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705011149086_asd.resx">
+      <DependentUpon>201705011149086_asd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705012226284_asd2.resx">
+      <DependentUpon>201705012226284_asd2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705012228454_asd25.resx">
+      <DependentUpon>201705012228454_asd25.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

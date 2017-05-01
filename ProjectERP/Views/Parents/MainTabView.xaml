@@ -20,18 +20,29 @@
         <Binding Path="MainTabControl" Source="{StaticResource Locator}" />
     </UserControl.DataContext>
     <dragablz:TabablzControl x:Name="MainTabControl" BorderThickness="0"
-                             ItemsSource="{Binding Tabs}">
+                             ItemsSource="{Binding Tabs}" >
+        
         <dragablz:TabablzControl.Resources>
+            <!--Tabele-->
             <DataTemplate DataType="{x:Type tables:CounterpartyTableViewModel}">
                 <tables1:CounterpartyTableView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type tables:ArticleTableViewModel}">
+                <tables1:ArticleTableView />
+            </DataTemplate>
+            <!--Szczegóły-->
             <DataTemplate DataType="{x:Type details:CounterpartyViewModel}">
                 <details1:CounterpartyView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type details:ArticleViewModel}">
+                <details1:ArticleView />
+            </DataTemplate>
+
 
         </dragablz:TabablzControl.Resources>
         <dragablz:TabablzControl.HeaderItemTemplate>
-            <DataTemplate>
+            <DataTemplate >
+                
                 <TextBlock Text="{Binding Header}" />
             </DataTemplate>
         </dragablz:TabablzControl.HeaderItemTemplate>

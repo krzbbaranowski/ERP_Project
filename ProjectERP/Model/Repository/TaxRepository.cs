@@ -8,33 +8,33 @@ using ProjectERP.Model.Repository.Interfaces;
 
 namespace ProjectERP.Model.Repository
 {
-    internal class CounterpartyRepository : ICounterpartyRepository, IDisposable
+    internal class TaxRepository : ITaxRepository, IDisposable
     {
         private readonly IErpDatabaseContext _dbContext;
 
         private bool _disposed;
 
-        public CounterpartyRepository(IErpDatabaseContext erpDatabaseContext)
+        public TaxRepository(IErpDatabaseContext erpDatabaseContext)
         {
             _dbContext = erpDatabaseContext;
         }
 
-        public IEnumerable<Counterparty> GetEntities()
+        public IEnumerable<Tax> GetEntities()
         {
-            return _dbContext.Counterparty.ToList();
+            return _dbContext.Tax.ToList();
         }
 
-        public void Add(Counterparty entity)
+        public void Add(Tax entity)
         {
-            _dbContext.Counterparty.Add(entity);
+            _dbContext.Tax.Add(entity);
         }
 
-        public void Remove(Counterparty entity)
+        public void Remove(Tax entity)
         {
-            _dbContext.Counterparty.Remove(entity);
+            _dbContext.Tax.Remove(entity);
         }
 
-        public void Update(Counterparty entity)
+        public void Update(Tax entity)
         {
             var a = _dbContext.Entry(entity).State = EntityState.Modified;
         }
@@ -44,9 +44,9 @@ namespace ProjectERP.Model.Repository
             _dbContext.SaveChanges();
         }
 
-        public Counterparty GetById(int id)
+        public Tax GetById(int id)
         {
-            return _dbContext.Counterparty.Find(id);
+            return _dbContext.Tax.Find(id);
         }
 
         public void Dispose()

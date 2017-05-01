@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Model.Enitites;
 using ProjectERP.Model.Messages;
 using ProjectERP.Model.Repository.Interfaces;
+using ProjectERP.Services;
 using ProjectERP.Utils.Helpers;
 using ProjectERP.ViewModel.Interfaces;
 
@@ -22,6 +23,7 @@ namespace ProjectERP.ViewModel.Details
         public CounterpartyViewModel(ICounterpartyRepository counterpartyRepository)
         {
             _counterpartyRepository = counterpartyRepository;
+            
         }
 
         public RelayCommand CloseCommand => _closeCommand
@@ -85,7 +87,7 @@ namespace ProjectERP.ViewModel.Details
             mapper.Map(_dbCounterparty, this);
             mapper.Map(_dbCounterparty.Address, this);
 
-            Header = $"Kontrahent {Code}";
+            Header = $"{AppDictionary.Instance.GetString("StringLocs","Counterparty")} {Code}";
         }
 
        

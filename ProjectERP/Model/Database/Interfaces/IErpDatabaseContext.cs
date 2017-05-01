@@ -8,9 +8,15 @@ namespace ProjectERP.Model.Database.Interfaces
     {
         DbSet<Counterparty> Counterparty { get; set; }
         DbSet<Address> Address { get; set; }
+        DbSet<Article> Article { get; set; }
+        DbSet<ArticleGroup> ArticleGroup { get; set; }
+        DbSet<ArticleMeasure> ArticleMeasure { get; set; }
+        DbSet<ArticlePrice> ArticlePrice { get; set; }
+        DbSet<Tax> Tax { get; set; }
 
+
+        System.Data.Entity.Database Database { get; }
         DbEntityEntry Entry(object entity);
         int SaveChanges();
-        System.Data.Entity.Database Database { get; }
     }
 }

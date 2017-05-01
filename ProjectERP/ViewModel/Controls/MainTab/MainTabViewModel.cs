@@ -43,9 +43,7 @@ namespace ProjectERP.ViewModel.Controls.MainTab
                                    return;
 
                                if (item is IUpdateView)
-                               {
                                    ((IUpdateView) item).UpdateView();
-                               }
                            }));
             }
         }
@@ -62,16 +60,11 @@ namespace ProjectERP.ViewModel.Controls.MainTab
         private void AddTab(MainTabItemMessage tab)
         {
             var tabToAdd = tab.MainTabItem;
-            if(!TabExists(tabToAdd))
-            {
-                if (tabToAdd.IsMultiply)
-                {
-                    AddId(tabToAdd);
-                    Tabs.Add(tabToAdd);
-                }
 
-            }
-           
+            AddId(tabToAdd);
+            Tabs.Add(tabToAdd);
+
+            ChangeActiveTabCommand.Execute(tabToAdd);
         }
 
 
