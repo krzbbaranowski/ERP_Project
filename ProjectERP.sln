@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectERP", "ProjectERP\ProjectERP.csproj", "{562E2114-6EFD-47FF-889C-1477F74F679A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialControls", "MaterialControls\MaterialControls.csproj", "{2E150D06-4DEA-4160-8CB9-24B0206E81EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,12 @@ Global
 		{562E2114-6EFD-47FF-889C-1477F74F679A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{562E2114-6EFD-47FF-889C-1477F74F679A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{562E2114-6EFD-47FF-889C-1477F74F679A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E150D06-4DEA-4160-8CB9-24B0206E81EE}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
+		{2E150D06-4DEA-4160-8CB9-24B0206E81EE}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
+		{2E150D06-4DEA-4160-8CB9-24B0206E81EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E150D06-4DEA-4160-8CB9-24B0206E81EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E150D06-4DEA-4160-8CB9-24B0206E81EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E150D06-4DEA-4160-8CB9-24B0206E81EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

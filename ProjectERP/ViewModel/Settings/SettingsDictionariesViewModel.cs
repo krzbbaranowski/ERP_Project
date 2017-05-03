@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using ProjectERP.Model.Enitites;
 using ProjectERP.Model.Messages;
 using ProjectERP.Model.Repository.Interfaces;
+using ProjectERP.Services;
 using ProjectERP.Utils.Helpers;
 using ProjectERP.ViewModel.Interfaces;
 
@@ -22,6 +23,7 @@ namespace ProjectERP.ViewModel.Settings
         public SettingsDictionariesViewModel(IArticlePriceTypeRepository priceTypeRepository)
         {
             _priceTypeRepository = priceTypeRepository;
+            Header = $"{AppDictionary.Instance.GetString("StringLocs", "SettingsDictionariesHeader")}";
 
         }
 
@@ -59,7 +61,7 @@ namespace ProjectERP.ViewModel.Settings
             }
         }
 
-        public string Header { get; set; } = "Ustawienia - słowniki";
+        public string Header { get; set; } 
         public bool IsMultiply { get; set; } = false;
     }
 }

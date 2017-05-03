@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="MaterialControls.IconButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialControls="clr-namespace:MaterialControls"
+             mc:Ignorable="d"
+             d:DesignHeight="50" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <materialControls:IconButton/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}" />
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Button  Style="{StaticResource MaterialDesignFlatButton}">
+        <StackPanel Orientation="Horizontal">
+            <materialDesign:PackIcon Kind="Check" VerticalAlignment="Center" />
+            <TextBlock Margin="5,0,0,0" Style="{StaticResource MaterialDesignButtonTextBlock}" Text="{Binding TextA}"
+                       VerticalAlignment="Center" />
+        </StackPanel>
+    </Button>
+</UserControl>

@@ -228,6 +228,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\Jade.Details.Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Jade.MainMenuStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -336,6 +340,12 @@
     <Folder Include="ViewModel\Bases\" />
     <Folder Include="ViewModel\Toolbar\" />
     <Folder Include="Views\Toolbars\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MaterialControls\MaterialControls.csproj">
+      <Project>{2e150d06-4dea-4160-8cb9-24b0206e81ee}</Project>
+      <Name>MaterialControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

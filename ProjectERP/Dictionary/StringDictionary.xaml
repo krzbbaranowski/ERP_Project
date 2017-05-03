@@ -46,7 +46,7 @@
     <!--Settings-->
     <system:String x:Key="SettingsCaption">Ustawienia</system:String>
     <system:String x:Key="SettingsDictionaries">Słowniki</system:String>
-
+    <system:String x:Key="SettingsDictionariesHeader">Ustawienia - słowniki</system:String>
     <!--Dialogs-->
     <system:String x:Key="DialogDeleteCounterparty">Czy jesteś pewien, że chcesz usunąć kontrahenta?"</system:String>
     <system:String x:Key="DialogDeleteArticle">Czy jesteś pewien, że chcesz usunąć towar?"</system:String>

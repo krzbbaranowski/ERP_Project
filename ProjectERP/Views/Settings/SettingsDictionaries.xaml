@@ -7,6 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:dialogs="clr-namespace:ProjectERP.Views.Dialogs"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialControls="clr-namespace:MaterialControls;assembly=MaterialControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -18,9 +19,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Dictionary/StringDictionary.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}" />
+
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -35,13 +39,13 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-
+                <ColumnDefinition MaxWidth="350" />
             </Grid.ColumnDefinitions>
             <Grid.Resources>
                 <ResourceDictionary>
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary Source="../../Styles/Jade.Details.GroupBox.xaml" />
+
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </Grid.Resources>
@@ -56,16 +60,18 @@
                       materialDesign:ColorZoneAssist.Mode="PrimaryMid">
                 <Grid Width="Auto">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition MinWidth="100" />
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition MaxHeight="120" MinHeight="120" />
+                        <RowDefinition Height="*" />
                         <RowDefinition MaxHeight="120" />
-
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" Grid.ColumnSpan="3" ItemsSource="{Binding ArticlePriceTypes, IsAsync=True}" x:Name="ArticleGrid"
+                    <DataGrid VerticalScrollBarVisibility="Auto" MaxHeight="260" Grid.Row="0" Grid.ColumnSpan="4" ItemsSource="{Binding ArticlePriceTypes, IsAsync=True}"
+                              x:Name="ArticleGrid"
                               CanUserSortColumns="True" CanUserAddRows="False" CanUserDeleteRows="False"
                               IsReadOnly="True" AutoGenerateColumns="False"
                               materialDesign:DataGridAssist.CellPadding="4 2 2 2"
@@ -77,18 +83,50 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding ArticlePriceName}" />
+                           <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+   
+                                            <TextBlock Grid.Column="0" Text="{Binding ArticlePriceName, Path=ArticlePriceTypes}"/>
+                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                     HorizontalAlignment="Left" 
+                                                    ToolTip="MaterialDesignFloatingActionMiniButton">
+                                                <materialDesign:PackIcon Kind="Alarm" Height="24" Width="24" />
+                                            </Button>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.HeaderTemplate>
+                               
+                           </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{StaticResource Name}" />
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="articlePriceName"/>
-                    
-                    <Button Grid.Column="2" Grid.Row="1" Content="{StaticResource AddCaption}" 
-                            Command="{Binding AddArticlePriceTypeCommand}" 
-                            CommandParameter="{Binding ElementName=articlePriceName, Path=Text}"/>
+                    <Separator Grid.Row="1" Grid.ColumnSpan="4" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="{StaticResource Name}" />
+                    <TextBox  Grid.Row="2" Grid.Column="1" x:Name="articlePriceName" Margin="6" VerticalAlignment="Center"
+                             materialDesign:HintAssist.FloatingScale="0.50"
+                             Style="{StaticResource MaterialDesignTextBox}" />
+
+                    <Button Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Margin="2" HorizontalContentAlignment="Stretch"
+                            Command="{Binding AddArticlePriceTypeCommand}" Style="{StaticResource MaterialDesignFlatButton}"
+                            CommandParameter="{Binding ElementName=articlePriceName, Path=Text}">
+
+                        <Grid Width="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon Kind="Check" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Left"/>
+                            <TextBlock  Grid.Column="1" Style="{StaticResource MaterialDesignButtonTextBlock}" Text="{StaticResource AddCaption}"
+                                       VerticalAlignment="Center"  HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+                 
                 </Grid>
-
-
             </GroupBox>
 
 
