@@ -11,7 +11,9 @@ namespace ProjectERP.Model.Database.Interfaces
         DbSet<Article> Article { get; set; }
         DbSet<ArticleGroup> ArticleGroup { get; set; }
         DbSet<ArticleMeasure> ArticleMeasure { get; set; }
+        DbSet<ArticlePriceType> ArticlePriceType { get; set; }
         DbSet<ArticlePrice> ArticlePrice { get; set; }
+        DbSet<ArticleType> ArticleType { get; set; }
         DbSet<Tax> Tax { get; set; }
 
 

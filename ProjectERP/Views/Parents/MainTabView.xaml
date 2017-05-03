@@ -8,7 +8,10 @@
     xmlns:tables1="clr-namespace:ProjectERP.Views.Tables"
     xmlns:details="clr-namespace:ProjectERP.ViewModel.Details"
     xmlns:details1="clr-namespace:ProjectERP.Views.Details"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+    xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+    xmlns:settings="clr-namespace:ProjectERP.ViewModel.Settings"
+    xmlns:settings1="clr-namespace:ProjectERP.Views.Settings"
     x:Class="ProjectERP.Views.Parents.MainTabControlView"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
@@ -36,6 +39,10 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type details:ArticleViewModel}">
                 <details1:ArticleView />
+            </DataTemplate>
+            <!--Ustawienia-->
+            <DataTemplate DataType="{x:Type settings:SettingsDictionariesViewModel}">
+                <settings1:SettingsDictionaries />
             </DataTemplate>
 
 

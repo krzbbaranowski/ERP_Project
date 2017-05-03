@@ -65,13 +65,13 @@
                                 <TreeViewItem.Header>
                                     <StackPanel Orientation="Horizontal">
                                         <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                            <i:EventTrigger EventName="MouseLeftButtonDown">
                                                 <i:InvokeCommandAction Command="{Binding AddCounterpartyCommand}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                         <md:PackIcon Style="{StaticResource MainMenuIconSmall}" Kind="Table" />
                                         <TextBlock Style="{StaticResource MainMenuSmallCaption}" Margin="8 0 0 0"
-                                                   Text="{StaticResource CounterpartyTable}"/>
+                                                   Text="{StaticResource CounterpartyTable}" />
                                     </StackPanel>
                                 </TreeViewItem.Header>
                             </TreeViewItem>
@@ -89,13 +89,37 @@
                                 <TreeViewItem.Header>
                                     <StackPanel Orientation="Horizontal">
                                         <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                            <i:EventTrigger EventName="MouseLeftButtonDown">
                                                 <i:InvokeCommandAction Command="{Binding AddArticleCommand}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                         <md:PackIcon Style="{StaticResource MainMenuIconSmall}" Kind="Table" />
                                         <TextBlock Style="{StaticResource MainMenuSmallCaption}" Margin="8 0 0 0"
-                                                   Text="{StaticResource ArticleTable}"/>
+                                                   Text="{StaticResource ArticleTable}" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <!--Ustawienia-->
+                        <TreeViewItem>
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Style="{StaticResource MainMenuIconBig}" Kind="Settings" />
+                                    <TextBlock Style="{StaticResource MainMenuBigCaption}" Margin="8 0 0 0"
+                                               Text="{StaticResource SettingsCaption}" />
+                                </StackPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                <i:InvokeCommandAction Command="{Binding AddSettingsDictionariesCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <md:PackIcon Style="{StaticResource MainMenuIconSmall}" Kind="BookMultiple" />
+                                        <TextBlock Style="{StaticResource MainMenuSmallCaption}" Margin="8 0 0 0"
+                                                   Text="{StaticResource SettingsDictionaries}" />
                                     </StackPanel>
                                 </TreeViewItem.Header>
                             </TreeViewItem>

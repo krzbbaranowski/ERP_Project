@@ -43,8 +43,8 @@ namespace ProjectERP.ViewModel.Tables
                 return _addItemCommand
                        ?? (_addItemCommand = new RelayCommand(
                            () =>
-                           {ViewModelLocator locator = new ViewModelLocator();
-
+                           {
+                               ViewModelLocator locator = new ViewModelLocator();
                                IMainTabItem articleDetailsVm = locator.ArticleView;
 
                                var newItemMessage = new MainTabItemMessage
@@ -78,20 +78,20 @@ namespace ProjectERP.ViewModel.Tables
                        ?? (_selectRowCommand = new RelayCommand<Article>(
                            item =>
                            {
-                               //if (item == null)
-                               //    return;
+                               if (item == null)
+                                   return;
 
-                               //IMainTabDetailsItem counterpartyDetailsVM =
-                               //    SimpleIoc.Default.GetInstance<CounterpartyViewModel>(Guid.NewGuid().ToString());
+                               ViewModelLocator locator = new ViewModelLocator();
+                               ArticleViewModel articleDetailsVm = locator.ArticleView;
 
-                               //counterpartyDetailsVM.Initialize(item.Id);
+                               articleDetailsVm.Initialize(item.Id);
 
-                               //var newItemMessage = new MainTabItemMessage
-                               //{
-                               //    MainTabItem = counterpartyDetailsVM
-                               //};
+                               var newItemMessage = new MainTabItemMessage
+                               {
+                                   MainTabItem = articleDetailsVm
+                               };
 
-                               //Messenger.Default.Send(newItemMessage, MessengerTokens.NewTabItemToAdd);
+                               Messenger.Default.Send(newItemMessage, MessengerTokens.NewTabItemToAdd);
                            }));
             }
         }

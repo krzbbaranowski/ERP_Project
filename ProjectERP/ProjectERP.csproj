@@ -115,6 +115,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\ArticleTypeConverter.cs" />
     <Compile Include="Enums\TabNameEnum.cs" />
     <Compile Include="Enums\TabTypeEnum.cs" />
     <Compile Include="Factories\TabNameFactory.cs" />
@@ -162,6 +163,10 @@
     <Compile Include="Model\DataObjects\MainTabItem.cs" />
     <Compile Include="Model\Messages\MainTabItemMessage.cs" />
     <Compile Include="Model\Repository\ArticleRepository.cs" />
+    <Compile Include="Model\Repository\Interfaces\IArticleTypeRepository .cs" />
+    <Compile Include="Model\Repository\ArticleTypeRepository.cs" />
+    <Compile Include="Model\Repository\Interfaces\IArticlePriceTypeRepository.cs" />
+    <Compile Include="Model\Repository\ArticlePriceTypeRepository.cs" />
     <Compile Include="Model\Repository\MeasureRepository.cs" />
     <Compile Include="Model\Repository\Interfaces\IMeasureRepository.cs" />
     <Compile Include="Model\Repository\TaxRepository.cs" />
@@ -179,6 +184,7 @@
     <Compile Include="ViewModel\Interfaces\IMainTabDetailsItem.cs" />
     <Compile Include="ViewModel\Interfaces\IMainTabItem.cs" />
     <Compile Include="ViewModel\Interfaces\IUpdateView.cs" />
+    <Compile Include="ViewModel\Settings\SettingsDictionariesViewModel.cs" />
     <Compile Include="ViewModel\Tables\ArticleTableViewModel.cs" />
     <Compile Include="ViewModel\Tables\CounterpartyTableViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -188,6 +194,9 @@
       <DependentUpon>ArticleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dialogs\DialogBox.cs" />
+    <Compile Include="Views\Settings\SettingsDictionaries.xaml.cs">
+      <DependentUpon>SettingsDictionaries.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tables\ArticleTableView.xaml.cs">
       <DependentUpon>ArticleTableView.xaml</DependentUpon>
     </Compile>
@@ -228,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Details\ArticleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\SettingsDictionaries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,6 +8,7 @@ using ProjectERP.ViewModel.Controls.MainTab;
 using ProjectERP.ViewModel.Details;
 using ProjectERP.ViewModel.Tables;
 using System;
+using ProjectERP.ViewModel.Settings;
 
 namespace ProjectERP.ViewModel.MVVMLight
 {
@@ -19,8 +20,11 @@ namespace ProjectERP.ViewModel.MVVMLight
 
             SimpleIoc.Default.Register<ICounterpartyRepository, CounterpartyRepository>();
             SimpleIoc.Default.Register<ITaxRepository, TaxRepository>();
+            SimpleIoc.Default.Register<IArticleTypeRepository, ArticleTypeRepository>();
             SimpleIoc.Default.Register<IArticleRepository, ArticleRepository>();
             SimpleIoc.Default.Register<IMeasureRepository, MeasureRepository>();
+            SimpleIoc.Default.Register<IArticlePriceTypeRepository, ArticlePriceTypeRepository>();
+
             SimpleIoc.Default.Register<IErpDatabaseContext, ErpDatabaseEntities>();
 
             SimpleIoc.Default.Register<MainViewModel>();
@@ -31,6 +35,8 @@ namespace ProjectERP.ViewModel.MVVMLight
 
             SimpleIoc.Default.Register<CounterpartyTableViewModel>();
             SimpleIoc.Default.Register<ArticleTableViewModel>();
+
+            SimpleIoc.Default.Register<SettingsDictionariesViewModel>();
         }
 
 
@@ -43,6 +49,9 @@ namespace ProjectERP.ViewModel.MVVMLight
 
         public ArticleTableViewModel ArticleTable
             => ServiceLocator.Current.GetInstance<ArticleTableViewModel>();
+
+        public SettingsDictionariesViewModel SettingsDictionaries
+            => ServiceLocator.Current.GetInstance<SettingsDictionariesViewModel>();
 
         public ArticleViewModel ArticleView
             => ServiceLocator.Current.GetInstance<ArticleViewModel>(Guid.NewGuid().ToString());

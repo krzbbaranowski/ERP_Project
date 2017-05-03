@@ -41,12 +41,17 @@
     <system:String x:Key="Quantity">Ilość</system:String>
     <system:String x:Key="Ean">Ean</system:String>
     <system:String x:Key="Measure">Jm</system:String>
-    <system:String x:Key="ArticleType">towar</system:String>
-    <system:String x:Key="ServiceType">usługa</system:String>
- 
+    <system:String x:Key="ArticleType">Typ</system:String>
+
+    <!--Settings-->
+    <system:String x:Key="SettingsCaption">Ustawienia</system:String>
+    <system:String x:Key="SettingsDictionaries">Słowniki</system:String>
+
     <!--Dialogs-->
     <system:String x:Key="DialogDeleteCounterparty">Czy jesteś pewien, że chcesz usunąć kontrahenta?"</system:String>
     <system:String x:Key="DialogDeleteArticle">Czy jesteś pewien, że chcesz usunąć towar?"</system:String>
 
+    <!--Buttons-->
+    <system:String x:Key="AddCaption">Dodaj</system:String>
 
 </ResourceDictionary>

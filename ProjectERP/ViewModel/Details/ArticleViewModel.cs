@@ -16,18 +16,23 @@ namespace ProjectERP.ViewModel.Details
 {
     public class ArticleViewModel : ViewModelBase, IMainTabDetailsItem, IUpdateView
     {
+        private readonly IArticlePriceTypeRepository _articlePriceTypeRepository;
         private readonly IArticleRepository _articleRepository;
+        private readonly IArticleTypeRepository _articleTypeRepository;
         private readonly IMeasureRepository _measureRepository;
         private readonly ITaxRepository _taxRepository;
 
         private RelayCommand _saveItemCommand;
 
         public ArticleViewModel(IArticleRepository articleRepository, ITaxRepository taxRepository,
-            IMeasureRepository measureRepository)
+            IMeasureRepository measureRepository, IArticleTypeRepository articleTypeRepository,
+            IArticlePriceTypeRepository articlePriceTypeRepository)
         {
             _articleRepository = articleRepository;
             _taxRepository = taxRepository;
             _measureRepository = measureRepository;
+            _articleTypeRepository = articleTypeRepository;
+            _articlePriceTypeRepository = articlePriceTypeRepository;
 
             Header = $"{_measureRepository.GetEntities().Count()}";
         }
@@ -61,16 +66,17 @@ namespace ProjectERP.ViewModel.Details
                                                        var mapper = config.CreateMapper();
 
                                                        if (_dbArticle == null)
-                                                           _dbArticle = new Article()
+                                                           _dbArticle = new Article
                                                            {
                                                                ArticlePrice = new List<ArticlePrice>(),
                                                                DefaultArticlePrice = new ArticlePrice(),
-                                                               ArticleType =  new ArticleType(),
+                                                               ArticleType = new ArticleType(),
                                                                ArticleMeasure = new ArticleMeasure()
                                                            };
 
                                                        mapper.Map(this,
                                                            _dbArticle);
+
 
                                                        if (_isNew)
                                                            _articleRepository.Add(_dbArticle);
@@ -82,19 +88,25 @@ namespace ProjectERP.ViewModel.Details
 
         public void Initialize(int entityId)
         {
-            //_isNew = false;
-            //_dbArticle = _articleRepository.GetById(entityId);
+            _isNew = false;
 
-            //var config = new MapperConfiguration(cfg =>
-            //{
-            //    cfg.CreateMap<Article, ArticleViewModel>();
-            //    cfg.CreateMap<ArticlePrice, ArticleViewModel>();
-            //});
+            var articlePricesTypes = _articlePriceTypeRepository.GetEntities();
 
-            //var mapper = config.CreateMapper();
+            _dbArticle = _articleRepository.GetById(entityId);
 
-            //mapper.Map(_dbArticle, this);
-            //mapper.Map(_dbArticle.Address, this);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Article, ArticleViewModel>();
+                cfg.CreateMap<Tax, ArticleViewModel>();
+                cfg.CreateMap<ArticleType, ArticleViewModel>();
+                cfg.CreateMap<ArticleMeasure, ArticleViewModel>();
+                cfg.CreateMap<ArticlePrice, ArticleViewModel>();
+            });
+
+            var mapper = config.CreateMapper();
+
+            mapper.Map(_dbArticle, this);
+
 
             Header = $"{AppDictionary.Instance.GetString("StringLocs", "Article")} {ArticleCode}";
         }
@@ -103,6 +115,8 @@ namespace ProjectERP.ViewModel.Details
         {
             var taxs = _taxRepository.GetEntities();
             var measures = _measureRepository.GetEntities();
+            var types = _articleTypeRepository.GetEntities();
+            var priceTypes = _articlePriceTypeRepository.GetEntities();
 
             Taxs.Clear();
             foreach (var tax in taxs)
@@ -111,14 +125,33 @@ namespace ProjectERP.ViewModel.Details
             Measures.Clear();
             foreach (var measure in measures)
                 Measures.Add(measure);
+
+            ArticleTypes.Clear();
+            foreach (var type in types)
+                ArticleTypes.Add(type);
+
+            ArticlePriceTypes.Clear();
+            foreach (var type in priceTypes)
+                ArticlePriceTypes.Add(type);
         }
 
 
         #region Model properties
 
         public ObservableCollection<Tax> Taxs { get; protected set; } = new ObservableCollection<Tax>();
-        public ObservableCollection<ArticleMeasure> Measures { get; protected set; } = new ObservableCollection<ArticleMeasure>();
-        public ObservableCollection<ArticlePrice> ArticlePrice { get; protected set; } = new ObservableCollection<ArticlePrice>();
+
+        public ObservableCollection<ArticleMeasure> Measures { get; protected set; } =
+            new ObservableCollection<ArticleMeasure>();
+
+        public ObservableCollection<ArticlePrice> ArticlePrice { get; protected set; } =
+            new ObservableCollection<ArticlePrice>();
+
+        public ObservableCollection<ArticleType> ArticleTypes { get; protected set; } =
+            new ObservableCollection<ArticleType>();
+
+        public ObservableCollection<ArticlePriceType> ArticlePriceTypes { get; protected set; } =
+            new ObservableCollection<ArticlePriceType>();
+
 
         public string ArticleName
         {
@@ -156,7 +189,13 @@ namespace ProjectERP.ViewModel.Details
             set => Set(nameof(ArticleTax), ref _articleTax, value);
         }
 
-        public ArticleMeasure ArticleMeasure 
+        public ArticleType ArticleType
+        {
+            get => _articleType;
+            set => Set(nameof(ArticleType), ref _articleType, value);
+        }
+
+        public ArticleMeasure ArticleMeasure
         {
             get => _articleMeasure;
             set => Set(nameof(_articleMeasure), ref _articleMeasure, value);
@@ -177,6 +216,7 @@ namespace ProjectERP.ViewModel.Details
         private ArticleMeasure _articleMeasure;
         private string _articleName;
         private ArticlePrice _defaultArticlePrice;
+        private ArticleType _articleType;
 
 
         public string Header { get; set; }

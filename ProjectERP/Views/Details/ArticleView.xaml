@@ -72,6 +72,11 @@
                     <TextBlock Grid.Row="3" Grid.Column="2" Text="{StaticResource Measure}" />
                    
                     <TextBlock Grid.Row="4" Grid.Column="2" Text="{StaticResource DefaultPrice}" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{StaticResource ArticleType}" />
+
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Text="{Binding ArticleCode}" />
+
 
                     <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                              Text="{Binding ArticleCode}" />
@@ -100,11 +105,17 @@
                               ItemsSource="{Binding Measures}" DisplayMemberPath="ArticleMeasureName"
                               SelectedItem="{Binding ArticleMeasure, Mode=OneWayToSource}" IsSynchronizedWithCurrentItem= "true" 
                               SelectedIndex="1" IsReadOnly="True" />
-                    <RadioButton Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" GroupName="A" Content="{StaticResource ArticleType}"/>
-                    <RadioButton Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" GroupName="A" Content="{StaticResource ServiceType}"/>
-                    <!--<ComboBox Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                              ItemsSource="{Binding Taxs}" SelectedIndex="1"
-                              SelectedItem="{Binding ArticleTax,Mode=OneWayToSource}" IsSynchronizedWithCurrentItem= "true" IsReadOnly="True"/>-->
+
+                    <ComboBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              ItemsSource="{Binding ArticleTypes}" DisplayMemberPath="ArticleTypeName"
+                              SelectedItem="{Binding ArticleType, Mode=OneWayToSource}" IsSynchronizedWithCurrentItem= "true" 
+                              SelectedIndex="1" IsReadOnly="True" />
+
+                    <ComboBox Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              ItemsSource="{Binding ArticlePrice}" DisplayMemberPath="ArticlePriceType.ArticlePriceName"
+                              SelectedItem="{Binding DefaultArticlePrice, Mode=OneWayToSource}" IsSynchronizedWithCurrentItem= "true" 
+                              SelectedIndex="1" IsReadOnly="True" />
+
 
                 </Grid>
 
@@ -113,7 +124,7 @@
             <GroupBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                       Header="{StaticResource ArticlePricesCaption}" md:ColorZoneAssist.Mode="PrimaryMid">
               <StackPanel>
-                    <DataGrid ItemsSource="{Binding Prices, IsAsync=True}" x:Name="PricessGrid"
+                    <DataGrid ItemsSource="{Binding ArticlePrice, IsAsync=True}" x:Name="PricessGrid"
                             CanUserSortColumns="True" CanUserAddRows="False" CanUserDeleteRows="False"
                             IsReadOnly="True" AutoGenerateColumns="False"
                             md:DataGridAssist.CellPadding="4 2 2 2"
@@ -125,9 +136,9 @@
                           </i:EventTrigger>
                       </i:Interaction.Triggers>
                       <DataGrid.Columns>
-                          <DataGridTextColumn Header="{StaticResource Price}" Binding="{Binding ArticleName}" />
-                          <DataGridTextColumn Header="{StaticResource Netto}" Binding="{Binding ArticleCode}" />
-                          <DataGridTextColumn Header="{StaticResource Brutto}" Binding="{Binding ArticleMeasure}" />
+                            <DataGridTextColumn Header="{StaticResource Price}" Binding="{Binding ArticlePriceType.ArticlePriceName}" />
+                            <DataGridTextColumn Header="{StaticResource Netto}" Binding="{Binding ArticlePriceValueNetto}" />
+                            <DataGridTextColumn Header="{StaticResource Brutto}" Binding="{Binding ArticlePriceValueBrutto}" />
                         
                       </DataGrid.Columns>
                   </DataGrid>

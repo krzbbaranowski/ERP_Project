@@ -9,6 +9,7 @@ using ProjectERP.Model.Messages;
 using ProjectERP.Model.Repository.Interfaces;
 using ProjectERP.Utils.Helpers;
 using ProjectERP.ViewModel.Interfaces;
+using ProjectERP.ViewModel.Settings;
 using ProjectERP.ViewModel.Tables;
 
 namespace ProjectERP.ViewModel
@@ -17,6 +18,7 @@ namespace ProjectERP.ViewModel
     {
         private RelayCommand _addCounterpartyCommand;
         private RelayCommand _addArticleCommand;
+        private RelayCommand _addSettingsDictionariesCommand;
 
         public MainViewModel()
         {
@@ -45,6 +47,30 @@ namespace ProjectERP.ViewModel
                            }));
             }
         }
+
+        public RelayCommand AddSettingsDictionariesCommand
+        {
+            get
+            {
+                return _addSettingsDictionariesCommand
+                       ?? (_addSettingsDictionariesCommand = new RelayCommand(
+                           () =>
+                           {
+                               IMainTabItem settingsTableVM =
+                                   SimpleIoc.Default.GetInstance<SettingsDictionariesViewModel>();
+
+                               MainTabItemMessage tabItemMessage = new MainTabItemMessage
+                               {
+                                   MainTabItem = settingsTableVM
+                               };
+
+                               Messenger.Default.Send<MainTabItemMessage>(tabItemMessage,
+                                   MessengerTokens.NewTabItemToAdd);
+
+                           }));
+            }
+        }
+
 
 
 
